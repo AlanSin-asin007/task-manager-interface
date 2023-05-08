@@ -2,7 +2,7 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Mini canvas Interface\>
+# Task Manager Interface
  > Your author list below should include links to all members GitHub (remove existing author).
  
  > Authors: [Arnav Swami](https://github.com/arnavswami), [Rylan Cruz](https://github.com/rcruz053), [Alan Sin](https://github.com/AlanSin-asin007), [Adithya Iyer](https://github.com/Adithya-Iyer1)
@@ -43,6 +43,8 @@
 > Draw a diagram illustrating how the user can navigate from one screen to another. Here is an [example](https://creately.com/diagram/example/ikfqudv82/user-navigation-diagram-classic?r=v). It can be useful to label each symbol that represents a screen so that you can reference the screens in the next section or the rest of the document if necessary. Give a brief description of what the diagram represents.
 
 ### Screen Layouts
+![image](https://user-images.githubusercontent.com/117235128/236956488-59bffb89-aac4-4b39-8a9b-b33a8fd29083.png)
+
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
 
 ## Class Diagram
