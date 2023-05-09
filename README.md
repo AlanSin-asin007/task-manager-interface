@@ -52,6 +52,9 @@
 ## Class Diagram
 ![CS100 UML DIAGRAM](https://user-images.githubusercontent.com/130192487/236974301-6b322da5-fb32-409c-a663-40470c7bd63a.png)
 
+## Description of class diagram
+
+> In the UML diagram depicted, there are 4 classes. Within the Person, Task, and Label classes, we have their respective private variables. We also have the respective getter functions that get inputs from the user which return the respective inputs. Certain classes such as the Task Manager class are dependent on the Task class. The person class and the Label class have an association relationship as they have basic relationships with one another and they don't depend on one another in terms of their existence. This is the same case between the Task Manager and the Label class as well as the Label class and the Task and Label classes. The task manager class creates a linked list of tasks with their respective characteristics. The functions within the Task Manager class are the addTask function, deleteTask function, prioritizeTask function, and the addLabel function. These respective functions are what the user will interact with in order to use the app. The task manager class takes in the values that it got from the getter functions and uses it to perform certain tasks that are expected of the app. 
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
  
  > ## Phase III
