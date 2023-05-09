@@ -42,10 +42,23 @@
 ### Navigation Diagram
 ![Navigation_Diagram](https://user-images.githubusercontent.com/129815281/236971001-e4a455f4-ce8f-45d6-abfd-c29fcd17c976.png)
 
+Description: The diagram represents each of the individual screens of the task planner and how the user will be able to navigate between each of the screens. At first, the user will be given the option to either log in or sign up. After logging in, the user will be sent to the Dashboard, where they will be shown their schedule and given the options of viewing a particular task, adding a new task, configuring their settings, viewing their friends page, deleting a task, or switching over to a calendar view, which each option giving the user additional information and options. 
+
 > Draw a diagram illustrating how the user can navigate from one screen to another. Here is an [example](https://creately.com/diagram/example/ikfqudv82/user-navigation-diagram-classic?r=v). It can be useful to label each symbol that represents a screen so that you can reference the screens in the next section or the rest of the document if necessary. Give a brief description of what the diagram represents.
 
 ### Screen Layouts
 ![image](https://user-images.githubusercontent.com/117235128/236956488-59bffb89-aac4-4b39-8a9b-b33a8fd29083.png)
+
+Description: The user will be prompted with 2 options: logging in or signing up.
+    * Login: The user will be asked to input their username and password. Once a valid username and password is given, the user will be sent to the dashboard screen.
+    * Sign Up: In the case that the user does not have an already existing account, the user can choose the "Sign Up" option, where they will be asked for their display name, username, and password to create a new account.
+    * Dashboard: After logging in, the user will be presented with their schedule, listing all of their tasks for the current week. In this current screen, the user has the option of changing their view to a calendar view, deleting an existing task, selecting and viewing a particular task, adding a new task, configuring their settings, viewing their friends page, and logging out.
+    * Settings: This is the settings page where the user will be given the options to change their display name, username, and password.
+    * Friends: This screen will list all of the user's current friends. This screen will give the user the option to either delete a current friend from their friends list, add a new friend, or select a particular friend to message them.
+    * Chats: The user can enter text that will be sent to a friend of their choosing.
+    * Enter New Friend: This will be a screen where the user will be prompted to enter the user's friend's identification in order to send a friend request to the other user's account.
+    * New Task: After choosing the option of adding a task from the Dashboard, or choosing the option of editing a task after viewing it in the "View Task" screen, the user will be sent to a screen where they can add/change details onto a new (or already existing) task.
+    * View Task: After choosing the option to select and view a particular task in their schedule, they will be sent to a screen showcasing all the details of the task in question. These details will include the name of the task, a description, label, and deadline. The user will have the option of either deleting the task in question (which will send the user back to the dashboard interface), or editing the task in question (which will change their screen to the "New Task" screen).
 
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
 
