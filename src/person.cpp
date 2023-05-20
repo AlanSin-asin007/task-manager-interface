@@ -21,6 +21,8 @@ Person::Person(string name, string email, string password, string tasks, string 
     this->friends = friends;
 }
 
+Person::~Person() {}
+
 string Person::getName() const {
     return this->name;
 }
@@ -37,14 +39,26 @@ string Person::getTasks() const {
     return this->tasks;
 }
 
-string Person::generateRandPassword() {
-    srand(time(NULL));
+string Person::getFriends() const {
+    return this->friends;
+}
 
-    unsigned i;
-    string randPassword = "";
+void Person::setName(string newName) {
+    this->name = newName;
+}
 
-    for(i = 0; i < 20; ++i) {
-        randPassword += char((rand() % 94) + 33);
-    }
-    return randPassword;
+void Person::setEmail(string newEmail) {
+    this->email = newEmail;
+}
+
+void Person::setPassword(string newPassword) {
+    this->password = newPassword;
+}
+
+void Person::setTasks(string newTasks) {
+    this->tasks = newTasks;
+}
+
+void Person::setFriends(string newFriends) {
+    this->friends = newFriends;
 }

@@ -5,6 +5,8 @@
 
 using namespace std;
 
+//REMEMBER TO UPDATE UML DIAGRAM
+
 class Person {
     private:
         string name;
@@ -17,12 +19,21 @@ class Person {
         //constructors
         Person();
         Person(string name, string email, string password, string tasks, string friends);
+        ~Person();
 
         //accessors
         string getName() const;
         string getEmail() const;
         string getPassword() const;
         string getTasks() const;
+        string getFriends() const;
+
+        //mutators
+        void setName(string newName);
+        void setEmail(string newEmail);
+        void setPassword(string newPassword);
+        void setTasks(string newTasks);
+        void setFriends(string newFriends);
 
         // //list of issues
         // void delAcc();
@@ -31,7 +42,7 @@ class Person {
         // //initially prompts for original password confirmation
         // //automatically sets new password as randomly generated password
         // //max char length
-        string generateRandPassword();
+        // string generateRandPassword();
         // //optional
         // void twoFA();
         // //prompts for original password confirmation
