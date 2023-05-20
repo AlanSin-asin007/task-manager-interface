@@ -1,6 +1,9 @@
 #ifndef PERSON_HPP
 #define PERSON_HPP
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <string>
 
 using namespace std;
@@ -42,7 +45,7 @@ class Person {
         // //initially prompts for original password confirmation
         // //automatically sets new password as randomly generated password
         // //max char length
-        // string generateRandPassword();
+        string generateRandPassword();
         // //optional
         // void twoFA();
         // //prompts for original password confirmation

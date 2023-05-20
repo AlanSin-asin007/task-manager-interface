@@ -1,38 +1,17 @@
 #include "../header/person.hpp"
 
 #include "gtest/gtest.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <string>
 
 using namespace std;
 
-TEST(personDefaultConstructor, testName) {
-    Person* testPersonName = new Person();
-
-    EXPECT_EQ("", testPersonName->getName());
-}
-
-TEST(personDefaultConstructor, testEmail) {
-    Person* testPersonEmail = new Person();
-
-    EXPECT_EQ("", testPersonEmail->getEmail());
-}
-
-TEST(personDefaultConstructor, testPassword) {
-    Person* testPersonPassword = new Person();
-
-    EXPECT_EQ("", testPersonPassword->getPassword());
-}
-
-TEST(personDefaultConstructor, testTasks) {
-    Person* testPersonTasks = new Person();
-
-    EXPECT_EQ("", testPersonTasks->getTasks());
-}
-
-TEST(personDefaultConstructor, testFriends) {
-    Person* testPersonFriends = new Person();
-
-    EXPECT_EQ("", testPersonFriends->getFriends());
+TEST(personGenerateRandPassword, lengthOfPassword) {
+    Person testPerson1;
+    string res = testPerson1.generateRandPassword();
+    EXPECT_EQ(20, res.length());
 }
 
 int main(int argc, char **argv) {

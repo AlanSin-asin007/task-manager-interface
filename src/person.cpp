@@ -1,5 +1,7 @@
 #include "../header/person.hpp"
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include <string>
 
@@ -61,4 +63,15 @@ void Person::setTasks(string newTasks) {
 
 void Person::setFriends(string newFriends) {
     this->friends = newFriends;
+}
+
+string Person::generateRandPassword() {
+    srand(time(NULL));
+
+    string randPassword = "";
+
+    for(unsigned i = 0; i < 20; ++i) {
+        randPassword += char((rand() % 94) + 33);
+    }
+    return randPassword;
 }
