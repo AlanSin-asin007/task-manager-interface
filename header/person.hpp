@@ -9,9 +9,15 @@ using namespace std;
 
 class Person {
     private:
+        //5-15 char limit
+        //only alphabetical
         string name;
+        //1-60 char limit before "@"
+        //1-191 char limit after "@" and before "."
+        //only alphabetical and numerical
         string email;
         //12-20 char length
+        //check if there is at least one numerical and one special char
         string password;
         string tasks;
         string friends;
@@ -37,8 +43,8 @@ class Person {
 
         // //list of issues
         // void delAcc();
-        // //prompt user to enter new acc info
-        // void signUp();
+        //prompt user to enter new acc info
+        void signUp(string newName, string newEmail, string newPassword);
         // //initially prompts for original password confirmation
         // //automatically sets new password as randomly generated password
         // //max char length
@@ -63,6 +69,12 @@ class Person {
         // void changeEmail(string newEmail);
         // void changeTasks(string newTasks);
         // void changeFriends(string newFriends);
+
+    private:
+        //helper functions
+        bool checkNameRequirements(string newName) const;
+        bool checkEmailRequirements(string newEmail) const;
+        bool checkPasswordRequirements(string newPassword) const;
 };
 
 #endif // PERSON_HPP

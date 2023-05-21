@@ -5,64 +5,144 @@
 
 using namespace std;
 
-TEST(personDefaultConstructor, defaultName) {
-    Person* personDefaultName = new Person();
+TEST(personSignUpName, validName) {
+    Person* personValidName = new Person();
+    personValidName->signUp("testName", "testEmail", "testPassword");
 
-    EXPECT_EQ("", personDefaultName->getName());
+    EXPECT_EQ("testName", personValidName->getName());
 }
 
-TEST(personDefaultConstructor, defaultEmail) {
-    Person* personDefaultEmail = new Person();
+TEST(personSignUpName, nonalphabeticalName) {
+    Person* personNonalphabeticalName = new Person();
+    personNonalphabeticalName->signUp("testName1", "testEmail", "testPassword");
 
-    EXPECT_EQ("", personDefaultEmail->getEmail());
+    EXPECT_EQ("", personNonalphabeticalName->getName());
 }
 
-TEST(personDefaultConstructor, defaultPassword) {
-    Person* personDefaultPassword = new Person();
+TEST(personSignUpName, tooShortName) {
+    Person* personTooShortName = new Person();
+    personTooShortName->signUp("a", "testEmail", "testPassword");
 
-    EXPECT_EQ("", personDefaultPassword->getPassword());
+    EXPECT_EQ("", personTooShortName->getName());
 }
 
-TEST(personDefaultConstructor, defaultTasks) {
-    Person* personDefaultTasks = new Person();
+TEST(personSignUpName, tooLongName) {
+    Person* personTooLongName = new Person();
+    personTooLongName->signUp("testNameThatIsTooLong", "testEmail", "testPassword");
 
-    EXPECT_EQ("", personDefaultTasks->getTasks());
+    EXPECT_EQ("", personTooLongName->getName());
 }
 
-TEST(personDefaultConstructor, defaultFriends) {
-    Person* personDefaultFriends = new Person();
+TEST(personSignUpEmail, validEmail) {
+    Person* personValidEmail = new Person();
+    personValidEmail->signUp("testName", "testEmail@gmail.com", "testPassword");
 
-    EXPECT_EQ("", personDefaultFriends->getFriends());
+    EXPECT_EQ("testEmail@gmail.com", personValidEmail->getEmail());
 }
 
-TEST(personParameterizedConstructor, parameterizedName) {
-    Person* personParameterizedName = new Person("testName", "testEmail", "testPassword", "testTasks", "testFriends");
+TEST(personSignUpEmail, tooShortEmail) {
+    Person* personTooShortEmail = new Person();
+    personTooShortEmail->signUp("testName", "a@a.a", "testPassword");
 
-    EXPECT_EQ("testName", personParameterizedName->getName());
+    EXPECT_EQ("", personTooShortEmail->getEmail());
 }
 
-TEST(personParameterizedConstructor, parameterizedEmail) {
-    Person* personParameterizedEmail = new Person("testName", "testEmail", "testPassword", "testTasks", "testFriends");
+TEST(personSignUpEmail, tooLongEmail) {
+    Person* personTooLongEmail = new Person();
+    personTooLongEmail->signUp("testName", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "testPassword");
 
-    EXPECT_EQ("testEmail", personParameterizedEmail->getEmail());
+    EXPECT_EQ("", personTooLongEmail->getEmail());
 }
 
-TEST(personParameterizedConstructor, parameterizedPassword) {
-    Person* personParameterizedPassword = new Person("testName", "testEmail", "testPassword", "testTasks", "testFriends");
+TEST(personSignUpEmail, invalidEmailUsername) {
+    Person* personInvalidEmailUsername = new Person();
+    personInvalidEmailUsername->signUp("testName", "testEmail1@gmail.com", "testPassword");
 
-    EXPECT_EQ("testPassword", personParameterizedPassword->getPassword());
+    EXPECT_EQ("", personInvalidEmailUsername->getEmail());
 }
 
-TEST(personParameterizedConstructor, parameterizedTasks) {
-    Person* personParameterizedTasks = new Person("testName", "testEmail", "testPassword", "testTasks", "testFriends");
+TEST(personSignUpEmail, invalidEmailDomainname) {
+    Person* personInvalidEmailDomainname = new Person();
+    personInvalidEmailDomainname->signUp("testName", "testEmail@gmail1.com", "testPassword");
 
-    EXPECT_EQ("testTasks", personParameterizedTasks->getTasks());
+    EXPECT_EQ("", personInvalidEmailDomainname->getEmail());
 }
 
-TEST(personParameterizedConstructor, parameterizedFriends) {
-    Person* personParameterizedFriends = new Person("testName", "testEmail", "testPassword", "testTasks", "testFriends");
+TEST(personSignUpEmail, invalidEmailExtension) {
+    Person* personInvalidEmailExtension = new Person();
+    personInvalidEmailExtension->signUp("testName", "testEmail@gmail.com1", "testPassword");
 
-    EXPECT_EQ("testFriends", personParameterizedFriends->getFriends());
+    EXPECT_EQ("", personInvalidEmailExtension->getEmail());
+}
+
+TEST(personSignUpEmail, invalidEmailFirstAt) {
+    Person* personInvalidEmailFirstAt = new Person();
+    personInvalidEmailFirstAt->signUp("testName", "@gmail.com", "testPassword");
+
+    EXPECT_EQ("", personInvalidEmailFirstAt->getEmail());
+}
+
+TEST(personSignUpEmail, invalidEmailDomainnameEmpty) {
+    Person* personInvalidEmailDomainnameEmpty = new Person();
+    personInvalidEmailDomainnameEmpty->signUp("testName", "testEmail@.com", "testPassword");
+
+    EXPECT_EQ("", personInvalidEmailDomainnameEmpty->getEmail());
+}
+
+TEST(personSignUpEmail, invalidEmailLastDot) {
+    Person* personInvalidEmailLastDot = new Person();
+    personInvalidEmailLastDot->signUp("testName", "testEmail@gmail.", "testPassword");
+
+    EXPECT_EQ("", personInvalidEmailLastDot->getEmail());
+}
+
+TEST(personSignUpEmail, invalidEmailAtDotOrder) {
+    Person* personInvalidEmailAtDotOrder = new Person();
+    personInvalidEmailAtDotOrder->signUp("testName", "testEmail.gmail@com", "testPassword");
+
+    EXPECT_EQ("", personInvalidEmailAtDotOrder->getEmail());
+}
+
+TEST(personSignUpPassword, validPassword) {
+    Person* personValidPassword = new Person();
+    personValidPassword->signUp("testName", "testEmail", "testPassword1!");
+
+    EXPECT_EQ("testPassword1!", personValidPassword->getPassword());
+}
+
+TEST(personSignUpPassword, tooShortPassword) {
+    Person* personTooShortPassword = new Person();
+    personTooShortPassword->signUp("testName", "testEmail", "a");
+
+    EXPECT_EQ("", personTooShortPassword->getPassword());
+}
+
+TEST(personSignUpPassword, tooLongPassword) {
+    Person* personTooLongPassword = new Person();
+    personTooLongPassword->signUp("testName", "testEmail", "abcdefghijklmnopqrstuvwxyz");
+
+    EXPECT_EQ("", personTooLongPassword->getPassword());
+}
+
+TEST(personSignUpPassword, invalidPasswordOnlyLetters) {
+    Person* personInvalidPasswordOnlyLetters = new Person();
+    personInvalidPasswordOnlyLetters->signUp("testName", "testEmail", "testPassword");
+
+    EXPECT_EQ("", personInvalidPasswordOnlyLetters->getPassword());
+}
+
+TEST(personSignUpPassword, invalidPasswordNoNum) {
+    Person* personInvalidPasswordNoNum = new Person();
+    personInvalidPasswordNoNum->signUp("testName", "testEmail", "testPassword!");
+
+    EXPECT_EQ("", personInvalidPasswordNoNum->getPassword());
+}
+
+TEST(personSignUpPassword, invalidPasswordNoSpecialChar) {
+    Person* personInvalidPasswordNoSpecialChar = new Person();
+    personInvalidPasswordNoSpecialChar->signUp("testName", "testEmail", "testPassword1");
+
+    EXPECT_EQ("", personInvalidPasswordNoSpecialChar->getPassword());
 }
 
 int main(int argc, char **argv) {
