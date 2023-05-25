@@ -1,146 +1,164 @@
 #include "../header/person.hpp"
 
 #include "gtest/gtest.h"
-#include <string>
-
-using namespace std;
 
 TEST(personSignUpName, validName) {
     Person* personValidName = new Person();
-    personValidName->signUp("testName", "testEmail", "testPassword");
+    personValidName->signUp("testName", "testEmail@gmail.com", "testPassword1!");
 
     EXPECT_EQ("testName", personValidName->getName());
 }
 
-TEST(personSignUpName, nonalphabeticalName) {
-    Person* personNonalphabeticalName = new Person();
-    personNonalphabeticalName->signUp("testName1", "testEmail", "testPassword");
+TEST(personSignUpName, invalidNameNonalphabetical) {
+    Person* personInvalidNameNonalphabetical = new Person();
+    personInvalidNameNonalphabetical->signUp("testName1", "testEmail@gmail.com", "testPassword1!");
 
-    EXPECT_EQ("", personNonalphabeticalName->getName());
+    EXPECT_EQ("", personInvalidNameNonalphabetical->getName());
 }
 
-TEST(personSignUpName, tooShortName) {
-    Person* personTooShortName = new Person();
-    personTooShortName->signUp("a", "testEmail", "testPassword");
+TEST(personSignUpName, invalidNameTooShort) {
+    Person* personInvalidNameTooShort = new Person();
+    personInvalidNameTooShort->signUp("a", "testEmail@gmail.com", "testPassword1!");
 
-    EXPECT_EQ("", personTooShortName->getName());
+    EXPECT_EQ("", personInvalidNameTooShort->getName());
 }
 
-TEST(personSignUpName, tooLongName) {
-    Person* personTooLongName = new Person();
-    personTooLongName->signUp("testNameThatIsTooLong", "testEmail", "testPassword");
+TEST(personSignUpName, invalidNameTooLong) {
+    Person* personInvalidNameTooLong = new Person();
+    personInvalidNameTooLong->signUp("testNameThatIsTooLong", "testEmail@gmail.com", "testPassword1!");
 
-    EXPECT_EQ("", personTooLongName->getName());
+    EXPECT_EQ("", personInvalidNameTooLong->getName());
 }
 
 TEST(personSignUpEmail, validEmail) {
     Person* personValidEmail = new Person();
-    personValidEmail->signUp("testName", "testEmail@gmail.com", "testPassword");
+    personValidEmail->signUp("testName", "testEmail@gmail.com", "testPassword1!");
 
     EXPECT_EQ("testEmail@gmail.com", personValidEmail->getEmail());
 }
 
-TEST(personSignUpEmail, tooShortEmail) {
-    Person* personTooShortEmail = new Person();
-    personTooShortEmail->signUp("testName", "a@a.a", "testPassword");
+TEST(personSignUpEmail, invalidEmailTooShort) {
+    Person* personInvalidEmailTooShort = new Person();
+    personInvalidEmailTooShort->signUp("testName", "a@a.a", "testPassword1!");
 
-    EXPECT_EQ("", personTooShortEmail->getEmail());
+    EXPECT_EQ("", personInvalidEmailTooShort->getEmail());
 }
 
-TEST(personSignUpEmail, tooLongEmail) {
-    Person* personTooLongEmail = new Person();
-    personTooLongEmail->signUp("testName", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "testPassword");
+TEST(personSignUpEmail, invalidEmailTooLong) {
+    Person* personInvalidEmailTooLong = new Person();
+    personInvalidEmailTooLong->signUp("testName", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "testPassword1!");
 
-    EXPECT_EQ("", personTooLongEmail->getEmail());
+    EXPECT_EQ("", personInvalidEmailTooLong->getEmail());
 }
 
 TEST(personSignUpEmail, invalidEmailUsername) {
     Person* personInvalidEmailUsername = new Person();
-    personInvalidEmailUsername->signUp("testName", "testEmail1@gmail.com", "testPassword");
+    personInvalidEmailUsername->signUp("testName", "testEmail1@gmail.com", "testPassword1!");
 
     EXPECT_EQ("", personInvalidEmailUsername->getEmail());
 }
 
 TEST(personSignUpEmail, invalidEmailDomainname) {
     Person* personInvalidEmailDomainname = new Person();
-    personInvalidEmailDomainname->signUp("testName", "testEmail@gmail1.com", "testPassword");
+    personInvalidEmailDomainname->signUp("testName", "testEmail@gmail1.com", "testPassword1!");
 
     EXPECT_EQ("", personInvalidEmailDomainname->getEmail());
 }
 
 TEST(personSignUpEmail, invalidEmailExtension) {
     Person* personInvalidEmailExtension = new Person();
-    personInvalidEmailExtension->signUp("testName", "testEmail@gmail.com1", "testPassword");
+    personInvalidEmailExtension->signUp("testName", "testEmail@gmail.com1", "testPassword1!");
 
     EXPECT_EQ("", personInvalidEmailExtension->getEmail());
 }
 
 TEST(personSignUpEmail, invalidEmailFirstAt) {
     Person* personInvalidEmailFirstAt = new Person();
-    personInvalidEmailFirstAt->signUp("testName", "@gmail.com", "testPassword");
+    personInvalidEmailFirstAt->signUp("testName", "@gmail.com", "testPassword1!");
 
     EXPECT_EQ("", personInvalidEmailFirstAt->getEmail());
 }
 
 TEST(personSignUpEmail, invalidEmailDomainnameEmpty) {
     Person* personInvalidEmailDomainnameEmpty = new Person();
-    personInvalidEmailDomainnameEmpty->signUp("testName", "testEmail@.com", "testPassword");
+    personInvalidEmailDomainnameEmpty->signUp("testName", "testEmail@.com", "testPassword1!");
 
     EXPECT_EQ("", personInvalidEmailDomainnameEmpty->getEmail());
 }
 
 TEST(personSignUpEmail, invalidEmailLastDot) {
     Person* personInvalidEmailLastDot = new Person();
-    personInvalidEmailLastDot->signUp("testName", "testEmail@gmail.", "testPassword");
+    personInvalidEmailLastDot->signUp("testName", "testEmail@gmail.", "testPassword1!");
 
     EXPECT_EQ("", personInvalidEmailLastDot->getEmail());
 }
 
 TEST(personSignUpEmail, invalidEmailAtDotOrder) {
     Person* personInvalidEmailAtDotOrder = new Person();
-    personInvalidEmailAtDotOrder->signUp("testName", "testEmail.gmail@com", "testPassword");
+    personInvalidEmailAtDotOrder->signUp("testName", "testEmail.gmail@com", "testPassword1!");
 
     EXPECT_EQ("", personInvalidEmailAtDotOrder->getEmail());
 }
 
 TEST(personSignUpPassword, validPassword) {
     Person* personValidPassword = new Person();
-    personValidPassword->signUp("testName", "testEmail", "testPassword1!");
+    personValidPassword->signUp("testName", "testEmail@gmail.com", "testPassword1!");
 
     EXPECT_EQ("testPassword1!", personValidPassword->getPassword());
 }
 
-TEST(personSignUpPassword, tooShortPassword) {
-    Person* personTooShortPassword = new Person();
-    personTooShortPassword->signUp("testName", "testEmail", "a");
+TEST(personSignUpPassword, invalidPasswordTooShort) {
+    Person* personInvalidPasswordTooShort = new Person();
+    personInvalidPasswordTooShort->signUp("testName", "testEmail@gmail.com", "a");
 
-    EXPECT_EQ("", personTooShortPassword->getPassword());
+    EXPECT_EQ("", personInvalidPasswordTooShort->getPassword());
 }
 
-TEST(personSignUpPassword, tooLongPassword) {
-    Person* personTooLongPassword = new Person();
-    personTooLongPassword->signUp("testName", "testEmail", "abcdefghijklmnopqrstuvwxyz");
+TEST(personSignUpPassword, invalidPasswordTooLong) {
+    Person* personInvalidPasswordTooLong = new Person();
+    personInvalidPasswordTooLong->signUp("testName", "testEmail@gmail.com", "abcdefghijklmnopqrstuvwxyz");
 
-    EXPECT_EQ("", personTooLongPassword->getPassword());
+    EXPECT_EQ("", personInvalidPasswordTooLong->getPassword());
 }
 
-TEST(personSignUpPassword, invalidPasswordOnlyLetters) {
-    Person* personInvalidPasswordOnlyLetters = new Person();
-    personInvalidPasswordOnlyLetters->signUp("testName", "testEmail", "testPassword");
+TEST(personSignUpPassword, invalidPasswordOnlyLetter) {
+    Person* personInvalidPasswordOnlyLetter = new Person();
+    personInvalidPasswordOnlyLetter->signUp("testName", "testEmail@gmail.com", "testPassword");
 
-    EXPECT_EQ("", personInvalidPasswordOnlyLetters->getPassword());
+    EXPECT_EQ("", personInvalidPasswordOnlyLetter->getPassword());
+}
+
+TEST(personSignUpPassword, invalidPasswordOnlyNum) {
+    Person* personInvalidPasswordOnlyNum = new Person();
+    personInvalidPasswordOnlyNum->signUp("testName", "testEmail@gmail.com", "120491845091");
+
+    EXPECT_EQ("", personInvalidPasswordOnlyNum->getPassword());
+}
+
+TEST(personSignUpPassword, invalidPasswordOnlySpecialChar) {
+    Person* personInvalidPasswordOnlySpecialChar = new Person();
+    personInvalidPasswordOnlySpecialChar->signUp("testName", "testEmail@gmail.com", "!)@(#*$&%^$&#)");
+
+    EXPECT_EQ("", personInvalidPasswordOnlySpecialChar->getPassword());
+}
+
+TEST(personSignUpPassword, invalidPasswordNoLetter) {
+    Person* personInvalidPasswordNoLetter = new Person();
+    personInvalidPasswordNoLetter->signUp("testName", "testEmail@gmail.com", "192304@!()&$!");
+
+    EXPECT_EQ("", personInvalidPasswordNoLetter->getPassword());
 }
 
 TEST(personSignUpPassword, invalidPasswordNoNum) {
     Person* personInvalidPasswordNoNum = new Person();
-    personInvalidPasswordNoNum->signUp("testName", "testEmail", "testPassword!");
+    personInvalidPasswordNoNum->signUp("testName", "testEmail@gmail.com", "testPassword!");
 
     EXPECT_EQ("", personInvalidPasswordNoNum->getPassword());
 }
 
 TEST(personSignUpPassword, invalidPasswordNoSpecialChar) {
     Person* personInvalidPasswordNoSpecialChar = new Person();
-    personInvalidPasswordNoSpecialChar->signUp("testName", "testEmail", "testPassword1");
+    personInvalidPasswordNoSpecialChar->signUp("testName", "testEmail@gmail.com", "testPassword1");
 
     EXPECT_EQ("", personInvalidPasswordNoSpecialChar->getPassword());
 }

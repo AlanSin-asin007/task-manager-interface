@@ -1,10 +1,5 @@
 #include "../header/person.hpp"
 
-#include <time.h>
-#include <string>
-
-using namespace std;
-
 Person::Person() {
     this->name = "";
     this->email = "";
@@ -13,7 +8,7 @@ Person::Person() {
     this->friends = "";
 }
 
-Person::Person(string name, string email, string password, string tasks, string friends) {
+Person::Person(const string name, const string email, const string password, const string tasks, const string friends) {
     this->name = name;
     this->email = email;
     this->password = password;
@@ -43,42 +38,47 @@ string Person::getFriends() const {
     return this->friends;
 }
 
-void Person::setName(string newName) {
+void Person::setName(const string newName) {
     this->name = newName;
 }
 
-void Person::setEmail(string newEmail) {
+void Person::setEmail(const string newEmail) {
     this->email = newEmail;
 }
 
-void Person::setPassword(string newPassword) {
+void Person::setPassword(const string newPassword) {
     this->password = newPassword;
 }
 
-void Person::setTasks(string newTasks) {
+void Person::setTasks(const string newTasks) {
     this->tasks = newTasks;
 }
 
-void Person::setFriends(string newFriends) {
+void Person::setFriends(const string newFriends) {
     this->friends = newFriends;
 }
 
-void Person::signUp(string newName, string newEmail, string newPassword) {
+void Person::signUp(const string newName, const string newEmail, const string newPassword) {
     //check database if name/email is currently in use
-    if(checkNameRequirements(newName)) {
+    if(!checkNameRequirements(newName)) {
+        //throw exception for invalid name
+    }
+    else if(!checkEmailRequirements(newEmail)) {
+        //throw exception for invalid email
+    }
+    else if(!checkPasswordRequirements(newPassword)) {
+        //throw exception for invalid password
+    }
+    else {
         this->name = newName;
-    }
-    if(checkEmailRequirements(newEmail)) {
         this->email = newEmail;
-    }
-    if(checkPasswordRequirements(newPassword)) {
         this->password = newPassword;
     }
 }
 
 //5-15 char limit
 //only alphabetical
-bool Person::checkNameRequirements(string newName) const {
+bool Person::checkNameRequirements(const string newName) const {
     //check char limit
     if(newName.length() < 5 || newName.length() > 15) {
         return false;
@@ -102,13 +102,7 @@ bool Person::checkNameRequirements(string newName) const {
 //case 2: "@" somewhere in the str before the "."
 //case 3: text after "@" but before "."
 //case 4: text after "."
-bool Person::checkEmailRequirements(string newEmail) const {
-    int atCounter = 0;
-    int atIndex = -1;
-
-    int dotCounter = 0;
-    int dotIndex = -1;
-
+bool Person::checkEmailRequirements(const string newEmail) const {
     //check char limit is greater than 5 and less than 257
     if(newEmail.length() < 6 || newEmail.length() > 256) {
         return false;
@@ -121,6 +115,10 @@ bool Person::checkEmailRequirements(string newEmail) const {
 
     //check for "@" and "."
     //check if char is alphabetical
+    int atCounter = 0;
+    int atIndex = -1;
+    int dotCounter = 0;
+    int dotIndex = -1;
     for(unsigned i = 0; i < newEmail.length(); ++i) {
         if(newEmail.at(i) == '@') {
             atCounter++;
@@ -149,26 +147,29 @@ bool Person::checkEmailRequirements(string newEmail) const {
 }
 
 //12-20 char length
-//check if there is at least one special char and one number
-bool Person::checkPasswordRequirements(string newPassword) const {
-    int specialCharCounter = 0;
-    int numCounter = 0;
-
+//check if there is at least one letter, special char, and one number
+bool Person::checkPasswordRequirements(const string newPassword) const {
     //check char limit is greater than 11 and less than 21
     if(newPassword.length() < 12 || newPassword.length() > 20) {
         return false;
     }
 
-    //check if there is at least one numerical and one special char
+    //check if there is at least one letter, special char, and one number
+    int letterCounter = 0;
+    int specialCharCounter = 0;
+    int numCounter = 0;
     for(unsigned i = 0; i < newPassword.length(); ++i) {
-        if((newPassword.at(i) >= '!' && newPassword.at(i) <= '/') || (newPassword.at(i) >= ':' && newPassword.at(i) <= '@') || (newPassword.at(i) >= '[' && newPassword.at(i) <= '`') || (newPassword.at(i) >= '{' && newPassword.at(i) <= '~')) {
+        if((newPassword.at(i) >= 'A' && newPassword.at(i) <= 'Z') || (newPassword.at(i) >= 'a' && newPassword.at(i) <= 'z')) {
+            letterCounter++;
+        }
+        else if((newPassword.at(i) >= '!' && newPassword.at(i) <= '/') || (newPassword.at(i) >= ':' && newPassword.at(i) <= '@') || (newPassword.at(i) >= '[' && newPassword.at(i) <= '`') || (newPassword.at(i) >= '{' && newPassword.at(i) <= '~')) {
             specialCharCounter++;
         }
-        if(newPassword.at(i) >= '0' && newPassword.at(i) <= '9') {
+        else if(newPassword.at(i) >= '0' && newPassword.at(i) <= '9') {
             numCounter++;
         }
     }
-    if(specialCharCounter == 0 || numCounter == 0) {
+    if(letterCounter == 0 || specialCharCounter == 0 || numCounter == 0) {
         return false;
     }
     return true;

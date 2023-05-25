@@ -2,6 +2,8 @@
 #define PERSON_HPP
 
 #include <string>
+#include <stdexcept>
+#include <time.h>
 
 using namespace std;
 
@@ -19,12 +21,14 @@ class Person {
         //12-20 char length
         //check if there is at least one numerical and one special char
         string password;
+        //list of Task objects
         string tasks;
+        //list of Person objects
         string friends;
     public:
         //constructors
         Person();
-        Person(string name, string email, string password, string tasks, string friends);
+        Person(const string name, const string email, const string password, const string tasks, const string friends);
         ~Person();
 
         //accessors
@@ -35,16 +39,16 @@ class Person {
         string getFriends() const;
 
         //mutators
-        void setName(string newName);
-        void setEmail(string newEmail);
-        void setPassword(string newPassword);
-        void setTasks(string newTasks);
-        void setFriends(string newFriends);
+        void setName(const string newName);
+        void setEmail(const string newEmail);
+        void setPassword(const string newPassword);
+        void setTasks(const string newTasks);
+        void setFriends(const string newFriends);
 
         // //list of issues
         // void delAcc();
         //prompt user to enter new acc info
-        void signUp(string newName, string newEmail, string newPassword);
+        void signUp(const string newName, const string newEmail, const string newPassword);
         // //initially prompts for original password confirmation
         // //automatically sets new password as randomly generated password
         // //max char length
@@ -72,9 +76,9 @@ class Person {
 
     private:
         //helper functions
-        bool checkNameRequirements(string newName) const;
-        bool checkEmailRequirements(string newEmail) const;
-        bool checkPasswordRequirements(string newPassword) const;
+        bool checkNameRequirements(const string newName) const;
+        bool checkEmailRequirements(const string newEmail) const;
+        bool checkPasswordRequirements(const string newPassword) const;
 };
 
 #endif // PERSON_HPP
