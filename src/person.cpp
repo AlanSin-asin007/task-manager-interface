@@ -13,7 +13,7 @@ Person::Person() {
     this->friends = "";
 }
 
-Person::Person(string name, string email, string password, string tasks, string friends) {
+Person::Person(const string name, const string email, const string password, const string tasks, const string friends) {
     this->name = name;
     this->email = email;
     this->password = password;
@@ -43,22 +43,22 @@ string Person::getFriends() const {
     return this->friends;
 }
 
-void Person::setName(string newName) {
+void Person::setName(const string newName) {
     this->name = newName;
 }
 
-void Person::setEmail(string newEmail) {
+void Person::setEmail(const string newEmail) {
     this->email = newEmail;
 }
 
-void Person::setPassword(string newPassword) {
+void Person::setPassword(const string newPassword) {
     this->password = newPassword;
 }
 
-void Person::setTasks(string newTasks) {
+void Person::setTasks(const string newTasks) {
     this->tasks = newTasks;
 }
 
-void Person::setFriends(string newFriends) {
+void Person::setFriends(const string newFriends) {
     this->friends = newFriends;
 }
