@@ -21,7 +21,7 @@ class Person {
     public:
         //constructors
         Person();
-        Person(string name, string email, string password, string tasks, string friends);
+        Person(const string name, const string email, const string password, const string tasks, const string friends);
         ~Person();
 
         //accessors
@@ -32,11 +32,11 @@ class Person {
         string getFriends() const;
 
         //mutators
-        void setName(string newName);
-        void setEmail(string newEmail);
-        void setPassword(string newPassword);
-        void setTasks(string newTasks);
-        void setFriends(string newFriends);
+        void setName(const string newName);
+        void setEmail(const string newEmail);
+        void setPassword(const string newPassword);
+        void setTasks(const string newTasks);
+        void setFriends(const string newFriends);
 
         // //list of issues
         // void delAcc();
