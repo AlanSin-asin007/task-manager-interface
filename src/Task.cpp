@@ -87,3 +87,13 @@ void Task::modifyTask(vector<Task>& taskList, const string& taskName, const stri
     }
 }
 
+void Task::modifyTaskDeadline(vector<Task>& taskList, const string& taskName, const string& newTaskDeadline) {
+    for (Task& task : taskList) {
+        if (task.getTaskName() == taskName) {
+            task.setTaskDeadline(newTaskDeadline);
+            break;
+        }
+    }
+}
+
+

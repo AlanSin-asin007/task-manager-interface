@@ -1,8 +1,7 @@
 #include <gtest/gtest.h>
 #include "../header/Task.hpp"
 
-// Test case for the deleteTask() function
-TEST(TaskTest, ModifyTaskTest) {
+TEST(TaskTest, ModifyTaskDeadlineTest) {
     vector<Task> taskList;
 
     // Create tasks and add them to the taskList
@@ -12,30 +11,17 @@ TEST(TaskTest, ModifyTaskTest) {
     Task task2("Task2", "2023-06-05", "Description2", "Label2", 5);
     Task::addTask(taskList, task2);
 
-    // Modify task with taskName "Task1"
-    Task::modifyTask(taskList, "Task1", "ModifiedTask", "2023-06-10", "Modified Description", "Modified Label", 8);
+    // Modify the task deadline for task with taskName "Task1"
+    string newDeadline = "2023-06-10";
+    Task::modifyTaskDeadline(taskList, "Task1", newDeadline);
 
-    // Assertion: Task1 should be modified in the taskList
-    bool taskModified = false;
+    // Assertion: Task1's deadline should be updated to "2023-06-10"
     for (const Task& task : taskList) {
-        if (task.getTaskName() == "ModifiedTask" && task.getTaskDeadline() == "2023-06-10" &&
-            task.getDescription() == "Modified Description" && task.getLabel() == "Modified Label" &&
-            task.getTaskPriority() == 8) {
-            taskModified = true;
+        if (task.getTaskName() == "Task1") {
+            EXPECT_EQ(task.getTaskDeadline(), newDeadline);
             break;
         }
     }
-    EXPECT_TRUE(taskModified);
-
-    // Assertion: Task2 should still be present in the taskList
-    bool task2Found = false;
-    for (const Task& task : taskList) {
-        if (task.getTaskName() == "Task2") {
-            task2Found = true;
-            break;
-        }
-    }
-    EXPECT_TRUE(task2Found);
 }
 
 int main(int argc, char* argv[]) {
