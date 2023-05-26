@@ -63,7 +63,7 @@ Description: The user will be prompted with 2 options: logging in or signing up.
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
 
 ## Class Diagram
-[Copy of Task Manager UML Diagram.drawio.pdf](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/files/11580501/Copy.of.Task.Manager.UML.Diagram.drawio.pdf)
+![Copy of Task Manager UML Diagram.drawio.pdf](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/files/11580501/Copy.of.Task.Manager.UML.Diagram.drawio.pdf)
 
 ## Description of class diagram
 
