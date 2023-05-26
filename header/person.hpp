@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <time.h>
+#include <iostream>
 
 using namespace std;
 

@@ -60,16 +60,7 @@ void Person::setFriends(const string newFriends) {
 
 void Person::signUp(const string newName, const string newEmail, const string newPassword) {
     //check database if name/email is currently in use
-    if(!checkNameRequirements(newName)) {
-        //throw exception for invalid name
-    }
-    else if(!checkEmailRequirements(newEmail)) {
-        //throw exception for invalid email
-    }
-    else if(!checkPasswordRequirements(newPassword)) {
-        //throw exception for invalid password
-    }
-    else {
+    if(checkNameRequirements(newName) && checkEmailRequirements(newEmail) && checkPasswordRequirements(newPassword)) {
         this->name = newName;
         this->email = newEmail;
         this->password = newPassword;
@@ -81,12 +72,14 @@ void Person::signUp(const string newName, const string newEmail, const string ne
 bool Person::checkNameRequirements(const string newName) const {
     //check char limit
     if(newName.length() < 5 || newName.length() > 15) {
+        cout << "Invalid Name: 5-15 character limit" << endl;
         return false;
     }
 
     //check if alphabetical
     for(unsigned i = 0; i < newName.length(); ++i) {
         if(newName.at(i) < 'A' || newName.at(i) > 'z' || (newName.at(i) > 'Z' && newName.at(i) < 'a')) {
+            cout << "Invalid Name: Must contain only letters" << endl;
             return false;
         }
     }
@@ -105,11 +98,13 @@ bool Person::checkNameRequirements(const string newName) const {
 bool Person::checkEmailRequirements(const string newEmail) const {
     //check char limit is greater than 5 and less than 257
     if(newEmail.length() < 6 || newEmail.length() > 256) {
+        cout << "Invalid Email: 6-257 character limit" << endl;
         return false;
     }
 
     //check if first char is a letter
     if(newEmail.at(0) < 'A' || newEmail.at(0) > 'z' || (newEmail.at(0) > 'Z' && newEmail.at(0) < 'a')) {
+        cout << "Invalid Email: First character must be a letter" << endl;
         return false;
     }
 
@@ -132,15 +127,18 @@ bool Person::checkEmailRequirements(const string newEmail) const {
         //     return false;
         // }
         else if(newEmail.at(i) < 'A' || newEmail.at(i) > 'z' || (newEmail.at(i) > 'Z' && newEmail.at(i) < 'a')) {
+            cout << "Invalid Email: Must contain only letters" << endl;
             return false;
         }
     }
     //check if there is only one "@" and is before "."
     if(atCounter != 1 || atIndex >= dotIndex - 1) {
+        cout << "Invalid Email: Must contain only one '@' and is before '.'" << endl;
         return false;
     }
     //check if there is only one "." and is not the last char
     else if(dotCounter != 1 || dotIndex == newEmail.length() - 1) {
+        cout << "Invalid Email: Must contain only one '.' and is not the last character" << endl;
         return false;
     }
     return true;
@@ -151,6 +149,7 @@ bool Person::checkEmailRequirements(const string newEmail) const {
 bool Person::checkPasswordRequirements(const string newPassword) const {
     //check char limit is greater than 11 and less than 21
     if(newPassword.length() < 12 || newPassword.length() > 20) {
+        cout << "Invalid Password: 12-20 character limit" << endl;
         return false;
     }
 
@@ -170,6 +169,7 @@ bool Person::checkPasswordRequirements(const string newPassword) const {
         }
     }
     if(letterCounter == 0 || specialCharCounter == 0 || numCounter == 0) {
+        cout << "Invalid Password: Must contain at least one letter, number, and special character" << endl;
         return false;
     }
     return true;
