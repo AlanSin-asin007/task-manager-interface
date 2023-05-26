@@ -37,6 +37,7 @@ public:
     static void addTask(vector<Task>& taskList, const Task& task);
     static void deleteTask(vector<Task>& taskList, const string& taskName);
     static Task copyTask(const Task& task);
+    static void modifyTask(vector<Task>& taskList, const string& taskName, const string& newTaskName, const string& newTaskDeadline, const string& newDescription, const string& newLabel, int newTaskPriority);
 };
 
 #endif
