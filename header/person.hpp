@@ -15,8 +15,8 @@ class Person {
         string email;
         //12-20 char length
         string password;
-        vector<Tasks*> tasks;
-        vector<Person*> friends;
+        vector<Tasks> tasks;
+        vector<Person> friends;
     public:
         //constructors
         Person();
@@ -27,15 +27,15 @@ class Person {
         string getName() const;
         string getEmail() const;
         string getPassword() const;
-        vector<Tasks*> getTasks() const;
-        vector<Person*> getFriends() const;
+        vector<Tasks> getTasks() const;
+        vector<Person> getFriends() const;
 
         //mutators
         void setName(const string& newName);
         void setEmail(const string& newEmail);
         void setPassword(const string& newPassword);
-        void setTasks(Tasks* newTasks);
-        void setFriends(Person* newFriends);
+        void setTasks(Tasks& newTasks);
+        void setFriends(Person& newFriends);
 
         // //list of issues
         // void delAcc();

@@ -6,6 +6,8 @@ ADD_EXECUTABLE(test
     header/person.hpp
     src/person.cpp
     tests/test.cpp
+    header/tasks.hpp
+    src/tasks.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)

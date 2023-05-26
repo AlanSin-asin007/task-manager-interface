@@ -77,7 +77,7 @@ TEST(personParameterizedConstructor, setPassword) {
 
 TEST(personParameterizedConstructor, setTasks) {
     Person* personSetTasks = new Person();
-    Tasks* tasksSetTasks;
+    Tasks tasksSetTasks;
     personSetTasks->setTasks(tasksSetTasks);
 
     EXPECT_FALSE(personSetTasks->getTasks().empty());
@@ -85,7 +85,7 @@ TEST(personParameterizedConstructor, setTasks) {
 
 TEST(personParameterizedConstructor, setFriends) {
     Person* personSetFriends = new Person();
-    Person* tasksSetFriends = new Person();
+    Person tasksSetFriends;
     personSetFriends->setFriends(tasksSetFriends);
 
     EXPECT_FALSE(personSetFriends->getFriends().empty());

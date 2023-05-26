@@ -33,11 +33,11 @@ string Person::getPassword() const {
     return this->password;
 }
 
-vector<Tasks*> Person::getTasks() const {
+vector<Tasks> Person::getTasks() const {
     return this->tasks;
 }
 
-vector<Person*> Person::getFriends() const {
+vector<Person> Person::getFriends() const {
     return this->friends;
 }
 
@@ -53,10 +53,10 @@ void Person::setPassword(const string& newPassword) {
     this->password = newPassword;
 }
 
-void Person::setTasks(Tasks* newTasks) {
+void Person::setTasks(Tasks& newTasks) {
     this->tasks.push_back(newTasks);
 }
 
-void Person::setFriends(Person* newFriends) {
+void Person::setFriends(Person& newFriends) {
     this->friends.push_back(newFriends);
 }
