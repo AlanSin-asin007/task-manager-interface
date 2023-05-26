@@ -54,28 +54,28 @@ TEST(personParameterizedConstructor, parameterizedPassword) {
     EXPECT_EQ("testPassword1!", personParameterizedPassword->getPassword());
 }
 
-TEST(personParameterizedConstructor, setName) {
+TEST(personSetters, setName) {
     Person* personSetName = new Person();
     personSetName->setName("testName");
 
     EXPECT_EQ("testName", personSetName->getName());
 }
 
-TEST(personParameterizedConstructor, setEmail) {
+TEST(personSetters, setEmail) {
     Person* personSetEmail = new Person();
     personSetEmail->setEmail("testEmail@gmail.com");
 
     EXPECT_EQ("testEmail@gmail.com", personSetEmail->getEmail());
 }
 
-TEST(personParameterizedConstructor, setPassword) {
+TEST(personSetters, setPassword) {
     Person* personSetPassword = new Person();
     personSetPassword->setPassword("testPassword1!");
 
     EXPECT_EQ("testPassword1!", personSetPassword->getPassword());
 }
 
-TEST(personParameterizedConstructor, setTasks) {
+TEST(personSetters, setTasks) {
     Person* personSetTasks = new Person();
     Tasks tasksSetTasks;
     personSetTasks->setTasks(tasksSetTasks);
@@ -83,7 +83,7 @@ TEST(personParameterizedConstructor, setTasks) {
     EXPECT_FALSE(personSetTasks->getTasks().empty());
 }
 
-TEST(personParameterizedConstructor, setFriends) {
+TEST(personSetters, setFriends) {
     Person* personSetFriends = new Person();
     Person tasksSetFriends;
     personSetFriends->setFriends(tasksSetFriends);
