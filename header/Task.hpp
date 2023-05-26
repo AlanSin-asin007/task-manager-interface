@@ -1,5 +1,9 @@
-#include <string>
+#ifndef TASK_HPP
+#define TASK_HPP
+
 #include <iostream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -10,21 +14,29 @@ private:
     string description;
     string label;
     int taskPriority;
+
 public:
     Task(string taskName, string taskDeadline, string description, string label, int taskPriority);
-    
+
     // Getters
-    string getTaskName();
-    string getTaskDeadline();
-    string getDescription();
-    string getLabel();
-    int getTaskPriority();
+    string getTaskName() const;
+    string getTaskDeadline() const;
+    string getDescription() const;
+    string getLabel() const;
+    int getTaskPriority() const;
 
     // Setters
-    void setTaskName(string newTaskName);
-    void setTaskDeadline(string newTaskDeadline);
-    void setDescription(string newDescription);
-    void setLabel(string newLabel);
+    void setTaskName(const string& newTaskName);
+    void setTaskDeadline(const string& newTaskDeadline);
+    void setDescription(const string& newDescription);
+    void setLabel(const string& newLabel);
     void setTaskPriority(int newTaskPriority);
-    void printTask();
+    void printTask() const;
+
+    // Function declarations
+    static void addTask(vector<Task>& taskList, const Task& task);
+    static void deleteTask(vector<Task>& taskList, const string& taskName);
 };
+
+#endif
+
