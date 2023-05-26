@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
-#include "../include/ImportanceSorter.h"
+#include "../include/DateSorter.h"
 #include "../include/TaskSorter.h"
 #include "../include/Person.h"
 
@@ -20,67 +20,65 @@ TEST(PersonTests, testSetTaskList) {
     EXPECT_EQ(p->getTaskList(), list);
 }
 
-TEST(SorterTests, testGetPerson) {
+TEST(DateSorterTests, testGetPerson) {
     Person* p = new Person();
-    TaskSorter* sorter = new ImportanceSorter(p);
+    TaskSorter* sorter = new DateSorter(p);
 
     EXPECT_EQ(p, sorter->getPerson());
 }
 
-TEST(SorterTests, testSetPerson) {
-    TaskSorter* sorter = new ImportanceSorter(new Person());
+TEST(DateSorterTests, testSetPerson) {
+    TaskSorter* sorter = new DateSorter(new Person());
     Person* p2 = new Person();
     sorter->setPerson(p2);
 
     EXPECT_EQ(p2, sorter->getPerson());
 }
 
-TEST(SorterTests, testSortIncreasing) {
+TEST(DateSorterTests, testSortIncreasing) {
     std::vector<Task> list;
-    date::year_month_day d = date::year{2023}/date::January/1;
     for (int i = 1; i < 6; ++i) {
-        list.push_back(Task(i, d));
+        list.push_back(Task(5, date::year{2023}/date::January/i));
     }
 
-    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    TaskSorter* sorter = new DateSorter(new Person(list));
     sorter->performSort();
     list = sorter->getPerson()->getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
-        EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
+        EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
     }
 
 }
 
-TEST(SorterTests, testSortSame) {
+TEST(DateSorterTests, testSortSame) {
     std::vector<Task> list;
     for (int i = 1; i < 21; ++i) {
         list.push_back(Task(5, date::year{2023}/date::January/1));
     }
 
-    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    TaskSorter* sorter = new DateSorter(new Person(list));
     sorter->performSort();
     list = sorter->getPerson()->getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
-        EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
+        EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
     }
 
 }
 
-TEST(SorterTests, testSortDecreasing) {
+TEST(DateSorterTests, testSortDecreasing) {
     std::vector<Task> list;
-    date::year_month_day d = date::year{2023}/date::January/1;
     for (int i = 20; i > 0 ; --i) {
-        list.push_back(Task(i, d));
+        list.push_back(Task(5, date::year{2023}/date::January/i));
     }
 
-    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    TaskSorter* sorter = new DateSorter(new Person(list));
     sorter->performSort();
     list = sorter->getPerson()->getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
-        EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
+        EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
     }
 }
 

@@ -1,12 +1,12 @@
-#include "../include/ImportanceSorter.h"
+#include "../include/DateSorter.h"
 
-ImportanceSorter::ImportanceSorter(Person* p) : TaskSorter(p) {}
+DateSorter::DateSorter(Person* p) : TaskSorter(p) {}
 
-void ImportanceSorter::sort(std::vector<Task>& taskList) {
+void DateSorter::sort(std::vector<Task>& taskList) {
     for (int i = 0; i < taskList.size(); ++i) {
         int max = i;
         for (int j = i+1; j < taskList.size(); ++j) {
-            if (taskList.at(j).getRating() > taskList.at(i).getRating()) {
+            if (taskList.at(j).getDeadline() < taskList.at(i).getDeadline()) {
                 max = j;
             }
         }
