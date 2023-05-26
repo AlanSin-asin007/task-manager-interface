@@ -36,6 +36,7 @@ public:
     // Function declarations
     static void addTask(vector<Task>& taskList, const Task& task);
     static void deleteTask(vector<Task>& taskList, const string& taskName);
+    static Task copyTask(const Task& task);
 };
 
 #endif

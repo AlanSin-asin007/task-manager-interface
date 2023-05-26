@@ -68,3 +68,8 @@ void Task::deleteTask(vector<Task>& taskList, const string& taskName) {
         }
     }
 }
+
+Task Task::copyTask(const Task& task) {
+    Task copiedTask = Task(task.taskName, task.taskDeadline, task.description, task.label, task.taskPriority);
+    return copiedTask;
+}

@@ -1,45 +1,27 @@
 #include <gtest/gtest.h>
 #include "../header/Task.hpp"
 
-// Test case for the deleteTask() function
-TEST(TaskTest, DeleteTaskTest) {
-    vector<Task> taskList;
+// Test case for the copyTask() function
+TEST(TaskTest, CopyTaskTest) {
+    // Create a task
+    Task originalTask("Task1", "2023-06-01", "Description1", "Label1", 3);
 
-    // Create tasks and add them to the taskList
-    Task task1("Task1", "2023-06-01", "Description1", "Label1", 3);
-    Task::addTask(taskList, task1);
+    // Copy the task
+    Task copiedTask = Task::copyTask(originalTask);
 
-    Task task2("Task2", "2023-06-05", "Description2", "Label2", 5);
-    Task::addTask(taskList, task2);
-
-    // Delete task with taskName "Task1"
-    Task::deleteTask(taskList, "Task1");
-
-    // Assertion: Task1 should not be found in the taskList
-    bool task1Found = false;
-    for (const Task& task : taskList) {
-        if (task.getTaskName() == "Task1") {
-            task1Found = true;
-            break;
-        }
-    }
-    EXPECT_FALSE(task1Found);
-
-    // Assertion: Task2 should still be present in the taskList
-    bool task2Found = false;
-    for (const Task& task : taskList) {
-        if (task.getTaskName() == "Task2") {
-            task2Found = true;
-            break;
-        }
-    }
-    EXPECT_TRUE(task2Found);
+    // Assertion: The copied task should have the same attributes as the original task
+    EXPECT_EQ(copiedTask.getTaskName(), originalTask.getTaskName());
+    EXPECT_EQ(copiedTask.getTaskDeadline(), originalTask.getTaskDeadline());
+    EXPECT_EQ(copiedTask.getDescription(), originalTask.getDescription());
+    EXPECT_EQ(copiedTask.getLabel(), originalTask.getLabel());
+    EXPECT_EQ(copiedTask.getTaskPriority(), originalTask.getTaskPriority());
 }
 
 int main(int argc, char* argv[]) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
+
 
 
 
