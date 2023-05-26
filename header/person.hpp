@@ -1,7 +1,9 @@
 #ifndef PERSON_HPP
 #define PERSON_HPP
 
+#include "tasks.hpp"
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -13,27 +15,27 @@ class Person {
         string email;
         //12-20 char length
         string password;
-        string tasks;
-        string friends;
+        vector<Tasks*> tasks;
+        vector<Person*> friends;
     public:
         //constructors
         Person();
-        Person(const string name, const string email, const string password, const string tasks, const string friends);
+        Person(const string& name, const string& email, const string& password);
         ~Person();
 
         //accessors
         string getName() const;
         string getEmail() const;
         string getPassword() const;
-        string getTasks() const;
-        string getFriends() const;
+        vector<Tasks*> getTasks() const;
+        vector<Person*> getFriends() const;
 
         //mutators
-        void setName(const string newName);
-        void setEmail(const string newEmail);
-        void setPassword(const string newPassword);
-        void setTasks(const string newTasks);
-        void setFriends(const string newFriends);
+        void setName(const string& newName);
+        void setEmail(const string& newEmail);
+        void setPassword(const string& newPassword);
+        void setTasks(Tasks* newTasks);
+        void setFriends(Person* newFriends);
 
         // //list of issues
         // void delAcc();

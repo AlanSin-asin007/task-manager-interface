@@ -1,7 +1,9 @@
 #include "../header/person.hpp"
+#include "../header/tasks.hpp"
 
 #include <time.h>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -9,16 +11,12 @@ Person::Person() {
     this->name = "";
     this->email = "";
     this->password = "";
-    this->tasks = "";
-    this->friends = "";
 }
 
-Person::Person(const string name, const string email, const string password, const string tasks, const string friends) {
+Person::Person(const string& name, const string& email, const string& password) {
     this->name = name;
     this->email = email;
     this->password = password;
-    this->tasks = tasks;
-    this->friends = friends;
 }
 
 Person::~Person() {}
@@ -35,30 +33,30 @@ string Person::getPassword() const {
     return this->password;
 }
 
-string Person::getTasks() const {
+vector<Tasks*> Person::getTasks() const {
     return this->tasks;
 }
 
-string Person::getFriends() const {
+vector<Person*> Person::getFriends() const {
     return this->friends;
 }
 
-void Person::setName(const string newName) {
+void Person::setName(const string& newName) {
     this->name = newName;
 }
 
-void Person::setEmail(const string newEmail) {
+void Person::setEmail(const string& newEmail) {
     this->email = newEmail;
 }
 
-void Person::setPassword(const string newPassword) {
+void Person::setPassword(const string& newPassword) {
     this->password = newPassword;
 }
 
-void Person::setTasks(const string newTasks) {
-    this->tasks = newTasks;
+void Person::setTasks(Tasks* newTasks) {
+    this->tasks.push_back(newTasks);
 }
 
-void Person::setFriends(const string newFriends) {
-    this->friends = newFriends;
+void Person::setFriends(Person* newFriends) {
+    this->friends.push_back(newFriends);
 }
