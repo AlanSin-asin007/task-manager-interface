@@ -1,14 +1,14 @@
-#ifndef PERSON_HPP
-#define PERSON_HPP
+#ifndef _PERSON_
+#define _PERSON_
 
+#include "Task.h"
+#include <vector>
 #include <string>
 #include <stdexcept>
 #include <time.h>
 #include <iostream>
 
 using namespace std;
-
-//REMEMBER TO UPDATE UML DIAGRAM
 
 class Person {
     private:
@@ -22,28 +22,31 @@ class Person {
         //12-20 char length
         //check if there is at least one numerical and one special char
         string password;
-        //list of Task objects
-        string tasks;
+        std::vector<Task> taskList;
         //list of Person objects
         string friends;
     public:
-        //constructors
-        Person();
+        Person() {};
         Person(const string name, const string email, const string password, const string tasks, const string friends);
+        Person(std::vector<Task>& vec) : taskList(vec) {};
         ~Person();
 
         //accessors
         string getName() const;
         string getEmail() const;
         string getPassword() const;
-        string getTasks() const;
+        std::vector<Task> getTaskList() const {
+            return taskList;
+        }
         string getFriends() const;
 
         //mutators
         void setName(const string newName);
         void setEmail(const string newEmail);
         void setPassword(const string newPassword);
-        void setTasks(const string newTasks);
+        void setTaskList(std::vector<Task>& v) {
+            this->taskList = v;
+        }
         void setFriends(const string newFriends);
 
         // //list of issues
@@ -82,4 +85,4 @@ class Person {
         bool checkPasswordRequirements(const string newPassword) const;
 };
 
-#endif // PERSON_HPP
+#endif

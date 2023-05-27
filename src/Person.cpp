@@ -1,4 +1,4 @@
-#include "../header/person.hpp"
+#include "../include/Person.h"
 
 Person::Person() {
     this->name = "";
@@ -30,10 +30,6 @@ string Person::getPassword() const {
     return this->password;
 }
 
-string Person::getTasks() const {
-    return this->tasks;
-}
-
 string Person::getFriends() const {
     return this->friends;
 }
@@ -48,10 +44,6 @@ void Person::setEmail(const string newEmail) {
 
 void Person::setPassword(const string newPassword) {
     this->password = newPassword;
-}
-
-void Person::setTasks(const string newTasks) {
-    this->tasks = newTasks;
 }
 
 void Person::setFriends(const string newFriends) {
