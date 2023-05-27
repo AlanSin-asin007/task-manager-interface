@@ -15,3 +15,4 @@ add_executable(test
 
 target_link_libraries(test gtest gmock)
 target_compile_definitions(test PRIVATE gtest_disable_pthreads=ON)
+>>>>>>> abde1ce098349fcd12bf9b334be0052adc508d4a
