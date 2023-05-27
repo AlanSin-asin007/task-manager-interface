@@ -24,10 +24,10 @@ class Person {
         string password;
         std::vector<Task> taskList;
         //list of Person objects
-        string friends;
+        vector<Person> friends;
     public:
         Person() {};
-        Person(const string name, const string email, const string password, const string tasks, const string friends);
+        Person(const string& name, const string& email, const string& password);
         Person(std::vector<Task>& vec) : taskList(vec) {};
         ~Person();
 
@@ -38,16 +38,18 @@ class Person {
         std::vector<Task> getTaskList() const {
             return taskList;
         }
-        string getFriends() const;
+        vector<Person> getTasks() const;
+        vector<Person> getFriends() const;
 
         //mutators
-        void setName(const string newName);
-        void setEmail(const string newEmail);
-        void setPassword(const string newPassword);
+        void setName(const string& newName);
+        void setEmail(const string& newEmail);
+        void setPassword(const string& newPassword);
         void setTaskList(std::vector<Task>& v) {
             this->taskList = v;
         }
-        void setFriends(const string newFriends);
+        void setTasks(Task& newTasks);
+        void setFriends(Person& newFriends);
 
         // //list of issues
         // void delAcc();

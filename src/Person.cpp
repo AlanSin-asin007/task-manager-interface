@@ -1,19 +1,16 @@
 #include "../include/Person.h"
+#include "../include/Task.h"
 
 Person::Person() {
     this->name = "";
     this->email = "";
     this->password = "";
-    this->tasks = "";
-    this->friends = "";
 }
 
-Person::Person(const string name, const string email, const string password, const string tasks, const string friends) {
+Person::Person(const string& name, const string& email, const string& password) {
     this->name = name;
     this->email = email;
     this->password = password;
-    this->tasks = tasks;
-    this->friends = friends;
 }
 
 Person::~Person() {}
@@ -34,20 +31,24 @@ string Person::getFriends() const {
     return this->friends;
 }
 
-void Person::setName(const string newName) {
+void Person::setName(const string& newName) {
     this->name = newName;
 }
 
-void Person::setEmail(const string newEmail) {
+void Person::setEmail(const string& newEmail) {
     this->email = newEmail;
 }
 
-void Person::setPassword(const string newPassword) {
+void Person::setPassword(const string& newPassword) {
     this->password = newPassword;
 }
 
-void Person::setFriends(const string newFriends) {
-    this->friends = newFriends;
+void Person::setTasks(Person& newTasks) {
+    this->taskList.push_back(newTasks);
+}
+
+void Person::setFriends(Person& newFriends) {
+    this->friends.push_back(newFriends);
 }
 
 void Person::signUp(const string newName, const string newEmail, const string newPassword) {
