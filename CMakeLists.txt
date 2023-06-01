@@ -1,12 +1,18 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
+cmake_minimum_required(VERSION 3.2)
+project(cs100FinalProject)
 
-ADD_SUBDIRECTORY(googletest)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 
-ADD_EXECUTABLE(test
-    header/person.hpp
-    src/person.cpp
-    tests/test.cpp
+
+add_subdirectory(googletest)
+
+add_executable(test 
+    test/test.cpp
+    src/DateSorter.cpp
+    src/TaskSorter.cpp
+    src/Person.cpp
+    src/Task.cpp
 )
 
-TARGET_LINK_LIBRARIES(test gtest)
-TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)
+target_link_libraries(test gtest gmock)
+target_compile_definitions(test PRIVATE gtest_disable_pthreads=ON)
