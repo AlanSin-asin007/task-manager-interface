@@ -335,6 +335,88 @@ TEST(personGenerateRandPassword, lengthOfPassword) {
     EXPECT_EQ(20, res.length());
 }
 
+// Test case for the constructor
+TEST(TaskTest, ConstructorTest) {
+
+    EXPECT_NO_THROW(Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5));
+
+}
+
+// Test case for the getTaskName() function
+TEST(TaskTest, GetTaskNameTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    ASSERT_EQ(task.getTaskName(), "Name");
+}
+
+// Test case for the setTaskName() function
+TEST(TaskTest, SetTaskNameTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    task.setTaskName("NewTaskName");
+    ASSERT_EQ(task.getTaskName(), "NewTaskName");
+}
+
+// Test case for the getDescription() function
+TEST(TaskTest, GetDescriptionTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    ASSERT_EQ(task.getDescription(), "Description");
+}
+
+// Test case for the setDescription() function
+TEST(TaskTest, SetDescriptionTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    task.setDescription("NewDescription");
+    ASSERT_EQ(task.getDescription(), "NewDescription");
+}
+
+// Test case for the getLabel() function
+TEST(TaskTest, GetLabelTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    ASSERT_EQ(task.getLabel(), "Label");
+}
+
+// Test case for the setLabel() function
+TEST(TaskTest, SetLabelTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    task.setLabel("NewLabel");
+    ASSERT_EQ(task.getLabel(), "NewLabel");
+}
+
+// Test case for the getTaskPriority() function
+TEST(TaskTest, GetTaskImportanceTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    ASSERT_EQ(task.getRating(), 5);
+}
+
+// Test case for the setTaskPriority() function
+TEST(TaskTest, SetTaskImportanceTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    task.setRating(7);
+    ASSERT_EQ(task.getRating(), 7);
+}
+
+TEST(TaskTest, InvalidSetImportanceLess) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    EXPECT_ANY_THROW(task.setRating(-1));
+}
+
+TEST(TaskTest, InvalidSetImportanceMore) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    EXPECT_ANY_THROW(task.setRating(12));
+}
+
+// Test case for the getTaskDeadline() function
+TEST(TaskTest, GetTaskDeadlineTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    ASSERT_EQ(task.getDeadline(), date::year{2023}/date::January/1);
+}
+
+// Test case for the setTaskDeadline() function
+TEST(TaskTest, SetTaskDeadlineTest) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    task.setDeadline(date::year{2023}/date::February/1);
+    ASSERT_EQ(task.getDeadline(), date::year{2023}/date::February/1);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

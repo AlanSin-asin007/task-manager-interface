@@ -1,11 +1,28 @@
 #include "../include/Task.h"
+#include <stdexcept>
 
-int Task::getRating() const {
-    return rating;
+string Task::getTaskName() const {
+    return taskName;
 }
 
-void Task::setRating(int newRating) {
-    rating = newRating;
+void Task::setTaskName(const string& newTaskName) {
+    this->taskName = newTaskName;
+}
+
+string Task::getDescription() const {
+    return taskDescription;
+}
+
+void Task::setDescription(const string& newDescription) {
+    this->taskDescription = newDescription;
+}
+
+string Task::getLabel() const {
+    return taskLabel;
+}
+
+void Task::setLabel(const string& newLabel) {
+    this->taskLabel = newLabel;
 }
 
 date::year_month_day Task::getDeadline() const {
@@ -13,7 +30,24 @@ date::year_month_day Task::getDeadline() const {
 }
 
 void Task::setDeadline(date::year_month_day newDeadline) {
-    deadlineDate = newDeadline;
+    this->deadlineDate = newDeadline;
+}
+
+int Task::getRating() const {
+    return rating;
+}
+
+void Task::setRating(int newRating) {
+    if (newRating >= 1 && newRating <= 10) {
+        this->rating = newRating;
+    } else {
+        throw std::out_of_range("Task importance must be between 1 and 10");
+    }
+}
+
+void Task::printTask() {
+    cout << "Task Name: " << taskName << "\nTask Deadline: " << deadlineDate << "\nDescription: " << taskDescription;
+    cout << "\nLabel: " << taskLabel << "\nTask Importance: " << rating << endl;
 }
 
 bool Task::operator==(const Task& rhs) const {
