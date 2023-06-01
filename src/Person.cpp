@@ -27,7 +27,11 @@ string Person::getPassword() const {
     return this->password;
 }
 
-string Person::getFriends() const {
+vector<Task> Person::getTaskList() const {
+    return this->taskList;
+}
+
+vector<Person> Person::getFriends() const {
     return this->friends;
 }
 
@@ -43,8 +47,12 @@ void Person::setPassword(const string& newPassword) {
     this->password = newPassword;
 }
 
-void Person::setTasks(Person& newTasks) {
-    this->taskList.push_back(newTasks);
+void Person::setTaskList(const vector<Task>& taskList) {
+    this->taskList = taskList;
+}
+
+void Person::setTasks(Task& newTask) {
+    this->taskList.push_back(newTask);
 }
 
 void Person::setFriends(Person& newFriends) {
@@ -166,4 +174,15 @@ bool Person::checkPasswordRequirements(const string newPassword) const {
         return false;
     }
     return true;
+}
+
+string Person::generateRandPassword() {
+    srand(time(NULL));
+
+    string randPassword = "";
+
+    for(unsigned i = 0; i < 20; ++i) {
+        randPassword += char((rand() % 94) + 33);
+    }
+    return randPassword;
 }

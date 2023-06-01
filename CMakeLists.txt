@@ -3,14 +3,7 @@ project(cs100FinalProject)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 
-<<<<<<< HEAD
-ADD_EXECUTABLE(test
-    header/person.hpp
-    src/person.cpp
-    tests/test.cpp
-    header/tasks.hpp
-    src/tasks.cpp
-=======
+
 add_subdirectory(googletest)
 
 add_executable(test 
@@ -19,9 +12,7 @@ add_executable(test
     src/TaskSorter.cpp
     src/Person.cpp
     src/Task.cpp
->>>>>>> 8d1539284407941e287b0cdeb0843a345728fbce
 )
 
 target_link_libraries(test gtest gmock)
 target_compile_definitions(test PRIVATE gtest_disable_pthreads=ON)
->>>>>>> abde1ce098349fcd12bf9b334be0052adc508d4a

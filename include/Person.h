@@ -22,11 +22,10 @@ class Person {
         //12-20 char length
         //check if there is at least one numerical and one special char
         string password;
-        std::vector<Task> taskList;
-        //list of Person objects
+        vector<Task> taskList;
         vector<Person> friends;
     public:
-        Person() {};
+        Person();
         Person(const string& name, const string& email, const string& password);
         Person(std::vector<Task>& vec) : taskList(vec) {};
         ~Person();
@@ -35,20 +34,15 @@ class Person {
         string getName() const;
         string getEmail() const;
         string getPassword() const;
-        std::vector<Task> getTaskList() const {
-            return taskList;
-        }
-        vector<Person> getTasks() const;
+        vector<Task> getTaskList() const;
         vector<Person> getFriends() const;
 
         //mutators
         void setName(const string& newName);
         void setEmail(const string& newEmail);
         void setPassword(const string& newPassword);
-        void setTaskList(std::vector<Task>& v) {
-            this->taskList = v;
-        }
-        void setTasks(Task& newTasks);
+        void setTaskList(const vector<Task>& taskList);
+        void setTasks(Task& newTask);
         void setFriends(Person& newFriends);
 
         // //list of issues
@@ -58,7 +52,7 @@ class Person {
         // //initially prompts for original password confirmation
         // //automatically sets new password as randomly generated password
         // //max char length
-        // string generateRandPassword();
+        string generateRandPassword();
         // //optional
         // void twoFA();
         // //prompts for original password confirmation

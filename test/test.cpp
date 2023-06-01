@@ -265,7 +265,7 @@ TEST(personDefaultConstructor, defaultPassword) {
 TEST(personDefaultConstructor, defaultTasks) {
     Person* personDefaultTasks = new Person();
 
-    EXPECT_TRUE(personDefaultTasks->getTasks().empty());
+    EXPECT_TRUE(personDefaultTasks->getTaskList().empty());
 }
 
 TEST(personDefaultConstructor, defaultFriends) {
@@ -318,7 +318,7 @@ TEST(personSetters, setTasks) {
     Task tasksSetTasks(5, date::year{2023}/date::January/1);
     personSetTasks->setTasks(tasksSetTasks);
 
-    EXPECT_FALSE(personSetTasks->getTasks().empty());
+    EXPECT_FALSE(personSetTasks->getTaskList().empty());
 }
 
 TEST(personSetters, setFriends) {
@@ -327,6 +327,12 @@ TEST(personSetters, setFriends) {
     personSetFriends->setFriends(tasksSetFriends);
 
     EXPECT_FALSE(personSetFriends->getFriends().empty());
+}
+
+TEST(personGenerateRandPassword, lengthOfPassword) {
+    Person testPerson1;
+    string res = testPerson1.generateRandPassword();
+    EXPECT_EQ(20, res.length());
 }
 
 int main(int argc, char **argv) {
