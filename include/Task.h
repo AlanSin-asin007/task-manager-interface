@@ -3,6 +3,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <vector>
 #include "Date.h"
 
 using namespace std;
@@ -36,6 +37,8 @@ class Task {
         void setDeadline(date::year_month_day );
 
         void printTask();
+        static void addTask(vector<Task>& taskList, const Task& task);
+        static void deleteTask(vector<Task>& taskList, const string& taskName);
         
         bool operator==(const Task& rhs) const;
 };

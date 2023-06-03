@@ -45,6 +45,19 @@ void Task::setRating(int newRating) {
     }
 }
 
+void Task::addTask(vector<Task>& taskList, const Task& task) {
+    taskList.push_back(task);
+}
+
+void Task::deleteTask(vector<Task>& taskList, const string& taskName) {
+    for (auto it = taskList.begin(); it != taskList.end(); ++it) {
+        if (it->getTaskName() == taskName) {
+            taskList.erase(it);
+            break;
+        }
+    }
+}
+
 void Task::printTask() {
     cout << "Task Name: " << taskName << "\nTask Deadline: " << deadlineDate << "\nDescription: " << taskDescription;
     cout << "\nLabel: " << taskLabel << "\nTask Importance: " << rating << endl;
