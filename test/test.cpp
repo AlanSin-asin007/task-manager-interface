@@ -452,6 +452,31 @@ TEST(TaskTest, DeleteTaskTest) {
     EXPECT_TRUE(task2Found);
 }
 
+TEST(personChangePassword, validOriginalAndNewPassword) {
+    Person* personChangePassword = new Person("testName", "testEmail@gmail.com", "originalPassword1!");
+    personChangePassword->changePassword("originalPassword1!", "newPassword1!", "newPassword1!");
+
+    EXPECT_EQ(personChangePassword->getPassword(), "newPassword1!");
+}
+
+TEST(personChangePassword, invalidOriginalPassword) {
+    Person* personChangePassword = new Person("testName", "testEmail@gmail.com", "originalPassword1!");
+
+    EXPECT_ANY_THROW(personChangePassword->changePassword("notOriginalPW1!", "newPassword1!", "newPassword1!"));
+}
+
+TEST(personChangePassword, newPasswordDoesNotEqualConfirmation) {
+    Person* personChangePassword = new Person("testName", "testEmail@gmail.com", "originalPassword1!");
+
+    EXPECT_ANY_THROW(personChangePassword->changePassword("originalPassword1!", "newPassword1!", "notNewPassword1!"));
+}
+
+TEST(personChangePassword, newPasswordViolatesConditions) {
+    Person* personChangePassword = new Person("testName", "testEmail@gmail.com", "originalPassword1!");
+
+    EXPECT_ANY_THROW(personChangePassword->changePassword("originalPassword1!", "newPassword", "newPassword1"));
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

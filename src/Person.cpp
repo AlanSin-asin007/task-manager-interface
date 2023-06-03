@@ -186,3 +186,17 @@ string Person::generateRandPassword() {
     }
     return randPassword;
 }
+
+void Person::changePassword(const string& originalPassword, const string& newPassword, const string& confirmNewPassword) {
+    if(this->password == originalPassword) {
+        if(newPassword == confirmNewPassword && checkPasswordRequirements(newPassword)) {
+            this->password = newPassword;
+        }
+        else {
+            throw runtime_error("Error in confirming new password.");
+        }
+    }
+    else {
+        throw runtime_error("Incorrect original password.");
+    }
+}

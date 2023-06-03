@@ -55,10 +55,10 @@ class Person {
         string generateRandPassword();
         // //optional
         // void twoFA();
-        // //prompts for original password confirmation
-        // //may prompt for twoFA()?
-        // //12-20 char length
-        // void changePassword();
+        //prompts for original password confirmation
+        //may prompt for twoFA()?
+        //12-20 char length
+        void changePassword(const string& originalPassword, const string& newPassword, const string& confirmNewPassword);
         // //similar to signUp()
         // //unnecessary?
         // void createNewAcc();
