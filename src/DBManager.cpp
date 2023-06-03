@@ -19,7 +19,6 @@ Person DBManager::getPerson(string userName)
     return Person();
 }
 
-
 void DBManager::loadData(string fileName)
 {
     std::ifstream f1(fileName);

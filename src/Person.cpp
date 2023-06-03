@@ -114,4 +114,3 @@ void Person::setFriends(vector<string> newFriends) {
 //         cout<<"Friend to add does not Exist, try another friend";
 //     }
 // }
-
