@@ -1,15 +1,15 @@
 #include <gtest/gtest.h>
-#include "../header/Task.hpp"
+#include "../include/Task.h"
 
 // Test case for the deleteTask() function
 TEST(TaskTest, DeleteTaskTest) {
     vector<Task> taskList;
 
     // Create tasks and add them to the taskList
-    Task task1("Task1", "2023-06-01", "Description1", "Label1", 3);
+    Task task1("Task1", "Description", "Label", date::year{2023}/date::January/1, 5);
     Task::addTask(taskList, task1);
 
-    Task task2("Task2", "2023-06-05", "Description2", "Label2", 5);
+    Task task2("Task2", "Description", "Label", date::year{2023}/date::January/1, 5);
     Task::addTask(taskList, task2);
 
     // Delete task with taskName "Task1"
