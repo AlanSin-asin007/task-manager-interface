@@ -9,10 +9,11 @@ using namespace std;
 
 class UserInterface {
     private:
-        void clear();
+        void clear() const;
+        
     public:
-        void displayDashboard();
-        void displayListView(Person& p);
+        void displayDashboard() const;
+        void displayListView(Person& p) const;
 
 };
 
