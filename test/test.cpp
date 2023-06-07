@@ -21,14 +21,14 @@ TEST(PersonTests, testSetTaskList) {
     EXPECT_EQ(p->getTaskList(), list);
 }
 
-TEST(DateSorterTests, testGetPerson) {
+TEST(DateSorterTests, testDateGetPerson) {
     Person* p = new Person();
     TaskSorter* sorter = new DateSorter(p);
 
     EXPECT_EQ(p, sorter->getPerson());
 }
 
-TEST(DateSorterTests, testSetPerson) {
+TEST(DateSorterTests, testDateSetPerson) {
     TaskSorter* sorter = new DateSorter(new Person());
     Person* p2 = new Person();
     sorter->setPerson(p2);
@@ -36,7 +36,7 @@ TEST(DateSorterTests, testSetPerson) {
     EXPECT_EQ(p2, sorter->getPerson());
 }
 
-TEST(DateSorterTests, testSortIncreasing) {
+TEST(DateSorterTests, testDateSortIncreasing) {
     std::vector<Task> list;
     for (int i = 1; i < 6; ++i) {
         list.push_back(Task(5, date::year{2023}/date::January/i));
@@ -52,7 +52,7 @@ TEST(DateSorterTests, testSortIncreasing) {
 
 }
 
-TEST(DateSorterTests, testSortSame) {
+TEST(DateSorterTests, testDateSortSame) {
     std::vector<Task> list;
     for (int i = 1; i < 21; ++i) {
         list.push_back(Task(5, date::year{2023}/date::January/1));
@@ -68,7 +68,7 @@ TEST(DateSorterTests, testSortSame) {
 
 }
 
-TEST(DateSorterTests, testSortDecreasing) {
+TEST(DateSorterTests, testDateSortDecreasing) {
     std::vector<Task> list;
     for (int i = 20; i > 0 ; --i) {
         list.push_back(Task(5, date::year{2023}/date::January/i));
@@ -80,6 +80,70 @@ TEST(DateSorterTests, testSortDecreasing) {
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
+    }
+}
+
+TEST(ImportanceSorterTests, testImportanceGetPerson) {
+    Person* p = new Person();
+    TaskSorter* sorter = new ImportanceSorter(p);
+
+    EXPECT_EQ(p, sorter->getPerson());
+}
+
+TEST(ImportanceSorterTests, testImportanceSetPerson) {
+    TaskSorter* sorter = new ImportanceSorter(new Person());
+    Person* p2 = new Person();
+    sorter->setPerson(p2);
+
+    EXPECT_EQ(p2, sorter->getPerson());
+}
+
+TEST(ImportanceSorterTests, testImportanceSortIncreasing) {
+    std::vector<Task> list;
+    date::year_month_day d = date::year{2023}/date::January/1;
+    for (int i = 1; i < 6; ++i) {
+        list.push_back(Task(i, d));
+    }
+
+    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    sorter->performSort();
+    list = sorter->getPerson()->getTaskList();
+
+    for (int i = 0; i+1 < list.size(); ++i) {
+        EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
+    }
+
+}
+
+TEST(ImportanceSorterTests, testImportanceSortSame) {
+    std::vector<Task> list;
+    for (int i = 1; i < 21; ++i) {
+        list.push_back(Task(5, date::year{2023}/date::January/1));
+    }
+
+    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    sorter->performSort();
+    list = sorter->getPerson()->getTaskList();
+
+    for (int i = 0; i+1 < list.size(); ++i) {
+        EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
+    }
+
+}
+
+TEST(ImportanceSorterTests, testImportanceSortDecreasing) {
+    std::vector<Task> list;
+    date::year_month_day d = date::year{2023}/date::January/1;
+    for (int i = 20; i > 0 ; --i) {
+        list.push_back(Task(i, d));
+    }
+
+    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    sorter->performSort();
+    list = sorter->getPerson()->getTaskList();
+
+    for (int i = 0; i+1 < list.size(); ++i) {
+        EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
     }
 }
 
