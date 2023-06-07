@@ -6,6 +6,15 @@ void UserInterface::clear() const {
     cout << u8"\033[2J\033[1;1H";
 }
 
+void UserInterface::displayDashboard(Person& p) const {
+    clear();
+    string horizontalBar(39+p.getName().size(), '-');
+    cout << horizontalBar << '\n';
+    cout << "   HELLO " << p.getName() << ", WELCOME TO YOUR DASHBOARD"  << '\n';
+    cout << horizontalBar << '\n';
+
+}
+
 void UserInterface::displayListView(Person& p) const {
     clear();
     cout << "--------------------" << endl;

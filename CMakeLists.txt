@@ -6,7 +6,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 
 add_subdirectory(googletest)
 
-add_executable(test 
+add_executable(test
     test/test.cpp
     src/UserInterface.cpp
     src/DateSorter.cpp

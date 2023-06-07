@@ -12,7 +12,7 @@ class UserInterface {
         void clear() const;
         
     public:
-        void displayDashboard() const;
+        void displayDashboard(Person& p) const;
         void displayListView(Person& p) const;
 
 };
