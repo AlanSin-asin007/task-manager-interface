@@ -8,6 +8,7 @@ add_subdirectory(googletest)
 
 add_executable(test 
     test/test.cpp
+    src/ImportanceSorter.cpp
     src/DateSorter.cpp
     src/TaskSorter.cpp
     src/Person.cpp
