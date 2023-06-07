@@ -12,7 +12,7 @@ void UserInterface::displayListView(Person& p) const {
     cout << "   TASK LIST VIEW   " << endl;
     cout << "--------------------" << endl;
 
-    cout << "Sort Type: " << endl << endl;
+    //cout << "Sort Type: " << endl << endl;
 
     vector<Task> taskList = p.getTaskList();
 
@@ -21,5 +21,4 @@ void UserInterface::displayListView(Person& p) const {
         taskList.at(i).printTask();
         cout << endl;
     }
-
 }
