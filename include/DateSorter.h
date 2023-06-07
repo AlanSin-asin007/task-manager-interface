@@ -1,4 +1,4 @@
-#ifndef _DATE_SORTER
+#ifndef _DATE_SORTER_
 #define _DATE_SORTER_
 
 #include "TaskSorter.h"
