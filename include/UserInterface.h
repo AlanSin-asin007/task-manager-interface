@@ -10,7 +10,7 @@ using namespace std;
 class UserInterface {
     private:
         void clear() const;
-        
+        vector<Task> fetchNotifications(const Person& p) const;
     public:
         void displayDashboard(Person& p) const;
         void displayListView(Person& p) const;
