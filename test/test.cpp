@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
+#include "../include/ImportanceSorter.h"
 #include "../include/DateSorter.h"
 #include "../include/TaskSorter.h"
 #include "../include/Person.h"
