@@ -1,7 +1,11 @@
 #include "../include/UserInterface.h"
-#include "../include/Person.h"
 #include "../include/TaskSorter.h"
+#include "../include/DateSorter.h"
+#include "../include/ImportanceSorter.h"
+#include "../include/Person.h"
+#include "../include/Task.h"
 #include "../include/Date.h"
+#include <iomanip>
 
 using namespace date;
 
@@ -10,6 +14,7 @@ UserInterface::UserInterface() {}
 UserInterface::~UserInterface() {}
 
 void UserInterface::clear() const {
+    //
     cout << u8"\033[2J\033[1;1H";
 }
 
@@ -27,8 +32,7 @@ vector<Task> UserInterface::fetchNotifications() const {
     return approachingTasks;
 }
 
-void UserInterface::printNotifications(const vector<Task>& notificationList) const {
-    
+void UserInterface::printNotifications(const vector<Task>& notificationList) const {  
     cout << "You have " << notificationList.size() << " notifications!\n";
     int daysApart;
     for (auto task : notificationList) {
@@ -49,19 +53,50 @@ void UserInterface::displayDashboard() const {
     printNotifications(approachingTasks);
 }
 
-void UserInterface::displayListView() const {
-    clear();
-    cout << "--------------------" << endl;
-    cout << "   TASK LIST VIEW   " << endl;
-    cout << "--------------------" << endl;
+void UserInterface::displayListView() {
+    TaskSorter* sorter = new ImportanceSorter(&loggedInUser);
+    sorter->performSort();
 
-    //cout << "Sort Type: " << endl << endl;
+    clear();
+    cout << "--------------------" << '\n';
+    cout << "   TASK LIST VIEW   " << '\n';
+    cout << "--------------------" << '\n';
+
+    cout << "Sort Type: RATING" << "\n\n";
 
     vector<Task> taskList = loggedInUser.getTaskList();
 
     for (int i = 0; i < taskList.size(); ++i) {
         cout << i+1 << ". ";
         taskList.at(i).printTask();
-        cout << endl;
+        cout << '\n';
+    }
+}
+
+void UserInterface::displayCalendarView() {
+    TaskSorter* sorter = new DateSorter(&loggedInUser);
+    sorter->performSort();
+
+    clear();
+    cout << "---------------------" << '\n';
+    cout << "    CALENDAR VIEW    " << '\n';
+    cout << "---------------------" << '\n';
+
+    cout << "Sort Type: DEADLINE" << "\n\n";
+
+    auto today = floor<days>(chrono::system_clock::now());
+    for (int i = 0; i < 7; ++i) {
+        cout << setfill('+') << setw(10) << '\n';
+        //cout << "|" << setfill(' ') << setw(8) << "|" << '\n';
+        cout << "|"<< weekday{today} + days{i} << setfill(' ') << setw(5) << "|" << '\n';
+        //cout << "|" << setfill(' ') << setw(8) << "|" << '\n';
+        cout << setfill('+') << setw(10) << '\n' ;
+        for (Task task : loggedInUser.getTaskList()) {
+            if (getDaysApart(task.getDeadline(), year_month_day{today}) == i) {
+                cout << '\n';
+                task.printTask();
+            }
+        }
+        cout << '\n';
     }
 }
