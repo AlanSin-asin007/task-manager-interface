@@ -23,7 +23,7 @@ class Person {
         //check if there is at least one numerical and one special char
         string password;
         vector<Task> taskList;
-        vector<string> friends;
+        vector<string> friendsList;
     public:
         Person();
         Person(const string& name, const string& email, const string& password);
@@ -43,23 +43,22 @@ class Person {
         void setPassword(const string& newPassword);
         void setTaskList(const vector<Task>& taskList);
         void setTasks(Task& newTask);
-        void setFriends(Person& newFriends);
         void setFriendsList(const vector<string>& friendsList);
 
         // //list of issues
         // void delAcc();
         //prompt user to enter new acc info
-        void signUp(const string newName, const string newEmail, const string newPassword);
+        void signUp(const string& newName, const string& newEmail, const string& newPassword);
         // //initially prompts for original password confirmation
         // //automatically sets new password as randomly generated password
         // //max char length
         string generateRandPassword();
         // //optional
         // void twoFA();
-        // //prompts for original password confirmation
-        // //may prompt for twoFA()?
-        // //12-20 char length
-        // void changePassword();
+        //prompts for original password confirmation
+        //may prompt for twoFA()?
+        //12-20 char length
+        void changePassword(const string& originalPassword, const string& newPassword, const string& confirmNewPassword);
         // //similar to signUp()
         // //unnecessary?
         // void createNewAcc();
@@ -77,9 +76,9 @@ class Person {
 
     private:
         //helper functions
-        bool checkNameRequirements(const string newName) const;
-        bool checkEmailRequirements(const string newEmail) const;
-        bool checkPasswordRequirements(const string newPassword) const;
+        bool checkNameRequirements(const string& newName) const;
+        bool checkEmailRequirements(const string& newEmail) const;
+        bool checkPasswordRequirements(const string& newPassword) const;
 };
 
 #endif

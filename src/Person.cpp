@@ -22,34 +22,6 @@ Person::Person(const string& name, const string& email, const string& password) 
 
 Person::~Person() {}
 
-
-//For doesExist need to put in DBManager class if want to use it
-
-// bool Person::doesExist(string userName)
-// {
-// // auto findPerson = response.find(userName);
-
-// // if (findPerson != response.end())
-// // {
-// //     return true;
-
-// // }
-// // else
-// // {
-// //     return false; 
-// // }
-
-//     for(int i=0; i<myPersons.size(); ++i)
-//     {
-//         string s = myPersons.at(i).getName();
-//         if(userName == s)
-//         {
-//             return true;   
-//         }
-//     }
-//     return false;
-// }
-
 string Person::getName() const {
     return this->name;
 }
@@ -84,7 +56,7 @@ vector<Task> Person::getTaskList() const {
 }
 
 vector<string> Person::getFriends() const {
-    return this->friends;
+    return this->friendsList;
 }
 
 void Person::setName(const string& newName) {
@@ -107,15 +79,11 @@ void Person::setTasks(Task& newTask) {
     this->taskList.push_back(newTask);
 }
 
-void Person::setFriends(Person& newFriends) {
-    //this->friends.push_back(newFriends);
-}
-
 void Person::setFriendsList(const vector<string>& friendsList) {
-    this->friends = friendsList;
+    this->friendsList = friendsList;
 }
 
-void Person::signUp(const string newName, const string newEmail, const string newPassword) {
+void Person::signUp(const string& newName, const string& newEmail, const string& newPassword) {
     //check database if name/email is currently in use
     if(checkNameRequirements(newName) && checkEmailRequirements(newEmail) && checkPasswordRequirements(newPassword)) {
         this->name = newName;
@@ -126,18 +94,16 @@ void Person::signUp(const string newName, const string newEmail, const string ne
 
 //5-15 char limit
 //only alphabetical
-bool Person::checkNameRequirements(const string newName) const {
+bool Person::checkNameRequirements(const string& newName) const {
     //check char limit
     if(newName.length() < 5 || newName.length() > 15) {
-        cout << "Invalid Name: 5-15 character limit" << endl;
-        return false;
+        throw runtime_error("Invalid Name: 5-15 character limit");
     }
 
     //check if alphabetical
     for(unsigned i = 0; i < newName.length(); ++i) {
         if(newName.at(i) < 'A' || newName.at(i) > 'z' || (newName.at(i) > 'Z' && newName.at(i) < 'a')) {
-            cout << "Invalid Name: Must contain only letters" << endl;
-            return false;
+            throw runtime_error("Invalid Name: Must contain only letters");
         }
     }
     return true;
@@ -152,17 +118,15 @@ bool Person::checkNameRequirements(const string newName) const {
 //case 2: "@" somewhere in the str before the "."
 //case 3: text after "@" but before "."
 //case 4: text after "."
-bool Person::checkEmailRequirements(const string newEmail) const {
+bool Person::checkEmailRequirements(const string& newEmail) const {
     //check char limit is greater than 5 and less than 257
     if(newEmail.length() < 6 || newEmail.length() > 256) {
-        cout << "Invalid Email: 6-257 character limit" << endl;
-        return false;
+        throw runtime_error("Invalid Email: 6-257 character limit");
     }
 
     //check if first char is a letter
     if(newEmail.at(0) < 'A' || newEmail.at(0) > 'z' || (newEmail.at(0) > 'Z' && newEmail.at(0) < 'a')) {
-        cout << "Invalid Email: First character must be a letter" << endl;
-        return false;
+        throw runtime_error("Invalid Email: First character must be a letter");
     }
 
     //check for "@" and "."
@@ -184,30 +148,26 @@ bool Person::checkEmailRequirements(const string newEmail) const {
         //     return false;
         // }
         else if(newEmail.at(i) < 'A' || newEmail.at(i) > 'z' || (newEmail.at(i) > 'Z' && newEmail.at(i) < 'a')) {
-            cout << "Invalid Email: Must contain only letters" << endl;
-            return false;
+            throw runtime_error("Invalid Email: Must contain only letters");
         }
     }
     //check if there is only one "@" and is before "."
     if(atCounter != 1 || atIndex >= dotIndex - 1) {
-        cout << "Invalid Email: Must contain only one '@' and is before '.'" << endl;
-        return false;
+        throw runtime_error("Invalid Email: Must contain only one '@' and is before '.'");
     }
     //check if there is only one "." and is not the last char
     else if(dotCounter != 1 || dotIndex == newEmail.length() - 1) {
-        cout << "Invalid Email: Must contain only one '.' and is not the last character" << endl;
-        return false;
+        throw runtime_error("Invalid Email: Must contain only one '.' and is not the last character");
     }
     return true;
 }
 
 //12-20 char length
 //check if there is at least one letter, special char, and one number
-bool Person::checkPasswordRequirements(const string newPassword) const {
+bool Person::checkPasswordRequirements(const string& newPassword) const {
     //check char limit is greater than 11 and less than 21
     if(newPassword.length() < 12 || newPassword.length() > 20) {
-        cout << "Invalid Password: 12-20 character limit" << endl;
-        return false;
+        throw runtime_error("Invalid Password: 12-20 character limit");
     }
 
     //check if there is at least one letter, special char, and one number
@@ -226,8 +186,7 @@ bool Person::checkPasswordRequirements(const string newPassword) const {
         }
     }
     if(letterCounter == 0 || specialCharCounter == 0 || numCounter == 0) {
-        cout << "Invalid Password: Must contain at least one letter, number, and special character" << endl;
-        return false;
+        throw runtime_error("Invalid Password: Must contain at least one letter, number, and special character");
     }
     return true;
 }
@@ -243,3 +202,16 @@ string Person::generateRandPassword() {
     return randPassword;
 }
 
+void Person::changePassword(const string& originalPassword, const string& newPassword, const string& confirmNewPassword) {
+    if(this->password == originalPassword) {
+        if(newPassword == confirmNewPassword && checkPasswordRequirements(newPassword)) {
+            this->password = newPassword;
+        }
+        else {
+            throw runtime_error("Error in confirming new password.");
+        }
+    }
+    else {
+        throw runtime_error("Incorrect original password.");
+    }
+}

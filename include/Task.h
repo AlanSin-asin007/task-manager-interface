@@ -39,7 +39,9 @@ class Task {
         void printTask();
         static void addTask(vector<Task>& taskList, const Task& task);
         static void deleteTask(vector<Task>& taskList, const string& taskName);
-        
+        static Task copyTask(const Task& task);
+        static void modifyTask(vector<Task>& taskList, const string& taskName, const string& newTaskName, const date::year_month_day newTaskDeadline, const string& newDescription, const string& newLabel, int newTaskPriority);
+        static void modifyTaskDeadline(vector<Task>& taskList, const string& taskName, const date::year_month_day newTaskDeadline);
         bool operator==(const Task& rhs) const;
 };
 
