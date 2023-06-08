@@ -1,5 +1,5 @@
-#include "../Header/Person.hpp"
-#include "../Header/Task.hpp"
+#include "../include/Person.h"
+#include "../include/Task.h"
 
 #include "gtest/gtest.h"
 #include <string>

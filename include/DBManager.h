@@ -1,0 +1,48 @@
+#ifndef DBMANAGER_H
+#define DBMANAGER_H
+
+#include "json.h"
+#include "../include/Person.h"
+
+using namespace std;
+
+class DBManager
+{ 
+private:
+
+    vector<Person> myPersons;
+    vector<Task> tasks;
+    
+public: 
+    Person getPerson(string userName);
+
+    //Load the Person database from json file
+    void loadData(string personJSON, string taskJSON);
+
+    //Add person into database
+    void storePerson(Person person, string fileName);
+
+
+    bool doesExist(Person& person);
+
+    //
+    //void from_json(const nlohmann::json &j, Person &s);
+    void to_json(nlohmann::json &j, const Person &s);
+
+    //void from_json(const nlohmann::json &j, Task &t);
+    //void to_json(nlohmann::json &j, const Task &t);
+
+    void loadTasks(string fileName);
+
+    
+
+
+
+
+
+
+
+
+};
+
+#endif
