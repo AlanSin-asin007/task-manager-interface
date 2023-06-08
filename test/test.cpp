@@ -1,10 +1,12 @@
 #include "gtest/gtest.h"
-#include "gmock/gmock.h"
 #include "../include/ImportanceSorter.h"
 #include "../include/DateSorter.h"
 #include "../include/TaskSorter.h"
 #include "../include/Person.h"
 #include "../include/Task.h"
+
+using namespace std;
+using namespace date;
 
 TEST(PersonTests, testGetTaskList) {  
     std::vector<Task> list = {Task(1, date::year{2023}/date::January/1), Task(1, date::year{2023}/date::January/2), Task(1, date::year{2023}/date::January/3)};
@@ -495,6 +497,22 @@ TEST(TaskTest, DeleteTaskTest) {
         }
     }
     EXPECT_TRUE(task2Found);
+}
+
+// Test case for the copyTask() function
+TEST(TaskTest, CopyTaskTest) {
+    // Create a task
+    Task originalTask("Task1", "Description1", "Label1", year_month_day{floor<days>(chrono::system_clock::now())}, 5);
+
+    // Copy the task
+    Task copiedTask = Task::copyTask(originalTask);
+
+    // Assertion: The copied task should have the same attributes as the original task
+    EXPECT_EQ(copiedTask.getTaskName(), "Task1");
+    EXPECT_EQ(copiedTask.getDescription(), "Description1");
+    EXPECT_EQ(copiedTask.getLabel(), "Label1");
+    EXPECT_EQ(copiedTask.getDeadline(), year_month_day{floor<days>(chrono::system_clock::now())});
+    EXPECT_EQ(copiedTask.getRating(), 5);
 }
 
 TEST(personChangePassword, validOriginalAndNewPassword) {

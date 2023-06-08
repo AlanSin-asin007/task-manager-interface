@@ -39,6 +39,7 @@ class Task {
         void printTask();
         static void addTask(vector<Task>& taskList, const Task& task);
         static void deleteTask(vector<Task>& taskList, const string& taskName);
+        static Task copyTask(const Task& task);
         
         bool operator==(const Task& rhs) const;
 };

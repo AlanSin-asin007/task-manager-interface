@@ -58,6 +58,11 @@ void Task::deleteTask(vector<Task>& taskList, const string& taskName) {
     }
 }
 
+Task Task::copyTask(const Task& task) {
+    Task copiedTask = Task(task.getTaskName(), task.getDescription(), task.getLabel(), task.getDeadline(), task.getRating());
+    return copiedTask;
+}
+
 void Task::printTask() {
     cout << "Task Name: " << taskName << "\nTask Deadline: " << deadlineDate << "\nDescription: " << taskDescription;
     cout << "\nLabel: " << taskLabel << "\nTask Importance: " << rating << endl;
