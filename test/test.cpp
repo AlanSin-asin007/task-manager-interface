@@ -4,6 +4,7 @@
 #include "../include/TaskSorter.h"
 #include "../include/Person.h"
 #include "../include/Task.h"
+#include "../include/DBManager.h"
 
 using namespace std;
 using namespace date;
@@ -368,10 +369,10 @@ TEST(personSetters, setTasks) {
     EXPECT_FALSE(personSetTasks->getTaskList().empty());
 }
 
-TEST(personSetters, setFriends) {
+TEST(personSetters, setFriendsList) {
     Person* personSetFriends = new Person();
-    Person tasksSetFriends;
-    personSetFriends->setFriends(tasksSetFriends);
+    vector<string> friendList = {"Friend1", "Friend2"};
+    personSetFriends->setFriendsList(friendList);
 
     EXPECT_FALSE(personSetFriends->getFriends().empty());
 }

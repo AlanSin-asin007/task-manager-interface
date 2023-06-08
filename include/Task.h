@@ -17,7 +17,7 @@ class Task {
         int rating;
     
     public:
-        
+        Task() {};
         Task(string taskName, string description, string label, date::year_month_day deadline, int rating) : taskName(taskName), taskDescription(description), taskLabel(label), deadlineDate(deadline), rating(rating) {};
         Task(int rating, date::year_month_day deadline) : rating(rating), deadlineDate(deadline) {};
 

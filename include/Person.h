@@ -23,7 +23,7 @@ class Person {
         //check if there is at least one numerical and one special char
         string password;
         vector<Task> taskList;
-        vector<Person> friends;
+        vector<string> friendsList;
     public:
         Person();
         Person(const string& name, const string& email, const string& password);
@@ -35,7 +35,7 @@ class Person {
         string getEmail() const;
         string getPassword() const;
         vector<Task> getTaskList() const;
-        vector<Person> getFriends() const;
+        vector<string> getFriends() const;
 
         //mutators
         void setName(const string& newName);
@@ -43,7 +43,7 @@ class Person {
         void setPassword(const string& newPassword);
         void setTaskList(const vector<Task>& taskList);
         void setTasks(Task& newTask);
-        void setFriends(Person& newFriends);
+        void setFriendsList(const vector<string>& friendsList);
 
         // //list of issues
         // void delAcc();

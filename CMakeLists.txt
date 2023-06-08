@@ -8,6 +8,8 @@ add_subdirectory(googletest)
 
 add_executable(test
     test/test.cpp
+    test/DBManagerTests.cpp
+    src/DBManager.cpp
     src/UserInterface.cpp
     src/ImportanceSorter.cpp
     src/DateSorter.cpp

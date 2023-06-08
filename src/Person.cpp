@@ -1,5 +1,12 @@
+
+// #include "../Header/Person.hpp"
+#include <iostream>
+#include <fstream>
+#include "../include/json.h"
 #include "../include/Person.h"
 #include "../include/Task.h"
+using json = nlohmann::json;
+using namespace std;
 
 Person::Person() {
     this->name = "";
@@ -27,12 +34,29 @@ string Person::getPassword() const {
     return this->password;
 }
 
+// void Person::AddFriend(string userName)
+// {
+//     if(doesExist(userName))
+//     {
+//         for(int i=0; i<myPersons.size(); ++i)
+//         { 
+//             // myPersons.at(i).getFriends(userName);
+//             //myPersons.at(i).setFriends(friends).push_back(userName);
+//             this->friends.push_back(userName);
+//         }
+//     }
+
+//     else
+//     {
+//         cout<<"Friend to add does not Exist, try another friend";
+//     }
+// }
 vector<Task> Person::getTaskList() const {
     return this->taskList;
 }
 
-vector<Person> Person::getFriends() const {
-    return this->friends;
+vector<string> Person::getFriends() const {
+    return this->friendsList;
 }
 
 void Person::setName(const string& newName) {
@@ -55,8 +79,8 @@ void Person::setTasks(Task& newTask) {
     this->taskList.push_back(newTask);
 }
 
-void Person::setFriends(Person& newFriends) {
-    this->friends.push_back(newFriends);
+void Person::setFriendsList(const vector<string>& friendsList) {
+    this->friendsList = friendsList;
 }
 
 void Person::signUp(const string& newName, const string& newEmail, const string& newPassword) {
