@@ -560,6 +560,25 @@ TEST(TaskTest, ModifyTaskTest) {
     EXPECT_TRUE(task2Found);
 }
 
+TEST(TaskTest, ModifyTaskDeadlineTest) {
+    vector<Task> taskList;
+
+    // Create tasks and add them to the taskList
+    Task task1("Task1", "Description1", "Label1", year_month_day{floor<days>(chrono::system_clock::now())}, 3);
+    Task::addTask(taskList, task1);
+    // Modify the task deadline for task with taskName "Task1"
+    year_month_day newDeadline = year_month_day{floor<days>(chrono::system_clock::now()) + days{5}}; 
+    Task::modifyTaskDeadline(taskList, "Task1", newDeadline);
+
+    // Assertion: Task1's deadline should be updated to "2023-06-10"
+    for (const Task& task : taskList) {
+        if (task.getTaskName() == "Task1") {
+            EXPECT_EQ(task.getDeadline(), newDeadline);
+            break;
+        }
+    }
+}
+
 TEST(personChangePassword, validOriginalAndNewPassword) {
     Person* personChangePassword = new Person("testName", "testEmail@gmail.com", "originalPassword1!");
     personChangePassword->changePassword("originalPassword1!", "newPassword1!", "newPassword1!");

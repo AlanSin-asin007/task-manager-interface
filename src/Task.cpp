@@ -76,6 +76,16 @@ void Task::modifyTask(vector<Task>& taskList, const string& taskName, const stri
     }
 }
 
+void Task::modifyTaskDeadline(vector<Task>& taskList, const string& taskName, const date::year_month_day newTaskDeadline) {
+    for (Task& task : taskList) {
+        if (task.getTaskName() == taskName) {
+            task.setDeadline(newTaskDeadline);
+            break;
+        }
+    }
+}
+
+
 void Task::printTask() {
     cout << "Task Name: " << taskName << "\nTask Deadline: " << deadlineDate << "\nDescription: " << taskDescription;
     cout << "\nLabel: " << taskLabel << "\nTask Importance: " << rating << endl;
