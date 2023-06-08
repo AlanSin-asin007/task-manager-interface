@@ -421,6 +421,14 @@ TEST(TaskTest, GetLabelTest) {
     ASSERT_EQ(task.getLabel(), "Label");
 }
 
+TEST(TaskTest, CreateLabelTest) {
+    // Create a task with a label
+    Task task("Task1", "Description1", "Label1", year_month_day{floor<days>(chrono::system_clock::now())}, 5);
+
+    // Assertion: The task's label should be "Label1"
+    EXPECT_EQ(task.getLabel(), "Label1");
+}
+
 // Test case for the setLabel() function
 TEST(TaskTest, SetLabelTest) {
     Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
