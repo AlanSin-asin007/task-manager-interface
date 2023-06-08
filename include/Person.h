@@ -62,9 +62,9 @@ class Person {
         // //similar to signUp()
         // //unnecessary?
         // void createNewAcc();
-        // //prompts for user login info
-        // //redirect to dashboard
-        // void logIn();
+        //prompts for user login info
+        //redirect to dashboard
+        void logIn(const string& newEmail, const string& newPassword);
 
         // //more possible implementations(?)
         // //essentially some additional accessors and mutators

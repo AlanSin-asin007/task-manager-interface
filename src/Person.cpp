@@ -60,15 +60,21 @@ vector<string> Person::getFriends() const {
 }
 
 void Person::setName(const string& newName) {
-    this->name = newName;
+    if(checkNameRequirements(newName)) {
+        this->name = newName;
+    }
 }
 
 void Person::setEmail(const string& newEmail) {
-    this->email = newEmail;
+    if(checkEmailRequirements(newEmail)) {
+        this->email = newEmail;
+    }
 }
 
 void Person::setPassword(const string& newPassword) {
-    this->password = newPassword;
+    if(checkPasswordRequirements(newPassword)) {
+        this->password = newPassword;
+    }
 }
 
 void Person::setTaskList(const vector<Task>& taskList) {
