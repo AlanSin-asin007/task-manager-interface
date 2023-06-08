@@ -14,14 +14,12 @@ TEST(loadDataTests, loadNormalData)
     EXPECT_NO_THROW(DB.loadData("myData.json", "task1.json"));
 }
 
-
 TEST(loadDataTests, loadEmptyData)
 {
     DBManager DB;
 
     EXPECT_THROW(DB.loadData("myData.json","Test/test2.json"),nlohmann::json_abi_v3_11_2::detail::parse_error);
 }
-
 
 TEST(getPersonTests, loadNormalFile)
 {
@@ -61,7 +59,7 @@ TEST(coutWorks, loadDataCall)
     EXPECT_EQ(true,true);
 }
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
+// int main(int argc, char **argv) {
+//     ::testing::InitGoogleTest(&argc, argv);
+//     return RUN_ALL_TESTS();
+// }
