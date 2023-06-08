@@ -5,28 +5,35 @@
                 "email": "ram@gmail.com",
                 "password": "abcd23",
                 "tasks": ["t1", "t2", "t3"],
-                "friends": ["Shyam"]
+                "friends": ["Shyam"],
+                "messages":[ "Shyam: message 1", "Shyam: message2"]
+                
             },
             {
                 "name": "Shyam",
                 "email": "shyam23@gmail.com",
                 "password": "pow28",
                 "tasks": ["t1", "t4"],
-                "friends": ["John", "Ram"]
+                "friends": ["John", "Ram"],
+                "messages":[ "Ram: message 1", "John: message2"]
             },
             {
                 "name": "John",
                 "email": "john@gmail.com",
                 "password": "pass33",
                 "tasks": ["t3", "t4"],
-                "friends": []
+                "friends": [],
+                "messages":[]
+
             },
             {
                 "name": "Bob",
                 "email": "bob32@gmail.com",
                 "password": "pore41",
                 "tasks": [],
-                "friends": ["Shyam"]
+                "friends": ["Shyam"],
+                "messages":[ "Shyam: message 1", "Shyam: message2"]
+
             }
          
     ]
