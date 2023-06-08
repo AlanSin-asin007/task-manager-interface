@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 TEST(loadDataTests, loadNormalData)
 {
     DBManager DB;
@@ -32,6 +31,4 @@ TEST(getPersonTests, loadNormalFile)
     EXPECT_EQ(John.getPassword(),"pass33");
     EXPECT_EQ(John.getTasks().size(),3);
     EXPECT_EQ(John.getFriends().size(),0);
-
-
 }

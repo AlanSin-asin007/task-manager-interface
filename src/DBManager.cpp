@@ -24,11 +24,7 @@ void DBManager::loadData(string fileName)
 {
     std::ifstream f1(fileName);
     json data = json::parse(f1);
-    // string name1 = data.value(“name”, “not found”);
-    // string grade = data.value(“grade”, “not found”);
 
-    cout << data["Person"][0]["name"]<<endl;
-    // Person p;
     int count = data.at("Person").size();
 
     //From json data object, populate the vector called myPersons
@@ -49,7 +45,6 @@ void DBManager::loadData(string fileName)
         }
         
         Person p(data["Person"][i]["name"], data["Person"][i]["email"], data["Person"][i]["password"], t, f);
-        // Person p(data["Person"][i]["name"], data["Person"][i]["email"], data["Person"][i]["password"],  data["Person"][i].at("tasks"),  data["Person"][i].at("friends"));
         myPersons.push_back(p);
     }
 }
