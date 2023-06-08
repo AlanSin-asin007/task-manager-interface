@@ -19,10 +19,11 @@ class UserInterface {
         void printNotifications(const vector<Task>& notificationList) const;
     public:
         UserInterface();
-        //UserInterface(Person& person) : loggedInUser(person) {};
+        UserInterface(Person& person) : loggedInUser(person) {};
         ~UserInterface();
         void displayDashboard() const;
-        void displayListView() const;
+        void displayListView();
+        void displayCalendarView();
 };
 
 #endif
