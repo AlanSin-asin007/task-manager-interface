@@ -1,59 +1,48 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include "../header/Task.hpp"
+#include "../include/Task.h"
+#include <stdexcept>
 
-Task::Task(string taskName, string taskDeadline, string description, string label, int taskPriority)
-        : taskName(taskName), taskDeadline(taskDeadline), description(description), label(label), taskPriority(taskPriority) {}
-
-string Task::getTaskName() const{
+string Task::getTaskName() const {
     return taskName;
 }
 
-string Task::getTaskDeadline() const{
-    return taskDeadline;
-}
-
-string Task::getDescription() const{
-    return description;
-}
-
-string Task::getLabel() const{
-    return label;
-}
-
-int Task::getTaskPriority() const{
-    return taskPriority;
-}
-
 void Task::setTaskName(const string& newTaskName) {
-    taskName = newTaskName;
+    this->taskName = newTaskName;
 }
 
-void Task::setTaskDeadline(const string& newTaskDeadline) {
-    taskDeadline = newTaskDeadline;
+string Task::getDescription() const {
+    return taskDescription;
 }
 
 void Task::setDescription(const string& newDescription) {
-    description = newDescription;
+    this->taskDescription = newDescription;
+}
+
+string Task::getLabel() const {
+    return taskLabel;
 }
 
 void Task::setLabel(const string& newLabel) {
-    label = newLabel;
+    this->taskLabel = newLabel;
 }
 
-void Task::setTaskPriority(int newTaskPriority) {
-    if(newTaskPriority >= 1 && newTaskPriority <= 10) {
-        taskPriority = newTaskPriority;
-    }
-    else {
-        cout << "Task priority should be between 1 and 10" << endl;
-    }
+date::year_month_day Task::getDeadline() const {
+    return deadlineDate;
 }
 
-void Task::printTask() const{
-    cout << "Task Name: " << taskName << "\nTask Deadline: " << taskDeadline << "\nDescription: " << description;
-    cout << "\nLabel: " << label << "\nTask Priority: " << taskPriority << endl;
+void Task::setDeadline(date::year_month_day newDeadline) {
+    this->deadlineDate = newDeadline;
+}
+
+int Task::getRating() const {
+    return rating;
+}
+
+void Task::setRating(int newRating) {
+    if (newRating >= 1 && newRating <= 10) {
+        this->rating = newRating;
+    } else {
+        throw std::out_of_range("Task importance must be between 1 and 10");
+    }
 }
 
 void Task::addTask(vector<Task>& taskList, const Task& task) {
@@ -70,30 +59,38 @@ void Task::deleteTask(vector<Task>& taskList, const string& taskName) {
 }
 
 Task Task::copyTask(const Task& task) {
-    Task copiedTask = Task(task.taskName, task.taskDeadline, task.description, task.label, task.taskPriority);
+    Task copiedTask = Task(task.getTaskName(), task.getDescription(), task.getLabel(), task.getDeadline(), task.getRating());
     return copiedTask;
 }
 
-void Task::modifyTask(vector<Task>& taskList, const string& taskName, const string& newTaskName, const string& newTaskDeadline, const string& newDescription, const string& newLabel, int newTaskPriority) {
+void Task::modifyTask(vector<Task>& taskList, const string& taskName, const string& newTaskName, const date::year_month_day newTaskDeadline, const string& newDescription, const string& newLabel, int newTaskPriority) {
     for (Task& task : taskList) {
         if (task.getTaskName() == taskName) {
             task.setTaskName(newTaskName);
-            task.setTaskDeadline(newTaskDeadline);
+            task.setDeadline(newTaskDeadline);
             task.setDescription(newDescription);
             task.setLabel(newLabel);
-            task.setTaskPriority(newTaskPriority);
+            task.setRating(newTaskPriority);
             break;
         }
     }
 }
 
-void Task::modifyTaskDeadline(vector<Task>& taskList, const string& taskName, const string& newTaskDeadline) {
+void Task::modifyTaskDeadline(vector<Task>& taskList, const string& taskName, const date::year_month_day newTaskDeadline) {
     for (Task& task : taskList) {
         if (task.getTaskName() == taskName) {
-            task.setTaskDeadline(newTaskDeadline);
+            task.setDeadline(newTaskDeadline);
             break;
         }
     }
 }
 
 
+void Task::printTask() {
+    cout << "Task Name: " << taskName << "\nTask Deadline: " << deadlineDate << "\nDescription: " << taskDescription;
+    cout << "\nLabel: " << taskLabel << "\nTask Importance: " << rating << endl;
+}
+
+bool Task::operator==(const Task& rhs) const {
+    return (this->getRating() == rhs.getRating() && this->getDeadline() == rhs.getDeadline());
+}
