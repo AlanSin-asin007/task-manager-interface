@@ -106,9 +106,17 @@ void Person::setFriendsList(const vector<string>& friendsList) {
     this->friendsList = friendsList;
 }
 
-void Person::setMessages(const vector<string>& messages) 
+void Person::setMessages(const vector<string>& m) 
 {
+    messages = m;
+}
 
+//sendMessage: send a message to userName.
+void Person::sendMessage(const string &userName, const string &message)
+{
+    string m;
+    m = userName + ": " + message;
+    messages.push_back(m);
 }
 
 void Person::signUp(const string& newName, const string& newEmail, const string& newPassword) {

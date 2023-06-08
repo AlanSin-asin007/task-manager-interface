@@ -91,6 +91,21 @@ TEST(personTests, addPerson)
     EXPECT_EQ(true, true);
 }
 
+TEST(messageTest, sendMessagetoSomeone)
+{
+    DBManager DB;
+
+    DB.loadData("personData.json", "taskData.json");
+
+    Person Ram = DB.getPerson("Ram");
+
+    Ram.sendMessage("Shyam", "Message1234");
+
+    DB.storePerson(Ram, "personData.json", "taskData.json");
+
+    EXPECT_EQ(true, true);
+}
+
 
 // int main(int argc, char **argv) {
 //     ::testing::InitGoogleTest(&argc, argv);

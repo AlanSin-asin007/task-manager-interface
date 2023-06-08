@@ -5,7 +5,12 @@
             "friends": [
                 "Shyam"
             ],
-            "messages": [],
+            "messages": [
+                "Shyam: message1",
+                "Shyam: message2",
+                "Shyam: message3",
+                "Shyam: Message1234"
+            ],
             "name": "Ram",
             "password": "newPass",
             "tasks": [
@@ -55,6 +60,14 @@
             ],
             "name": "Bob",
             "password": "pore41",
+            "tasks": []
+        },
+        {
+            "email": "larry@gmail.com",
+            "friends": [],
+            "messages": [],
+            "name": "Larry",
+            "password": "LarryPass12#3",
             "tasks": []
         },
         {

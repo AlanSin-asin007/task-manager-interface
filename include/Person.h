@@ -53,7 +53,9 @@ class Person {
         void setTasks(Task& newTask);
         // void addTaskPtr(Task *newTask);
         void setFriendsList(const vector<string>& friendsList);
-        void setMessages(const vector<string>& messages);
+        void setMessages(const vector<string>& m);
+
+        void sendMessage(const string &userName, const string &message);
 
         // //list of issues
         // void delAcc();
