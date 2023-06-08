@@ -55,8 +55,21 @@ vector<Task> Person::getTaskList() const {
     return this->taskList;
 }
 
+vector<string> Person::getTaskNames() const {
+    vector<string> v;
+    for (Task t: taskList)
+    {
+        v.push_back(t.getTaskName());
+    }
+    return v;
+}
+
 vector<string> Person::getFriends() const {
     return this->friendsList;
+}
+
+vector<string> Person::getMessages() const {
+    return this->messages;
 }
 
 void Person::setName(const string& newName) {
@@ -75,12 +88,27 @@ void Person::setTaskList(const vector<Task>& taskList) {
     this->taskList = taskList;
 }
 
+// void Person::addTaskPtr(Task *newTask)
+// {
+//     taskPtrList.push_back(newTask);
+// }
+
+// void Person::setTaskPtrList(const vector<Task*> &taskPtrList)
+// {
+//     this->taskPtrList = taskPtrList;
+// }
+
 void Person::setTasks(Task& newTask) {
     this->taskList.push_back(newTask);
 }
 
 void Person::setFriendsList(const vector<string>& friendsList) {
     this->friendsList = friendsList;
+}
+
+void Person::setMessages(const vector<string>& messages) 
+{
+
 }
 
 void Person::signUp(const string& newName, const string& newEmail, const string& newPassword) {
