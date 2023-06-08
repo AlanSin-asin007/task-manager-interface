@@ -17,10 +17,10 @@ int UserInterface::getDaysApart(year_month_day date1, year_month_day date2) cons
     return (sys_days{date1}-sys_days{date2}).count();
 }
 
-vector<Task> UserInterface::fetchNotifications(const Person& person) const {
+vector<Task> UserInterface::fetchNotifications() const {
     auto today = year_month_day{floor<days>(chrono::system_clock::now())};
     vector<Task> approachingTasks;
-    for (auto task : person.getTaskList()) {
+    for (auto task : loggedInUser.getTaskList()) {
         if (getDaysApart(task.getDeadline(), today) <= 3)
             approachingTasks.push_back(task);
     }
@@ -38,18 +38,18 @@ void UserInterface::printNotifications(const vector<Task>& notificationList) con
     }
 }
 
-void UserInterface::displayDashboard(Person& person) const {
+void UserInterface::displayDashboard() const {
     clear();
-    string horizontalBar(39+person.getName().size(), '-');
+    string horizontalBar(39+loggedInUser.getName().size(), '-');
     cout << horizontalBar << '\n';
-    cout << "   HELLO " << person.getName() << ", WELCOME TO YOUR DASHBOARD"  << '\n';
+    cout << "   HELLO " << loggedInUser.getName() << ", WELCOME TO YOUR DASHBOARD"  << '\n';
     cout << horizontalBar << '\n';
 
-    vector<Task> approachingTasks = fetchNotifications(person);
+    vector<Task> approachingTasks = fetchNotifications();
     printNotifications(approachingTasks);
 }
 
-void UserInterface::displayListView(Person& person) const {
+void UserInterface::displayListView() const {
     clear();
     cout << "--------------------" << endl;
     cout << "   TASK LIST VIEW   " << endl;
@@ -57,7 +57,7 @@ void UserInterface::displayListView(Person& person) const {
 
     //cout << "Sort Type: " << endl << endl;
 
-    vector<Task> taskList = person.getTaskList();
+    vector<Task> taskList = loggedInUser.getTaskList();
 
     for (int i = 0; i < taskList.size(); ++i) {
         cout << i+1 << ". ";
