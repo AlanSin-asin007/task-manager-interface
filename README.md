@@ -49,27 +49,27 @@ Description: The diagram represents each of the individual screens of the task p
 ### Screen Layouts
 ![image](https://user-images.githubusercontent.com/117235128/236956488-59bffb89-aac4-4b39-8a9b-b33a8fd29083.png)
 
-Description: The user will be prompted with 2 options: logging in or signing up.
-    * Login: The user will be asked to input their username and password. Once a valid username and password is given, the user will be sent to the dashboard screen.
-    * Sign Up: In the case that the user does not have an already existing account, the user can choose the "Sign Up" option, where they will be asked for their display name, username, and password to create a new account.
-    * Dashboard: After logging in, the user will be presented with their schedule, listing all of their tasks for the current week. In this current screen, the user has the option of changing their view to a calendar view, deleting an existing task, selecting and viewing a particular task, adding a new task, configuring their settings, viewing their friends page, and logging out.
-    * Settings: This is the settings page where the user will be given the options to change their display name, username, and password.
-    * Friends: This screen will list all of the user's current friends. This screen will give the user the option to either delete a current friend from their friends list, add a new friend, or select a particular friend to message them.
-    * Chats: The user can enter text that will be sent to a friend of their choosing.
-    * Enter New Friend: This will be a screen where the user will be prompted to enter the user's friend's identification in order to send a friend request to the other user's account.
-    * New Task: After choosing the option of adding a task from the Dashboard, or choosing the option of editing a task after viewing it in the "View Task" screen, the user will be sent to a screen where they can add/change details onto a new (or already existing) task.
-    * View Task: After choosing the option to select and view a particular task in their schedule, they will be sent to a screen showcasing all the details of the task in question. These details will include the name of the task, a description, label, and deadline. The user will have the option of either deleting the task in question (which will send the user back to the dashboard interface), or editing the task in question (which will change their screen to the "New Task" screen).
+Description: The user will be prompted with 2 options: logging in or signing up. 
+- Login: The user will be asked to input their username and password. Once a valid username and password is given, the user will be sent to the dashboard screen.
+- Sign Up: In the case that the user does not have an already existing account, the user can choose the "Sign Up" option, where they will be asked for their display name, username, and password to create a new account.
+- Dashboard: After logging in, the user will be presented with their schedule, listing all of their tasks for the current week. In this current screen, the user has the option of changing their view to a calendar view, deleting an existing task, selecting and viewing a particular task, adding a new task, configuring their settings, viewing their friends page, and logging out.
+- Settings: This is the settings page where the user will be given the options to change their display name, username, and password.
+- Friends: This screen will list all of the user's current friends. This screen will give the user the option to either delete a current friend from their friends list, add a new friend, or select a particular friend to message them.
+- Chats: The user can enter text that will be sent to a friend of their choosing.
+- Enter New Friend: This will be a screen where the user will be prompted to enter the user's friend's identification in order to send a friend request to the other user's account.
+- New Task: After choosing the option of adding a task from the Dashboard, or choosing the option of editing a task after viewing it in the "View Task" screen, the user will be sent to a screen where they can add/change details onto a new (or already existing) task.
+- View Task: After choosing the option to select and view a particular task in their schedule, they will be sent to a screen showcasing all the details of the task in question. These details will include the name of the task, a description, label, and deadline. The user will have the option of either deleting the task in question (which will send the user back to the dashboard interface), or editing the task in question (which will change their screen to the "New Task" screen).
 
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
 
 ## Class Diagram
-![CS100 UML DIAGRAM](https://user-images.githubusercontent.com/130192487/236974301-6b322da5-fb32-409c-a663-40470c7bd63a.png)
+![Task Manager UML Diagram drawio (1)](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/129815281/135d04cd-8283-4333-b6f0-84c339f3be1b)
 
 ## Description of class diagram
 
-In the UML diagram depicted, there are 4 classes. Within the Person, Task, and Label classes, we have their respective private variables. We also have the respective getter functions that get inputs from the user which return the respective inputs. Certain classes such as the Task Manager class are dependent on the Task class. The person class and the Label class have an association relationship as they have basic relationships with one another and they don't depend on one another in terms of their existence. This is the same case between the Task Manager and the Label class as well as the Label class and the Task and Label classes. The task manager class creates a linked list of tasks with their respective characteristics. The functions within the Task Manager class are the addTask function, deleteTask function, prioritizeTask function, and the addLabel function. These respective functions are what the user will interact with in order to use the app. The task manager class takes in the values that it got from the getter functions and uses it to perform certain tasks that are expected of the app. 
-
-
+In the UML diagram depicted, there are 6 classes. Within the Person, Task, Label, TaskSorter, Importance Sorter, and DateSorter classes, we have their respective private variables/public member functions. We also have the respective getter/setter functions that both receive inputs from the user and return their respective data members. Certain classes such as the Task class are dependent on the Label class and the TaskSorter interface is an abstract class that both the ImportanceSorter and DateSorter classes are derived from.
+- Single Responsibility Principle (SRP): This SOLID principle is fulfilled by the Task and Label classes. The Task class could have additional attributes satisfy the requirements of a label, but this would violate the SRP. Instead, by creating another class 'Label' to fulfill this requirement, we end up with smaller classes that each focus on their individual attributes and functionality, leading to cleaner and more understandable code.
+- Inferface Segregation Principle (ISP): This SOLID principle is fulfilled by the ImportanceSorter and DateSorter classes, which inherit from the TaskSorter interface. While, the TaskSorter class could have had different functions to sort Tasks based on different criteria, seperating them into different classes allows for easy readability and further expansion in the future.
 
  > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
  
