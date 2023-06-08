@@ -1,0 +1,53 @@
+[
+    {
+        "email": "ram@gmail.com",
+        "friends": [
+            "Shyam"
+        ],
+        "name": "Ram",
+        "password": "abcd23",
+        "tasks": [
+            "t1",
+            "t2",
+            "t3"
+        ]
+    },
+    {
+        "email": "shyam23@gmail.com",
+        "friends": [
+            "John",
+            "Ram"
+        ],
+        "name": "Shyam",
+        "password": "pow28",
+        "tasks": [
+            "t1",
+            "t2",
+            "t3"
+        ]
+    },
+    {
+        "email": "john@gmail.com",
+        "friends": [],
+        "name": "John",
+        "password": "pass33",
+        "tasks": [
+            "t1",
+            "t2",
+            "t3"
+        ]
+    },
+    {
+        "email": "bob32@gmail.com",
+        "friends": [
+            "Shyam"
+        ],
+        "name": "Bob",
+        "password": "pore41",
+        "tasks": [
+            "t1",
+            "t2",
+            "t3"
+        ]
+    }
+]
