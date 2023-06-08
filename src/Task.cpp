@@ -63,6 +63,19 @@ Task Task::copyTask(const Task& task) {
     return copiedTask;
 }
 
+void Task::modifyTask(vector<Task>& taskList, const string& taskName, const string& newTaskName, const date::year_month_day newTaskDeadline, const string& newDescription, const string& newLabel, int newTaskPriority) {
+    for (Task& task : taskList) {
+        if (task.getTaskName() == taskName) {
+            task.setTaskName(newTaskName);
+            task.setDeadline(newTaskDeadline);
+            task.setDescription(newDescription);
+            task.setLabel(newLabel);
+            task.setRating(newTaskPriority);
+            break;
+        }
+    }
+}
+
 void Task::printTask() {
     cout << "Task Name: " << taskName << "\nTask Deadline: " << deadlineDate << "\nDescription: " << taskDescription;
     cout << "\nLabel: " << taskLabel << "\nTask Importance: " << rating << endl;

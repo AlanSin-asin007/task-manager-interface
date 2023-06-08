@@ -523,6 +523,43 @@ TEST(TaskTest, CopyTaskTest) {
     EXPECT_EQ(copiedTask.getRating(), 5);
 }
 
+
+TEST(TaskTest, ModifyTaskTest) {
+    vector<Task> taskList;
+
+    // Create tasks and add them to the taskList
+    Task task1("Task1", "Description1", "Label1", year_month_day{floor<days>(chrono::system_clock::now())}, 3);
+    Task::addTask(taskList, task1);
+
+    Task task2("Task2", "Description2", "Label2", year_month_day{floor<days>(chrono::system_clock::now())}, 5);
+    Task::addTask(taskList, task2);
+
+    // Modify task with taskName "Task1"
+    Task::modifyTask(taskList, "Task1", "ModifiedTask", year_month_day{floor<days>(chrono::system_clock::now()) + days{1}}, "Modified Description", "Modified Label", 8);
+
+    // Assertion: Task1 should be modified in the taskList
+    bool taskModified = false;
+    for (const Task& task : taskList) {
+        if (task.getTaskName() == "ModifiedTask" && task.getDeadline() == (year_month_day{floor<days>(chrono::system_clock::now()) + days{1}}) &&
+            task.getDescription() == "Modified Description" && task.getLabel() == "Modified Label" &&
+            task.getRating() == 8) {
+            taskModified = true;
+            break;
+        }
+    }
+    EXPECT_TRUE(taskModified);
+
+    // Assertion: Task2 should still be present in the taskList
+    bool task2Found = false;
+    for (const Task& task : taskList) {
+        if (task.getTaskName() == "Task2") {
+            task2Found = true;
+            break;
+        }
+    }
+    EXPECT_TRUE(task2Found);
+}
+
 TEST(personChangePassword, validOriginalAndNewPassword) {
     Person* personChangePassword = new Person("testName", "testEmail@gmail.com", "originalPassword1!");
     personChangePassword->changePassword("originalPassword1!", "newPassword1!", "newPassword1!");
