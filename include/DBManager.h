@@ -16,6 +16,10 @@ private:
 public: 
     Person getPerson(string userName);
 
+    vector<Person> getMyPersons() const {
+        return this->myPersons;
+    }
+
     //Load the Person database from json file
     void loadData(string personJSON, string taskJSON);
 

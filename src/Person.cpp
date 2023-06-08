@@ -83,7 +83,7 @@ vector<Task> Person::getTaskList() const {
     return this->taskList;
 }
 
-vector<Person> Person::getFriends() const {
+vector<string> Person::getFriends() const {
     return this->friends;
 }
 
@@ -108,7 +108,11 @@ void Person::setTasks(Task& newTask) {
 }
 
 void Person::setFriends(Person& newFriends) {
-    this->friends.push_back(newFriends);
+    //this->friends.push_back(newFriends);
+}
+
+void Person::setFriendsList(const vector<string>& friendsList) {
+    this->friends = friendsList;
 }
 
 void Person::signUp(const string newName, const string newEmail, const string newPassword) {

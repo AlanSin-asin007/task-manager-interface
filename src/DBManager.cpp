@@ -55,6 +55,72 @@ void DBManager::loadData(string personJSON, string taskJSON)
 
     }
 
+
+    for(int i = 0; i<data.at("Person").size(); ++i)
+    {
+        vector<string> taskNames = data["Person"][i]["tasks"];
+        vector<Task> individualTasks;
+        vector<string> individualFriends = data["Person"][i]["friends"];
+
+        for (string taskName : taskNames) {
+            for (Task task : tasks) {
+                if (taskName == task.getTaskName()) {
+                    individualTasks.push_back(task);
+                }
+            }
+        }
+
+
+    Person p(data["Person"][i]["name"],data["Person"][i]["email"], data["Person"][i]["password"]);
+    p.setTaskList(individualTasks);
+    p.setFriendsList(individualFriends);
+
+
+
+    myPersons.push_back(p);
+
+
+        // for(int j = 0; j < taskName.size(); ++j)
+        // { 
+        //     for(int k = 0; k < tasks.size(); ++k)
+        //     {
+        //         if ()
+        //         individualTasks.push_back(data[""]);
+        //     }
+        // }
+
+        // vector<Person> dummyFriends;
+        
+        // Person p(data["Person"][i]["name"], data["Person"][i]["email"], data["Person"][i]["password"], individualTasks, dummyFriends);
+
+        // myPersons.push_back(p);
+
+        // for(int j = 0; j<individualTasks.size(); )
+
+        // for(int j = 0; j<tasks.size(); ++i)
+        // {
+        //     for(int k = 0; k<individualTasks.size(); ++k)
+        //     {
+        //         if(taskData["tasks"][k]["id"]== data["Person"])
+        //         individualTasks.push_back(Task)
+        //     }
+        // }
+
+        //vector<Person> dummyFriends;
+
+        //Person p(jperson Name, jperson Email, jperson Password, individualTasks, dummyFriends);
+
+        //myPersons.push_back(p);
+    }
+
+
+
+    // for (auto task : tasks) {
+    //     task.printTask();
+    // }
+
+    
+
     //From json data object, populate the vector called myPersons
     // for(int i = 0; i<count; ++i)
     // {
