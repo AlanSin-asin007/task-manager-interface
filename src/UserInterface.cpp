@@ -42,14 +42,44 @@ void UserInterface::printNotifications(const vector<Task>& notificationList) con
 }
 
 void UserInterface::displayDashboard() const {
-    clear();
-    string horizontalBar(39+loggedInUser.getName().size(), '-');
-    cout << horizontalBar << '\n';
-    cout << "   HELLO " << loggedInUser.getName() << ", WELCOME TO YOUR DASHBOARD"  << '\n';
-    cout << horizontalBar << '\n';
+    int choice;
 
-    vector<Task> approachingTasks = fetchNotifications();
-    printNotifications(approachingTasks);
+    while(true) {
+        clear();
+        string horizontalBar(39+loggedInUser.getName().size(), '-');
+        cout << horizontalBar << '\n';
+        cout << "   HELLO " << loggedInUser.getName() << ", WELCOME TO YOUR DASHBOARD"  << '\n';
+        cout << horizontalBar << '\n';
+
+        printNotifications(fetchNotifications());
+        cout << '\n'
+
+        cout << "OPTIONS:" << '\n';
+        cout << "1. View Task List" << '\n';
+        cout << "2. View Calendar List" << '\n';
+        cout << "3. Add Task" << '\n';
+        cout << "4. Change Tasks" << '\n';
+        cout << "5. Message Friend" << '\n';
+        cout << "6. Logout" << '\n';
+        cout << "Enter Selection: ";
+
+        try {
+            cin >> choice;
+            switch(choice) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+            }
+        }
+
+    }
 }
 
 void UserInterface::displayListView() {
