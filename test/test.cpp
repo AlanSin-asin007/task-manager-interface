@@ -413,7 +413,7 @@ TEST(personSetters, invalidPasswordForSetter) {
 TEST(personSetters, setTasks) {
     Person* personSetTasks = new Person();
     Task tasksSetTasks(5, date::year{2023}/date::January/1);
-    personSetTasks->setTasks(tasksSetTasks);
+    personSetTasks->addTask(tasksSetTasks);
 
     EXPECT_FALSE(personSetTasks->getTaskList().empty());
 }

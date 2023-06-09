@@ -21,6 +21,7 @@ private:
 public:
 
     void validateLogin(string& userName, string& password) const;
+    bool taskAlreadyExists(string& taskName) const;
 
     Person getPerson(string userName);
 
@@ -32,7 +33,7 @@ public:
     void loadData(string personJSON, string taskJSON);
 
     //Add person into database
-    void storePerson(Person person, string personFileName, string taskFileName);
+    void storePerson(Person& person, string personFileName, string taskFileName);
 
 
     bool doesExist(const string& newName, const string& newEmail) const;

@@ -44,8 +44,8 @@ void UserInterface::printNotifications(const vector<Task>& notificationList) con
 void UserInterface::displayDashboard() {
     int choice;
 
+    clear();
     while(true) {
-        clear();
         string horizontalBar(39+loggedInUser.getName().size(), '-');
         cout << horizontalBar << '\n';
         cout << "   HELLO " << loggedInUser.getName() << ", WELCOME TO YOUR DASHBOARD"  << '\n';
@@ -73,6 +73,7 @@ void UserInterface::displayDashboard() {
                     displayCalendarView();
                     break;
                 case 3:
+                    createNewTask();
                     break;
                 case 4:
                     break;
@@ -88,6 +89,68 @@ void UserInterface::displayDashboard() {
             cout << e.what() << endl;
             cin.clear();
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
+}
+
+void UserInterface::createNewTask() {
+    clear();
+    cout << "---------------------" << '\n';
+    cout << "   CREATE NEW TASK   " << '\n';
+    cout << "---------------------" << '\n';
+
+
+    string newTaskName;
+    string newTaskDescription;
+    string newTaskLabel;
+    int deadlineYear;
+    unsigned deadlineMonth;
+    unsigned deadlineDay;
+    unsigned newTaskRating;
+    cin.ignore();
+    cout << "Enter Task Name: ";
+    getline(cin, newTaskName);
+    cout << "Enter Task Description: ";
+    getline(cin, newTaskDescription);
+    cout << "Enter Task Label: ";
+    getline(cin, newTaskLabel);
+    cout << "Enter Deadline Year (yyyy): ";
+    //cin.ignore();
+    cin >> deadlineYear;
+    cout << "Enter Deadline Month (1-12): ";
+    cin >> deadlineMonth;
+    cout << "Enter Deadline Day (1-31): ";
+    cin >> deadlineDay;
+    cout << "Enter the importance rating (1-10): ";
+    cin >> newTaskRating;
+
+    year_month_day taskDeadline = year(deadlineYear)/month(deadlineMonth)/day(deadlineDay);
+    if (!taskDeadline.ok()) {
+        throw runtime_error("Date is invalid!");
+    } else if (getDaysApart(taskDeadline, year_month_day{floor<days>(chrono::system_clock::now())}) < 0) {
+        throw runtime_error("Deadline cannot be in the past!");
+    } else if (newTaskRating < 1 || newTaskRating > 10) {
+        throw runtime_error("Importance Rating must be between 1 and 10");
+    }
+    char userConfirm;
+    while (true) {
+        cout << "Are you sure you want to make this task? (Y/N): ";
+        cin >> userConfirm;
+        switch(userConfirm) {
+            case 'y': case 'Y': {
+                cout << "Creating Task...\n";
+                Task newTask(newTaskName, newTaskDescription, newTaskLabel, taskDeadline, newTaskRating);
+                cout << "Adding Task...\n";
+                loggedInUser.addTask(newTask);
+                cout << "SUCCESS!\n";
+                return;
+            }   break;
+            case 'n': case 'N':
+                cout << "CANCELLING NEW TASK...\n";
+                return;
+                break;
+            default:
+                break;
         }
     }
 }
@@ -112,10 +175,10 @@ void UserInterface::displayListView() {
         cout << '\n';
     }
 
-    cout << "Press any key and ENTER to return to dashboard...\n";
+    cout << "Press ENTER to return to dashboard...\n";
     string input;
-    cin >> input;
-
+    cin.ignore();
+    getline(cin, input);
 }
 
 void UserInterface::displayCalendarView() {
@@ -146,9 +209,10 @@ void UserInterface::displayCalendarView() {
         cout << '\n';
     }
 
-    cout << "Press any key and ENTER to return to dashboard...\n";
+    cout << "Press ENTER to return to dashboard...\n";
     string input;
-    cin >> input;
+    cin.ignore();
+    getline(cin, input);
 }
 
 void UserInterface::startupMenu() {
@@ -215,7 +279,7 @@ void UserInterface::login() {
 void UserInterface::logout() {
     clear();
     cout << "LOGGING OUT...\n";
-    databaseManager.storePerson(loggedInUser, "PersonData.json", "TaskData.json");
+    databaseManager.storePerson(loggedInUser, "personData.json", "taskData.json");
 }
 
 void UserInterface::signUp() {
