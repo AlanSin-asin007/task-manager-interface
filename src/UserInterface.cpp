@@ -100,3 +100,72 @@ void UserInterface::displayCalendarView() {
         cout << '\n';
     }
 }
+
+void UserInterface::startupMenu() {
+    clear();
+    int choice;
+    cout << "-------------------------" << '\n';
+    cout << " WELCOME TO TASK MANAGER " << '\n';
+    cout << "-------------------------" << '\n';
+    cout << "\n\n";
+
+    while(true) {
+        
+        cout << "OPTIONS:" << '\n';
+        cout << "1. Login" << '\n';
+        cout << "2. Sign Up" << '\n';
+        cout << "3. Quit Program" << '\n';
+        cout << "Enter Selection: ";
+
+        try {
+            cin >> choice;
+            databaseManager.loadData("personData.json", "taskData.json");
+            switch(choice) {
+                case 1:
+                    cout << "LOGGING IN..." << endl;
+                    break;
+                case 2:
+                    cout << "SIGNING UP..." << endl;
+                    break;
+                case 3:
+                    cout << "EXITING..." << endl;
+                    exit(0);
+                    break;
+                default:
+                    throw runtime_error("Enter a valid choice!\n");
+                    break;
+
+            }
+        } catch (const runtime_error& e) {
+            clear();
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
+}
+
+bool UserInterface::login() {
+    string userName;
+    string password;
+    while (true) {
+        clear();
+        cout << "---------------------" << '\n';
+        cout << "        LOGIN        " << '\n';
+        cout << "---------------------" << '\n';
+
+        cout << "\n\n";
+        cout << "Enter your Username: ";
+        cin >> userName;
+        cout << "Enter your Password: ";
+        cin >> password;
+
+        //databaseManager.loadData();
+        loggedInUser = databaseManager.getPerson(userName);
+
+        if (loggedInUser.getName() == "") {
+            return false;
+        }
+        return true;
+    }
+}
