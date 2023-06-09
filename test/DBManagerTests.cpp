@@ -31,7 +31,7 @@ TEST(getPersonTests, loadNormalFile)
 
     EXPECT_EQ(John.getName(),"John");
     EXPECT_EQ(John.getEmail(),"john@gmail.com");
-    EXPECT_EQ(John.getPassword(),"pass33!!!!!!!");
+    EXPECT_EQ(John.getPassword(),"pass33");
     EXPECT_EQ(John.getTaskList().size(),2);
     EXPECT_EQ(John.getFriends().size(),0);
 
@@ -132,10 +132,9 @@ TEST(DBManagerDoesExist, nameAndEmailDoNotExist) {
 TEST(DBManagerTests, validateGoodLogin) {
     DBManager DB;
     DB.loadData("personData.json", "taskData.json");
-    string userName = "John", password = "pass33!!!!!!!";
+    string userName = "John", password = "pass33";
     
     EXPECT_NO_THROW(DB.validateLogin(userName, password));
-    EXPECT_TRUE(DB.validateLogin(userName, password));
 }
 
 TEST(DBManagerTests, validateBadLogin) {

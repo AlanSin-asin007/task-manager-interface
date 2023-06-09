@@ -52,7 +52,7 @@ void UserInterface::displayDashboard() const {
         cout << horizontalBar << '\n';
 
         printNotifications(fetchNotifications());
-        cout << '\n'
+        cout << '\n';
 
         cout << "OPTIONS:" << '\n';
         cout << "1. View Task List" << '\n';
@@ -77,8 +77,9 @@ void UserInterface::displayDashboard() const {
                 case 5:
                     break;
             }
-        }
+        } catch (const runtime_error& e) {
 
+        }
     }
 }
 

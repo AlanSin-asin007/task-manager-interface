@@ -30,6 +30,7 @@ TEST(DateSorterTests, testDateGetPerson) {
     TaskSorter* sorter = new DateSorter(p);
 
     EXPECT_EQ(p, sorter->getPerson());
+    delete p, sorter;
 }
 
 TEST(DateSorterTests, testDateSetPerson) {
@@ -38,6 +39,7 @@ TEST(DateSorterTests, testDateSetPerson) {
     sorter->setPerson(p2);
 
     EXPECT_EQ(p2, sorter->getPerson());
+    delete sorter, p2;
 }
 
 TEST(DateSorterTests, testDateSortIncreasing) {
@@ -53,7 +55,7 @@ TEST(DateSorterTests, testDateSortIncreasing) {
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
     }
-
+    delete sorter;
 }
 
 TEST(DateSorterTests, testDateSortSame) {
@@ -69,7 +71,7 @@ TEST(DateSorterTests, testDateSortSame) {
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
     }
-
+    delete sorter;
 }
 
 TEST(DateSorterTests, testDateSortDecreasing) {
@@ -85,6 +87,7 @@ TEST(DateSorterTests, testDateSortDecreasing) {
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
     }
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceGetPerson) {
@@ -92,6 +95,7 @@ TEST(ImportanceSorterTests, testImportanceGetPerson) {
     TaskSorter* sorter = new ImportanceSorter(p);
 
     EXPECT_EQ(p, sorter->getPerson());
+    delete p, sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceSetPerson) {
@@ -100,6 +104,7 @@ TEST(ImportanceSorterTests, testImportanceSetPerson) {
     sorter->setPerson(p2);
 
     EXPECT_EQ(p2, sorter->getPerson());
+    delete sorter, p2;
 }
 
 TEST(ImportanceSorterTests, testImportanceSortIncreasing) {
@@ -116,7 +121,7 @@ TEST(ImportanceSorterTests, testImportanceSortIncreasing) {
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
     }
-
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceSortSame) {
@@ -132,7 +137,7 @@ TEST(ImportanceSorterTests, testImportanceSortSame) {
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
     }
-
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceSortDecreasing) {
@@ -149,6 +154,7 @@ TEST(ImportanceSorterTests, testImportanceSortDecreasing) {
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
     }
+    delete sorter;
 }
 
 TEST(personSignUpName, validName) {

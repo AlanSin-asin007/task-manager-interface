@@ -1,33 +1,48 @@
 {
-    "Tasks":[    
-            {
-                "id": "t1",
-                "description": "abcd12",
-                "label": "powpowpow",
-                "deadline" : {"yy":2023, "mm":8, "dd":15},
-                "rating" : 1
+    "Tasks": [
+        {
+            "deadline": {
+                "dd": 15,
+                "mm": 8,
+                "yy": 2023
             },
-            {
-                "id": "t2",
-                "description": "abcd123",
-                "label": "powpow",
-                "deadline" : {"yy":2024, "mm":8, "dd":16},
-                "rating" :  2
+            "description": "abcd12",
+            "id": "t1",
+            "label": "powpowpow",
+            "rating": 1
+        },
+        {
+            "deadline": {
+                "dd": 16,
+                "mm": 8,
+                "yy": 2024
             },
-            {
-                "id": "t3",
-                "description": "abcd1234",
-                "label": "pow",
-                "deadline" : {"yy":2025, "mm":8, "dd":17},
-                "rating" : 3
+            "description": "abcd123",
+            "id": "t2",
+            "label": "powpow",
+            "rating": 2
+        },
+        {
+            "deadline": {
+                "dd": 17,
+                "mm": 8,
+                "yy": 2025
             },
-            {
-                "id": "t4",
-                "description": "abcd12345",
-                "label": "qw3erty",
-                "deadline" : {"yy":2026, "mm":8, "dd":18},
-                "rating" : 4
-            }
-         
+            "description": "abcd1234",
+            "id": "t3",
+            "label": "pow",
+            "rating": 3
+        },
+        {
+            "deadline": {
+                "dd": 18,
+                "mm": 8,
+                "yy": 2026
+            },
+            "description": "abcd12345",
+            "id": "t4",
+            "label": "qw3erty",
+            "rating": 4
+        }
     ]
 }

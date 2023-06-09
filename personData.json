@@ -1,38 +1,65 @@
 {
-    "Person":[    
-            {
-                "name": "Ram",
-                "email": "ram@gmail.com",
-                "password": "abcd23",
-                "tasks": ["t1", "t2", "t3"],
-                "friends": ["Shyam"],
-                "messages": ["Shyam: message1","Shyam: message2","Shyam: message3"]
-            },
-            {
-                "name": "Shyam",
-                "email": "shyam23@gmail.com",
-                "password": "pow28",
-                "tasks": ["t1", "t4"],
-                "friends": ["John", "Ram"],
-                "messages": ["John: message1","Ram: message2","Ram: message3"]
-            },
-            {
-                "name": "John",
-                "email": "john@gmail.com",
-                "password": "pass33",
-                "tasks": ["t3", "t4"],
-                "friends": [],
-                "messages": []
-            },
-            {
-                "name": "Bob",
-                "email": "bob32@gmail.com",
-                "password": "pore41",
-                "tasks": [],
-                "friends": ["Shyam"],
-                "messages": ["Shyam: message1","Shyam: message2","Shyam: message3"]
-            }
-         
+    "Person": [
+        {
+            "email": "ram@gmail.com",
+            "friends": [
+                "Shyam"
+            ],
+            "messages": [
+                "Shyam: message1",
+                "Shyam: message2",
+                "Shyam: message3"
+            ],
+            "name": "Ram",
+            "password": "newPass1!!!!!",
+            "tasks": [
+                "t1",
+                "t2",
+                "t3"
+            ]
+        },
+        {
+            "email": "shyam23@gmail.com",
+            "friends": [
+                "John",
+                "Ram"
+            ],
+            "messages": [
+                "John: message1",
+                "Ram: message2",
+                "Ram: message3"
+            ],
+            "name": "Shyam",
+            "password": "pow28",
+            "tasks": [
+                "t1",
+                "t4"
+            ]
+        },
+        {
+            "email": "john@gmail.com",
+            "friends": [],
+            "messages": [],
+            "name": "John",
+            "password": "pass33",
+            "tasks": [
+                "t3",
+                "t4"
+            ]
+        },
+        {
+            "email": "bob32@gmail.com",
+            "friends": [
+                "Shyam"
+            ],
+            "messages": [
+                "Shyam: message1",
+                "Shyam: message2",
+                "Shyam: message3"
+            ],
+            "name": "Bob",
+            "password": "pore41",
+            "tasks": []
+        }
     ]
-
 }
