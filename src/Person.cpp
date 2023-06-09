@@ -265,3 +265,14 @@ void Person::changePassword(const string& originalPassword, const string& newPas
         throw runtime_error("Incorrect original password.");
     }
 }
+
+bool Person::logIn(const string& newEmail, const string& newPassword) const {
+    //check database for same email and correct corresponding password
+
+    //check if email is found in database
+    //then check if email's corresponding password is the same as newPassword
+    //return true if both are true
+    //return false otherwise
+
+    return false;
+}

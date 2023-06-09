@@ -169,3 +169,35 @@ bool UserInterface::login() {
         return true;
     }
 }
+
+bool UserInterface::signUp() {
+    string userName;
+    string email;
+    string password;
+    while (true) {
+        clear();
+        cout << "---------------------" << '\n';
+        cout << "       SIGN UP       " << '\n';
+        cout << "---------------------" << '\n';
+
+        cout << "\n\n";
+        cout << "Enter your Username: ";
+        cin >> userName;
+        cout << "Enter your Email: ";
+        cin >> email;
+        cout << "Enter your Password: ";
+        cin >> password;
+
+        if(!databaseManager.doesExist(userName, email)) {
+            if(checkNameRequirements(userName) && checkEmailRequirements(email) && checkPasswordRequirements(password)) {
+                Person newPerson(userName, email, password);
+                databaseManager.storePerson(newPerson, "personData.json", "taskData.json");
+
+                return true;
+            }
+        }
+        cout << "Sign-Up Failed." << '\n';
+        cout << "Returning to Start Up." << '\n';
+        return false;
+    }
+}

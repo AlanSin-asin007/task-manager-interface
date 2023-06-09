@@ -76,7 +76,7 @@ class Person {
         // void createNewAcc();
         //prompts for user login info
         //redirect to dashboard
-        void logIn(const string& newEmail, const string& newPassword);
+        bool logIn(const string& newEmail, const string& newPassword) const;
 
         // //more possible implementations(?)
         // //essentially some additional accessors and mutators
