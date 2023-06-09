@@ -138,6 +138,7 @@ void UserInterface::createNewTask() {
         cin >> userConfirm;
         switch(userConfirm) {
             case 'y': case 'Y': {
+                clear();
                 cout << "Creating Task...\n";
                 Task newTask(newTaskName, newTaskDescription, newTaskLabel, taskDeadline, newTaskRating);
                 cout << "Adding Task...\n";
