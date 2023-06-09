@@ -9,10 +9,16 @@
                 "Shyam: message1",
                 "Shyam: message2",
                 "Shyam: message3",
+                "Shyam: Message1234",
+                "Shyam: Message1234",
+                "Shyam: Message1234",
+                "Shyam: Message1234",
+                "Shyam: Message1234",
+                "Shyam: Message1234",
                 "Shyam: Message1234"
             ],
             "name": "Ram",
-            "password": "newPass",
+            "password": "newPass1!!!!!",
             "tasks": [
                 "t1",
                 "t2",
@@ -31,7 +37,7 @@
                 "Ram: message3"
             ],
             "name": "Shyam",
-            "password": "pow28",
+            "password": "pow28!!!!!!!!",
             "tasks": [
                 "t1",
                 "t4"
@@ -42,7 +48,7 @@
             "friends": [],
             "messages": [],
             "name": "John",
-            "password": "pass33",
+            "password": "pass33!!!!!!!",
             "tasks": [
                 "t3",
                 "t4"
@@ -59,7 +65,7 @@
                 "Shyam: message3"
             ],
             "name": "Bob",
-            "password": "pore41",
+            "password": "pore41!!!!!!!",
             "tasks": []
         },
         {
@@ -76,6 +82,22 @@
             "messages": [],
             "name": "Larry",
             "password": "LarryPass12#3",
+            "tasks": []
+        },
+        {
+            "email": "larry@gmail.com",
+            "friends": [],
+            "messages": [],
+            "name": "Larry",
+            "password": "LarryPass12#3",
+            "tasks": []
+        },
+        {
+            "email": "",
+            "friends": [],
+            "messages": [],
+            "name": "",
+            "password": "",
             "tasks": []
         }
     ]

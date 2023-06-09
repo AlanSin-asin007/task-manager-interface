@@ -12,7 +12,7 @@ using namespace std;
 
 class Person {
     private:
-        //5-15 char limit
+        //2-65 char limit
         //only alphabetical
         string name;
         //1-60 char limit before "@"

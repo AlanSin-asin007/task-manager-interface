@@ -34,7 +34,7 @@ public:
     void storePerson(Person person, string personFileName, string taskFileName);
 
 
-    bool doesExist(Person& person);
+    bool doesExist(const string& newName, const string& newEmail) const;
 
     void storeNewPerson(Person &p, string personFileName, string taskFileName);
 

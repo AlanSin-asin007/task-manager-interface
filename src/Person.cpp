@@ -5,6 +5,7 @@
 #include "../include/json.h"
 #include "../include/Person.h"
 #include "../include/Task.h"
+#include "../include/DBManager.h"
 using json = nlohmann::json;
 using namespace std;
 
@@ -127,19 +128,26 @@ void Person::sendMessage(const string &userName, const string &message)
 
 void Person::signUp(const string& newName, const string& newEmail, const string& newPassword) {
     //check database if name/email is currently in use
-    if(checkNameRequirements(newName) && checkEmailRequirements(newEmail) && checkPasswordRequirements(newPassword)) {
+    DBManager signUpDBManager;
+
+    signUpDBManager.loadData("personData.json", "taskData.json");
+
+    if(signUpDBManager.doesExist(newName, newEmail)) {
+        throw runtime_error("Error: Name and/or Email already exists.");
+    }
+    else if(checkNameRequirements(newName) && checkEmailRequirements(newEmail) && checkPasswordRequirements(newPassword)) {
         this->name = newName;
         this->email = newEmail;
         this->password = newPassword;
     }
 }
 
-//5-15 char limit
+//2-65 char limit
 //only alphabetical
 bool Person::checkNameRequirements(const string& newName) const {
     //check char limit
-    if(newName.length() < 5 || newName.length() > 15) {
-        throw runtime_error("Invalid Name: 5-15 character limit");
+    if(newName.length() < 2 || newName.length() > 64) {
+        throw runtime_error("Invalid Name: 2-65 character limit");
     }
 
     //check if alphabetical
@@ -186,12 +194,12 @@ bool Person::checkEmailRequirements(const string& newEmail) const {
             dotCounter++;
             dotIndex = i;
         }
-        // else if(newEmail.at(i) < '0' || newEmail.at(i) > 'z' || (newEmail.at(i) > '9' && newEmail.at(i) < 'A') || (newEmail.at(i) > 'Z' && newEmail.at(i) < 'a')) {
-        //     return false;
-        // }
-        else if(newEmail.at(i) < 'A' || newEmail.at(i) > 'z' || (newEmail.at(i) > 'Z' && newEmail.at(i) < 'a')) {
+        else if(newEmail.at(i) < '0' || newEmail.at(i) > 'z' || (newEmail.at(i) > '9' && newEmail.at(i) < 'A') || (newEmail.at(i) > 'Z' && newEmail.at(i) < 'a')) {
             throw runtime_error("Invalid Email: Must contain only letters");
         }
+        // else if(newEmail.at(i) < 'A' || newEmail.at(i) > 'z' || (newEmail.at(i) > 'Z' && newEmail.at(i) < 'a')) {
+        //     throw runtime_error("Invalid Email: Must contain only letters");
+        // }
     }
     //check if there is only one "@" and is before "."
     if(atCounter != 1 || atIndex >= dotIndex - 1) {

@@ -113,8 +113,16 @@ inline void to_json(nlohmann::json &j, const Person &s)
     j["password"] = s.getPassword();
 }
 
-bool DBManager::doesExist(Person& person)
+bool DBManager::doesExist(const string& newName, const string& newEmail) const
 {
+    for(int i=0; i<myPersons.size(); ++i)
+    {
+     
+        if(newName==myPersons.at(i).getName() || newEmail==myPersons.at(i).getEmail())
+        {
+            return true;
+        }
+    }
     return false;
 }
 
