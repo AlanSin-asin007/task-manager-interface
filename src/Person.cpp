@@ -264,6 +264,10 @@ void Person::changePassword(const string& originalPassword, const string& newPas
     }
 }
 
+bool Person::operator==(const Person& rhs) const {
+    return (this->getName() == rhs.getName() && this->getPassword() == rhs.getPassword() && this->getEmail() == rhs.getEmail() && this->getTaskList() == rhs.getTaskList());
+}
+
 // bool Person::logIn(const string& newEmail, const string& newPassword) const {
 //     //check database for same email and correct corresponding password
 

@@ -26,20 +26,21 @@ TEST(PersonTests, testSetTaskList) {
 }
 
 TEST(DateSorterTests, testDateGetPerson) {
-    Person* p = new Person();
+    Person p;
     TaskSorter* sorter = new DateSorter(p);
 
     EXPECT_EQ(p, sorter->getPerson());
-    delete p, sorter;
+    delete sorter;
 }
 
 TEST(DateSorterTests, testDateSetPerson) {
-    TaskSorter* sorter = new DateSorter(new Person());
-    Person* p2 = new Person();
+    Person p1;
+    TaskSorter* sorter = new DateSorter(p1);
+    Person p2;
     sorter->setPerson(p2);
 
     EXPECT_EQ(p2, sorter->getPerson());
-    delete sorter, p2;
+    delete sorter;
 }
 
 TEST(DateSorterTests, testDateSortIncreasing) {
@@ -47,10 +48,10 @@ TEST(DateSorterTests, testDateSortIncreasing) {
     for (int i = 1; i < 6; ++i) {
         list.push_back(Task(5, date::year{2023}/date::January/i));
     }
-
-    TaskSorter* sorter = new DateSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new DateSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
@@ -63,10 +64,10 @@ TEST(DateSorterTests, testDateSortSame) {
     for (int i = 1; i < 21; ++i) {
         list.push_back(Task(5, date::year{2023}/date::January/1));
     }
-
-    TaskSorter* sorter = new DateSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new DateSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
@@ -79,10 +80,10 @@ TEST(DateSorterTests, testDateSortDecreasing) {
     for (int i = 20; i > 0 ; --i) {
         list.push_back(Task(5, date::year{2023}/date::January/i));
     }
-
-    TaskSorter* sorter = new DateSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new DateSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
@@ -91,20 +92,21 @@ TEST(DateSorterTests, testDateSortDecreasing) {
 }
 
 TEST(ImportanceSorterTests, testImportanceGetPerson) {
-    Person* p = new Person();
+    Person p;
     TaskSorter* sorter = new ImportanceSorter(p);
 
     EXPECT_EQ(p, sorter->getPerson());
-    delete p, sorter;
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceSetPerson) {
-    TaskSorter* sorter = new ImportanceSorter(new Person());
-    Person* p2 = new Person();
+    Person p1;
+    TaskSorter* sorter = new ImportanceSorter(p1);
+    Person p2;
     sorter->setPerson(p2);
 
     EXPECT_EQ(p2, sorter->getPerson());
-    delete sorter, p2;
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceSortIncreasing) {
@@ -113,10 +115,10 @@ TEST(ImportanceSorterTests, testImportanceSortIncreasing) {
     for (int i = 1; i < 6; ++i) {
         list.push_back(Task(i, d));
     }
-
-    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new ImportanceSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
@@ -129,10 +131,10 @@ TEST(ImportanceSorterTests, testImportanceSortSame) {
     for (int i = 1; i < 21; ++i) {
         list.push_back(Task(5, date::year{2023}/date::January/1));
     }
-
-    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new ImportanceSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
@@ -146,10 +148,10 @@ TEST(ImportanceSorterTests, testImportanceSortDecreasing) {
     for (int i = 20; i > 0 ; --i) {
         list.push_back(Task(i, d));
     }
-
-    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new ImportanceSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
