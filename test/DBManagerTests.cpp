@@ -76,7 +76,7 @@ TEST(personTests, testStorePerson)
 }
 
 //cannot repeatedly test this function
-//in order to repeatedly test, must be able to delete date from database
+//in order to repeatedly test, must be able to delete data from database
 // TEST(personTests, addPerson)
 // {
 //     DBManager DB;
