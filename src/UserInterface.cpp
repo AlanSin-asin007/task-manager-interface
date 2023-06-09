@@ -54,6 +54,8 @@ void UserInterface::displayDashboard() {
         printNotifications(fetchNotifications());
         cout << '\n';
 
+        cout << "Total tasks: " << databaseManager.getMyTasks().size() << endl;
+
         cout << "OPTIONS:" << '\n';
         cout << "1. View Task List" << '\n';
         cout << "2. View Calendar List" << '\n';

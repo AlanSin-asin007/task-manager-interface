@@ -31,7 +31,7 @@ void DBManager::loadData(string personJSON, string taskJSON)
     std::ifstream taskJSONfilestream(taskJSON);
     personData = json::parse(personJSONfilestream);
     taskData = json::parse(taskJSONfilestream);
-    std::vector<Task> tasks;
+    // std::vector<Task> tasks;
 
 // //IMPORTANT NOTE ANY LINE OF CODE BEYOND THIS IS NOT NEEDED FOR NOW
     // cout << data["Person"][0]["name"]<<endl;
@@ -50,7 +50,7 @@ void DBManager::loadData(string personJSON, string taskJSON)
         year_month_day deadline = year(deadlineYear)/month(deadlineMonth)/day(deadlineDay);
         int rating = taskData.at("Tasks")[m]["rating"];
         
-        tasks.push_back(Task(name, description, label, deadline, rating));
+        myTasks.push_back(Task(name, description, label, deadline, rating));
         // taskPtrs.push_back(&Task(name, description, label, deadline, rating));
 
     }
@@ -65,7 +65,7 @@ void DBManager::loadData(string personJSON, string taskJSON)
 
         //AI
         for (string taskName : taskNames) {
-            for (Task task : tasks) {
+            for (Task task : myTasks) {
                 if (taskName == task.getTaskName()) {
                     individualTasks.push_back(task);
                     //individualTaskPtrs.push_back(&task);
@@ -95,12 +95,6 @@ void DBManager::loadData(string personJSON, string taskJSON)
         taskJSONfilestream.close();
 
     }
-
-//1) Look through taskData, find names that match
-//2) Build Task objects from taskData
-//3) Load the Task object into tasks vector using push_back()
-//4) Create Person object using tasks vector
-//5) push_back onto myPersons
 
 }
 
@@ -189,9 +183,15 @@ void DBManager::storePerson(Person& person, string personFileName, string taskFi
             personData["Person"][i]["messages"] = person.getMessages();
             
             vector<string> taskNames;
+            vector<string> newTaskNames;
+
+            for (Task eachTask : person.getTaskList()) {
+                taskNames.push_back(eachTask.getTaskName());
+                newTaskNames.push_back(eachTask.getTaskName());
+            }
+
             for(Task task : person.getTaskList())
             {
-                taskNames.push_back(task.getTaskName());
                 //Loop through the taskData and find the matching tasks to replace
                 for(int m=0; m<taskData.at("Tasks").size(); ++m)
                 {
@@ -204,45 +204,63 @@ void DBManager::storePerson(Person& person, string personFileName, string taskFi
                         taskData.at("Tasks")[m]["deadline"]["yy"] = static_cast<int>(task.getDeadline().year());
                         taskData.at("Tasks")[m]["deadline"]["mm"] = static_cast<unsigned>(task.getDeadline().month());
                         taskData.at("Tasks")[m]["deadline"]["dd"] = static_cast<unsigned>(task.getDeadline().day());
-                    }
-                }
 
-                
-
-            }
-
-            //if this is true there are new tasks that were added
-            if (person.getTaskList().size() > personData["Person"][i]["tasks"].size()) {
-                vector<string> newTaskNames = taskNames;
-                vector<string> existingTaskNames;
-                for (Task task : tasks) {
-                    existingTaskNames.push_back(task.getTaskName());
-                }
-
-                for (string existingName : existingTaskNames) {
-                    const auto it = find(newTaskNames.begin(), newTaskNames.end(), existingName);
-                    if (it != newTaskNames.end()) {
+                        auto it = find(newTaskNames.begin(), newTaskNames.end(), task.getTaskName());
                         newTaskNames.erase(it);
                     }
                 }
+            }
 
+            for (string nameToAdd : newTaskNames) {
                 for (Task taskObj : person.getTaskList()) {
-                    for (string newTaskName : newTaskNames) {
-                        if (taskObj.getTaskName() == newTaskName) {
-                            json newTask;
+                    if (t.getTaskName() == nameToAdd) {
+                        json newTask;
 
-                            newTask["id"] = taskObj.getTaskName();
-                            newTask["description"] = taskObj.getDescription();
-                            newTask["label"] = taskObj.getLabel();
-                            newTask["rating"] = taskObj.getRating();
-                            newTask["deadline"]["yy"] = static_cast<int>(taskObj.getDeadline().year());
-                            newTask["deadline"]["mm"] = static_cast<unsigned>(taskObj.getDeadline().month());
-                            newTask["deadline"]["dd"] = static_cast<unsigned>(taskObj.getDeadline().day());
+                        newTask["id"] = taskObj.getTaskName();
+                        newTask["description"] = taskObj.getDescription();
+                        newTask["label"] = taskObj.getLabel();
+                        newTask["rating"] = taskObj.getRating();
+                        newTask["deadline"]["yy"] = static_cast<int>(taskObj.getDeadline().year());
+                        newTask["deadline"]["mm"] = static_cast<unsigned>(taskObj.getDeadline().month());
+                        newTask["deadline"]["dd"] = static_cast<unsigned>(taskObj.getDeadline().day());
 
-                            taskData["Tasks"].push_back(newTask);
-                        }
+                        taskData["Tasks"].push_back(newTask);
                     }
                 }
+            }
+
+            // //if this is true there are new tasks that were added
+            // if (person.getTaskList().size() > personData["Person"][i]["tasks"].size()) {
+            //     vector<string> newTaskNames = taskNames;
+            //     vector<string> existingTaskNames;
+            //     for (Task task : myTasks) {
+            //         existingTaskNames.push_back(task.getTaskName());
+            //     }
+
+            //     for (string existingName : existingTaskNames) {
+            //         const auto it = find(newTaskNames.begin(), newTaskNames.end(), existingName);
+            //         if (it != newTaskNames.end()) {
+            //             newTaskNames.erase(it);
+            //         }
+            //     }
+
+            //     for (Task taskObj : person.getTaskList()) {
+            //         for (string newTaskName : newTaskNames) {
+            //             if (taskObj.getTaskName() == newTaskName) {
+            //                 json newTask;
+
+            //                 newTask["id"] = taskObj.getTaskName();
+            //                 newTask["description"] = taskObj.getDescription();
+            //                 newTask["label"] = taskObj.getLabel();
+            //                 newTask["rating"] = taskObj.getRating();
+            //                 newTask["deadline"]["yy"] = static_cast<int>(taskObj.getDeadline().year());
+            //                 newTask["deadline"]["mm"] = static_cast<unsigned>(taskObj.getDeadline().month());
+            //                 newTask["deadline"]["dd"] = static_cast<unsigned>(taskObj.getDeadline().day());
+
+            //                 taskData["Tasks"].push_back(newTask);
+            //             }
+            //         }
+            //     }
 
             }
 
@@ -277,7 +295,7 @@ void DBManager::validateLogin(string& userName, string& password) const {
 }
 
 bool DBManager::taskAlreadyExists(string& taskName) const {
-    for (Task task : tasks) {
+    for (Task task : myTasks) {
         if (task.getTaskName() == taskName) {
             return true;
         }
