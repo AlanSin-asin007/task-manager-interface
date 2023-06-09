@@ -134,14 +134,14 @@ void UserInterface::displayCalendarView() {
 }
 
 void UserInterface::startupMenu() {
-    clear();
-    int choice;
-    cout << "-------------------------" << '\n';
-    cout << " WELCOME TO TASK MANAGER " << '\n';
-    cout << "-------------------------" << '\n';
-    cout << "\n\n";
 
+        clear();
     while(true) {
+        int choice;
+        cout << "-------------------------" << '\n';
+        cout << " WELCOME TO TASK MANAGER " << '\n';
+        cout << "-------------------------" << '\n';
+        cout << "\n\n";
         
         cout << "OPTIONS:" << '\n';
         cout << "1. Login" << '\n';
@@ -158,7 +158,7 @@ void UserInterface::startupMenu() {
                     displayDashboard();
                     break;
                 case 2:
-                    cout << "SIGNING UP..." << endl;
+                    signUp();
                     break;
                 case 3:
                     cout << "EXITING..." << endl;
@@ -194,7 +194,7 @@ void UserInterface::login() {
     loggedInUser = databaseManager.getPerson(userName);
 }
 
-bool UserInterface::signUp() {
+void UserInterface::signUp() {
     string userName;
     string email;
     string password;
@@ -215,14 +215,13 @@ bool UserInterface::signUp() {
         if(!databaseManager.doesExist(userName, email)) {
             if(checkNameRequirements(userName) && checkEmailRequirements(email) && checkPasswordRequirements(password)) {
                 Person newPerson(userName, email, password);
-                databaseManager.storePerson(newPerson, "personData.json", "taskData.json");
-
-                return true;
+                databaseManager.storeNewPerson(newPerson, "personData.json", "taskData.json");
+                clear();
+                cout << "Successfully signed up!\nYou can now log in\n";
+                return;
             }
         }
-        cout << "Sign-Up Failed." << '\n';
-        cout << "Returning to Start Up." << '\n';
-        return false;
+        throw runtime_error("Sign up Failed!\nUser with that name or email already exists.");
     }
 }
 
