@@ -11,21 +11,21 @@ TEST(loadDataTests, loadNormalData)
 {
     DBManager DB;
 
-    EXPECT_NO_THROW(DB.loadData("myData.json", "task1.json"));
+    EXPECT_NO_THROW(DB.loadData("personData.json", "taskData.json"));
 }
 
 TEST(loadDataTests, loadEmptyData)
 {
     DBManager DB;
 
-    EXPECT_THROW(DB.loadData("myData.json","Test/test2.json"),nlohmann::json_abi_v3_11_2::detail::parse_error);
+    EXPECT_THROW(DB.loadData("personData.json","Test/test2.json"),nlohmann::json_abi_v3_11_2::detail::parse_error);
 }
 
 TEST(getPersonTests, loadNormalFile)
 {
     DBManager DB;
 
-    DB.loadData("myData.json", "task1.json");
+    DB.loadData("personData.json", "taskData.json");
 
     Person John = DB.getPerson("John");
 
@@ -41,7 +41,7 @@ TEST(getTasksTest, findTasksofFriendandFriends)
 {
     DBManager DB;
 
-    DB.loadData("myData.json", "task1.json");
+    DB.loadData("personData.json", "taskData.json");
 
     Person Ram = DB.getPerson("Ram");
 
@@ -54,10 +54,58 @@ TEST(coutWorks, loadDataCall)
 {
     DBManager DB;
     
-    DB.loadData("myData.json", "task1.json");
+    DB.loadData("personData.json", "taskData.json");
 
     EXPECT_EQ(true,true);
 }
+
+TEST(personTests, testStorePerson)
+{
+    DBManager DB;
+
+    DB.loadData("personData.json", "taskData.json");
+
+    Person Ram = DB.getPerson("Ram");
+
+    Ram.setPassword("newPass");
+
+    DB.storePerson(Ram, "personData.json", "taskData.json");
+
+    EXPECT_EQ(true, true);
+
+}
+
+TEST(personTests, addPerson)
+{
+    DBManager DB;
+
+    DB.loadData("personData.json", "taskData.json");
+
+    Person Larry;
+
+    Larry.signUp("Larry", "larry@gmail.com", "LarryPass12#3");
+
+
+    DB.storeNewPerson(Larry, "personData.json", "taskData.json");
+
+    EXPECT_EQ(true, true);
+}
+
+TEST(messageTest, sendMessagetoSomeone)
+{
+    DBManager DB;
+
+    DB.loadData("personData.json", "taskData.json");
+
+    Person Ram = DB.getPerson("Ram");
+
+    Ram.sendMessage("Shyam", "Message1234");
+
+    DB.storePerson(Ram, "personData.json", "taskData.json");
+
+    EXPECT_EQ(true, true);
+}
+
 
 // int main(int argc, char **argv) {
 //     ::testing::InitGoogleTest(&argc, argv);

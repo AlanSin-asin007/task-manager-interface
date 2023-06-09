@@ -1,12 +1,13 @@
 #include<iostream>
 #include <fstream>
+#include <stdexcept>
 #include "../include/DBManager.h"
 #include "../include/json.h"
 #include "../include/Person.h"
 #include "../include/Date.h"
-
 using json = nlohmann::json;
 using namespace date;
+
 
 
 Person DBManager::getPerson(string userName)
@@ -19,16 +20,17 @@ Person DBManager::getPerson(string userName)
             return myPersons.at(i);
         }
     }
-
-    return Person();
+    //throw an exception here
+    throw std::runtime_error("Person does not exist");
+    // return Person();
 }
 
 void DBManager::loadData(string personJSON, string taskJSON)
 {
     std::ifstream personJSONfilestream(personJSON);
     std::ifstream taskJSONfilestream(taskJSON);
-    json data = json::parse(personJSONfilestream);
-    json taskData = json::parse(taskJSONfilestream);
+    personData = json::parse(personJSONfilestream);
+    taskData = json::parse(taskJSONfilestream);
     std::vector<Task> tasks;
 
 // //IMPORTANT NOTE ANY LINE OF CODE BEYOND THIS IS NOT NEEDED FOR NOW
@@ -49,30 +51,49 @@ void DBManager::loadData(string personJSON, string taskJSON)
         int rating = taskData.at("Tasks")[m]["rating"];
         
         tasks.push_back(Task(name, description, label, deadline, rating));
+        // taskPtrs.push_back(&Task(name, description, label, deadline, rating));
 
     }
 
-    for(int i = 0; i<data.at("Person").size(); ++i)
+    for(int i = 0; i<personData.at("Person").size(); ++i)
     {
-        vector<string> taskNames = data["Person"][i]["tasks"];
+        vector<string> taskNames = personData["Person"][i]["tasks"];
         vector<Task> individualTasks;
-        vector<string> individualFriends = data["Person"][i]["friends"];
+        // vector<Task*> individualTaskPtrs;
+        vector<string> individualFriends = personData["Person"][i]["friends"];
+        vector<string> messages = personData["Person"][i]["messages"];
 
         //AI
         for (string taskName : taskNames) {
             for (Task task : tasks) {
                 if (taskName == task.getTaskName()) {
                     individualTasks.push_back(task);
+                    //individualTaskPtrs.push_back(&task);
                 }
             }
         }
 
+        // for (string taskName : taskNames) {
+        //     for (Task* t : taskPtrs) {
+        //         if (taskName == t->getTaskName()) {
+        //             individualTaskPtrs.push_back(t);
+        //         }
+        //     }
+        // }
 
-        Person p(data["Person"][i]["name"],data["Person"][i]["email"], data["Person"][i]["password"]);
+
+        Person p(personData["Person"][i]["name"],personData["Person"][i]["email"], personData["Person"][i]["password"]);
         p.setTaskList(individualTasks);
+        // p.setTaskPtrList(individualTaskPtrs);
         p.setFriendsList(individualFriends);
+        p.setMessages(messages);
 
-    myPersons.push_back(p);
+        myPersons.push_back(p);
+        //close the json files
+
+        personJSONfilestream.close();
+        taskJSONfilestream.close();
+
     }
 
 //1) Look through taskData, find names that match
@@ -115,36 +136,87 @@ bool DBManager::doesExist(Person& person)
 //     }
 // }
 
-void DBManager::storePerson(Person person, string fileName)
+// saveData: creates Person and Task json objects from myPersons and tasks vectors  
+void DBManager::storeNewPerson(Person &p, string personFileName, string taskFileName)
 {
-    json outData;
-    for(int i=0; i<myPersons.size(); ++i)
+    // json all;
+    // json jPerson = json::array;
+    
+    json obj;
+
+    obj["name"] = p.getName();
+    obj["email"] = p.getEmail();
+    obj["password"] = p.getPassword();
+    obj["tasks"] = p.getTaskNames();
+    obj["friends"] = p.getFriends();
+    obj["messages"] = p.getMessages();
+
+    personData["Person"].push_back(obj);
+
+    std::ofstream personJsonOutput(personFileName);
+    personJsonOutput << std::setw(4) << personData << std::endl;
+    std::ofstream taskJsonOutput(taskFileName);
+    taskJsonOutput << std::setw(4) << taskData << std::endl;
+
+    personJsonOutput.close();
+    taskJsonOutput.close();
+
+
+}
+
+//storePerson: modifies the existing person an task json objects and saves them in json file
+void DBManager::storePerson(Person person, string personFileName, string taskFileName)
+{
+    //Iterates through personData json object, finds matching peron and only changes the matching person json
+    for(int i = 0; i<personData.at("Person").size(); ++i)
+    // for(int i=0; i<myPersons.size(); ++i)
     {
-        if(person.getName()==myPersons.at(i).getName())
+        if(person.getName()==personData["Person"][i]["name"])
         {
-            json obj2;
-            obj2.emplace("name", person.getName());
-            obj2.emplace("email", person.getEmail());
-            obj2.emplace("password", person.getPassword());
-            //obj2.emplace("tasks", person.getTasks());
-            obj2.emplace("friends", person.getFriends());
-            outData.push_back(obj2);
+            // json obj2;
+
+            personData["Person"][i]["email"] = person.getEmail();
+            personData["Person"][i]["password"] = person.getPassword();
+            personData["Person"][i]["friends"] = person.getFriends();
+            personData["Person"][i]["messages"] = person.getMessages();
             
-        }
-        else
-        {
-        json obj2;
-        obj2.emplace("name", myPersons.at(i).getName());
-        obj2.emplace("email", myPersons.at(i).getEmail());
-        obj2.emplace("password", myPersons.at(i).getPassword());
-        //obj2.emplace("tasks", myPersons.at(i).getTasks());
-        obj2.emplace("friends", myPersons.at(i).getFriends());
-        outData.push_back(obj2);
+            vector<string> taskNames;
+            for(Task task : person.getTaskList())
+            {
+                taskNames.push_back(task.getTaskName());
+                //Loop through the taskData and find the matching tasks to replace
+                for(int m=0; m<taskData.at("Tasks").size(); ++m)
+                {
+                    if(taskData.at("Tasks")[m]["id"]== task.getTaskName())
+                    {
+                        // string name = taskData.at("Tasks")[m]["id"];
+                        taskData.at("Tasks")[m]["description"] = task.getDescription();
+                        taskData.at("Tasks")[m]["label"] = task.getLabel();
+                        taskData.at("Tasks")[m]["rating"] = task.getRating();
+                        taskData.at("Tasks")[m]["deadline"]["yy"] = static_cast<int>(task.getDeadline().year());
+                        taskData.at("Tasks")[m]["deadline"]["mm"] = static_cast<unsigned>(task.getDeadline().month());
+                        taskData.at("Tasks")[m]["deadline"]["dd"] = static_cast<unsigned>(task.getDeadline().day());
+                    }
+                }
+            }
+            personData["Person"][i]["tasks"] = taskNames;
+            // obj2.emplace("name", person.getName());
+            // obj2.emplace("email", person.getEmail());
+            // obj2.emplace("password", person.getPassword());
+            // //obj2.emplace("tasks", person.getTasks());
+            // obj2.emplace("friends", person.getFriends());
+            // personData.at["Person"]
+            
         }
     }
     //To save data to json file, do the following below:
-    std::ofstream output(fileName);
-    output << std::setw(4) << outData << std::endl;
+    std::ofstream personJsonOutput(personFileName);
+    personJsonOutput << std::setw(4) << personData << std::endl;
+    std::ofstream taskJsonOutput(taskFileName);
+    taskJsonOutput << std::setw(4) << taskData << std::endl;
+
+    personJsonOutput.close();
+    taskJsonOutput.close();
 }
 
 

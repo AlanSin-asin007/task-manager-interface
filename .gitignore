@@ -5,4 +5,7 @@ cmake_install.cmake
 json/
 bin/
 lib/
-
+googletest-build/
+googletest-download/
+googletest-prefix/
+googletest-src/

@@ -4,6 +4,7 @@
 #include "json.h"
 #include "../include/Person.h"
 
+using json = nlohmann::json;
 using namespace std;
 
 class DBManager
@@ -12,8 +13,14 @@ private:
 
     vector<Person> myPersons;
     vector<Task> tasks;
+    // vector<Task*> taskPtrs;
+
+    json personData;
+    json taskData;
     
-public: 
+public:
+
+    
     Person getPerson(string userName);
 
     vector<Person> getMyPersons() const {
@@ -24,10 +31,12 @@ public:
     void loadData(string personJSON, string taskJSON);
 
     //Add person into database
-    void storePerson(Person person, string fileName);
+    void storePerson(Person person, string personFileName, string taskFileName);
 
 
     bool doesExist(Person& person);
+
+    void storeNewPerson(Person &p, string personFileName, string taskFileName);
 
     //
     //void from_json(const nlohmann::json &j, Person &s);

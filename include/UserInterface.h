@@ -4,24 +4,26 @@
 #include <iostream>
 #include "Date.h"
 #include "Person.h"
+#include "DBManager.h"
 
 using namespace std;
 using namespace date;
 
 class UserInterface {
     private:
-        //DBManager database;
-        //Person loggedInUser;
+        DBManager databaseManager;
+        Person loggedInUser;
         void clear() const;
         int getDaysApart(year_month_day, year_month_day) const;
-        vector<Task> fetchNotifications(const Person&) const;
-        void printNotifications(const vector<Task>&) const;
+        vector<Task> fetchNotifications() const;
+        void printNotifications(const vector<Task>& notificationList) const;
     public:
         UserInterface();
+        UserInterface(Person& person) : loggedInUser(person) {};
         ~UserInterface();
-        void displayDashboard(Person&) const;
-        void displayListView(Person&) const;
+        void displayDashboard() const;
+        void displayListView();
+        void displayCalendarView();
 };
-
 
 #endif

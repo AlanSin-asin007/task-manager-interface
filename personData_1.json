@@ -6,8 +6,7 @@
                 "password": "abcd23",
                 "tasks": ["t1", "t2", "t3"],
                 "friends": ["Shyam"],
-                "messages":[ "Shyam: message 1", "Shyam: message2"]
-                
+                "messages": ["Shyam: message1","Shyam: message2","Shyam: message3"]
             },
             {
                 "name": "Shyam",
@@ -15,7 +14,7 @@
                 "password": "pow28",
                 "tasks": ["t1", "t4"],
                 "friends": ["John", "Ram"],
-                "messages":[ "Ram: message 1", "John: message2"]
+                "messages": ["John: message1","Ram: message2","Ram: message3"]
             },
             {
                 "name": "John",
@@ -23,8 +22,7 @@
                 "password": "pass33",
                 "tasks": ["t3", "t4"],
                 "friends": [],
-                "messages":[]
-
+                "messages": []
             },
             {
                 "name": "Bob",
@@ -32,8 +30,7 @@
                 "password": "pore41",
                 "tasks": [],
                 "friends": ["Shyam"],
-                "messages":[ "Shyam: message 1", "Shyam: message2"]
-
+                "messages": ["Shyam: message1","Shyam: message2","Shyam: message3"]
             }
          
     ]
