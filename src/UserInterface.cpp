@@ -180,6 +180,7 @@ void UserInterface::displayListView() {
     string input;
     cin.ignore();
     getline(cin, input);
+    clear();
 }
 
 void UserInterface::displayCalendarView() {
@@ -214,6 +215,7 @@ void UserInterface::displayCalendarView() {
     string input;
     cin.ignore();
     getline(cin, input);
+    clear();
 }
 
 void UserInterface::startupMenu() {
