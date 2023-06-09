@@ -173,7 +173,7 @@ TEST(personSignUpName, invalidNameTooShort) {
 TEST(personSignUpName, invalidNameTooLong) {
     Person* personInvalidNameTooLong = new Person();
     
-    EXPECT_ANY_THROW(personInvalidNameTooLong->signUp("testNameThatIsTooLong", "testEmail@gmail.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidNameTooLong->signUp("testNameThatIsTooLongtestNameThatIsTooLongtestNameThatIsTooLongtestNameThatIsTooLong", "testEmail@gmail.com", "testPassword1!"));
 }
 
 TEST(personSignUpEmail, validEmail) {
@@ -198,19 +198,19 @@ TEST(personSignUpEmail, invalidEmailTooLong) {
 TEST(personSignUpEmail, invalidEmailUsername) {
     Person* personInvalidEmailUsername = new Person();
     
-    EXPECT_ANY_THROW(personInvalidEmailUsername->signUp("testName", "testEmail1@gmail.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailUsername->signUp("testName", "testEmail!@gmail.com", "testPassword1!"));
 }
 
 TEST(personSignUpEmail, invalidEmailDomainname) {
     Person* personInvalidEmailDomainname = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailDomainname->signUp("testName", "testEmail@gmail1.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailDomainname->signUp("testName", "testEmail@gmail!.com", "testPassword1!"));
 }
 
 TEST(personSignUpEmail, invalidEmailExtension) {
     Person* personInvalidEmailExtension = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailExtension->signUp("testName", "testEmail@gmail.com1", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailExtension->signUp("testName", "testEmail@gmail.com!", "testPassword1!"));
 }
 
 TEST(personSignUpEmail, invalidEmailFirstAt) {
@@ -290,6 +290,26 @@ TEST(personSignUpPassword, invalidPasswordNoSpecialChar) {
     Person* personInvalidPasswordNoSpecialChar = new Person();
 
     EXPECT_ANY_THROW(personInvalidPasswordNoSpecialChar->signUp("testName", "testEmail@gmail.com", "testPassword1"));
+}
+
+TEST(personSignUpDatabase, nameAlreadyExists)
+{
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+
+    Person* personNameAlreadyExists = new Person();
+
+    EXPECT_ANY_THROW(personNameAlreadyExists->signUp("Ram", "ram1@gmail.com", "newPass1!!!!!"));
+}
+
+TEST(personSignUpDatabase, emailAlreadyExists)
+{
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+
+    Person* personNameAlreadyExists = new Person();
+
+    EXPECT_ANY_THROW(personNameAlreadyExists->signUp("Rama", "ram@gmail.com", "newPass1!!!!!"));
 }
 
 TEST(personDefaultConstructor, defaultName) {

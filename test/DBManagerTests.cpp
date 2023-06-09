@@ -31,7 +31,7 @@ TEST(getPersonTests, loadNormalFile)
 
     EXPECT_EQ(John.getName(),"John");
     EXPECT_EQ(John.getEmail(),"john@gmail.com");
-    EXPECT_EQ(John.getPassword(),"pass33");
+    EXPECT_EQ(John.getPassword(),"pass33!!!!!!!");
     EXPECT_EQ(John.getTaskList().size(),2);
     EXPECT_EQ(John.getFriends().size(),0);
 
@@ -67,7 +67,7 @@ TEST(personTests, testStorePerson)
 
     Person Ram = DB.getPerson("Ram");
 
-    Ram.setPassword("newPass");
+    Ram.setPassword("newPass1!!!!!");
 
     DB.storePerson(Ram, "personData.json", "taskData.json");
 
@@ -75,21 +75,23 @@ TEST(personTests, testStorePerson)
 
 }
 
-TEST(personTests, addPerson)
-{
-    DBManager DB;
+//cannot repeatedly test this function
+//in order to repeatedly test, must be able to delete date from database
+// TEST(personTests, addPerson)
+// {
+//     DBManager DB;
 
-    DB.loadData("personData.json", "taskData.json");
+//     DB.loadData("personData.json", "taskData.json");
 
-    Person Larry;
+//     Person Larry;
 
-    Larry.signUp("Larry", "larry@gmail.com", "LarryPass12#3");
+//     Larry.signUp("Larry", "larry@gmail.com", "LarryPass12#3");
 
 
-    DB.storeNewPerson(Larry, "personData.json", "taskData.json");
+//     DB.storeNewPerson(Larry, "personData.json", "taskData.json");
 
-    EXPECT_EQ(true, true);
-}
+//     EXPECT_EQ(true, true);
+// }
 
 TEST(messageTest, sendMessagetoSomeone)
 {
@@ -106,6 +108,26 @@ TEST(messageTest, sendMessagetoSomeone)
     EXPECT_EQ(true, true);
 }
 
+TEST(DBManagerDoesExist, nameDoesExist) {
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+
+    EXPECT_TRUE(DB.doesExist("Ram", "ram1@gmail.com"));
+}
+
+TEST(DBManagerDoesExist, emailDoesExist) {
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+
+    EXPECT_TRUE(DB.doesExist("Rama", "ram@gmail.com"));
+}
+
+TEST(DBManagerDoesExist, nameAndEmailDoNotExist) {
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+
+    EXPECT_FALSE(DB.doesExist("Rama", "ram1@gmail.com"));
+}
 
 // int main(int argc, char **argv) {
 //     ::testing::InitGoogleTest(&argc, argv);
