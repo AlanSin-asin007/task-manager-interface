@@ -347,6 +347,12 @@ TEST(personSetters, setName) {
     EXPECT_EQ("testName", personSetName->getName());
 }
 
+TEST(personSetters, invalidNameForSetter) {
+    Person* personSetName = new Person();
+
+    EXPECT_ANY_THROW(personSetName->setName("testName1"));
+}
+
 TEST(personSetters, setEmail) {
     Person* personSetEmail = new Person();
     personSetEmail->setEmail("testEmail@gmail.com");
@@ -354,11 +360,23 @@ TEST(personSetters, setEmail) {
     EXPECT_EQ("testEmail@gmail.com", personSetEmail->getEmail());
 }
 
+TEST(personSetters, invalidEmailForSetter) {
+    Person* personSetEmail = new Person();
+
+    EXPECT_ANY_THROW(personSetEmail->setEmail("testEmail1@gmail.com"));
+}
+
 TEST(personSetters, setPassword) {
     Person* personSetPassword = new Person();
     personSetPassword->setPassword("testPassword1!");
 
     EXPECT_EQ("testPassword1!", personSetPassword->getPassword());
+}
+
+TEST(personSetters, invalidPasswordForSetter) {
+    Person* personSetPassword = new Person();
+
+    EXPECT_ANY_THROW(personSetPassword->setPassword("testPassword1"));
 }
 
 TEST(personSetters, setTasks) {
