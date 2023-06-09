@@ -77,10 +77,17 @@ void UserInterface::displayDashboard() {
                 case 4:
                     break;
                 case 5:
+                    logout();
+                    return;
+                    break;
+                default:
                     break;
             }
         } catch (const runtime_error& e) {
-
+            clear();
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
         }
     }
 }
@@ -146,7 +153,7 @@ void UserInterface::displayCalendarView() {
 
 void UserInterface::startupMenu() {
 
-        clear();
+    clear();
     while(true) {
         int choice;
         cout << "-------------------------" << '\n';
@@ -203,6 +210,12 @@ void UserInterface::login() {
     cin >> password;
     databaseManager.validateLogin(userName, password);
     loggedInUser = databaseManager.getPerson(userName);
+}
+
+void UserInterface::logout() {
+    clear();
+    cout << "LOGGING OUT...\n";
+    databaseManager.storePerson(loggedInUser, "PersonData.json", "TaskData.json");
 }
 
 void UserInterface::signUp() {
