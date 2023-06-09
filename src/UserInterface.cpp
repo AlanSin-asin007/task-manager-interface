@@ -84,8 +84,9 @@ void UserInterface::displayDashboard() const {
 }
 
 void UserInterface::displayListView() {
-    TaskSorter* sorter = new ImportanceSorter(&loggedInUser);
+    TaskSorter* sorter = new ImportanceSorter(loggedInUser);
     sorter->performSort();
+    delete sorter;
 
     clear();
     cout << "--------------------" << '\n';
@@ -104,8 +105,9 @@ void UserInterface::displayListView() {
 }
 
 void UserInterface::displayCalendarView() {
-    TaskSorter* sorter = new DateSorter(&loggedInUser);
+    TaskSorter* sorter = new DateSorter(loggedInUser);
     sorter->performSort();
+    delete sorter;
 
     clear();
     cout << "---------------------" << '\n';

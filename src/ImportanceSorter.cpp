@@ -1,6 +1,6 @@
 #include "../include/ImportanceSorter.h"
 
-ImportanceSorter::ImportanceSorter(Person* p) : TaskSorter(p) {}
+ImportanceSorter::ImportanceSorter(Person& person) : TaskSorter(person) {}
 
 void ImportanceSorter::sort(std::vector<Task>& taskList) {
     for (int i = 0; i < taskList.size(); ++i) {

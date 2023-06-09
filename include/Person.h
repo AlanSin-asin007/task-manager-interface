@@ -88,6 +88,7 @@ class Person {
         bool checkNameRequirements(const string& newName) const;
         bool checkEmailRequirements(const string& newEmail) const;
         bool checkPasswordRequirements(const string& newPassword) const;
+        bool operator==(const Person& rhs) const;
     private:
         //helper functions
 };

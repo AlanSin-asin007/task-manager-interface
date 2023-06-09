@@ -5,7 +5,7 @@
 
 class ImportanceSorter : public TaskSorter {
     public:
-        ImportanceSorter(Person* );
+        ImportanceSorter(Person& );
         void sort(std::vector<Task>& );
 };
 
