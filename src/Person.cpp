@@ -103,7 +103,7 @@ void Person::setTaskList(const vector<Task>& taskList) {
 //     this->taskPtrList = taskPtrList;
 // }
 
-void Person::setTasks(Task& newTask) {
+void Person::addTask(Task& newTask) {
     this->taskList.push_back(newTask);
 }
 

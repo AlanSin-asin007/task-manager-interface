@@ -41,11 +41,11 @@ void UserInterface::printNotifications(const vector<Task>& notificationList) con
     }
 }
 
-void UserInterface::displayDashboard() const {
+void UserInterface::displayDashboard() {
     int choice;
 
+    clear();
     while(true) {
-        clear();
         string horizontalBar(39+loggedInUser.getName().size(), '-');
         cout << horizontalBar << '\n';
         cout << "   HELLO " << loggedInUser.getName() << ", WELCOME TO YOUR DASHBOARD"  << '\n';
@@ -58,27 +58,100 @@ void UserInterface::displayDashboard() const {
         cout << "1. View Task List" << '\n';
         cout << "2. View Calendar List" << '\n';
         cout << "3. Add Task" << '\n';
-        cout << "4. Change Tasks" << '\n';
-        cout << "5. Message Friend" << '\n';
-        cout << "6. Logout" << '\n';
+        //cout << "4. Change Tasks" << '\n';
+        cout << "4. Message Friend" << '\n';
+        cout << "5. Logout" << '\n';
         cout << "Enter Selection: ";
 
         try {
             cin >> choice;
             switch(choice) {
                 case 1:
+                    displayListView();
                     break;
                 case 2:
+                    displayCalendarView();
                     break;
                 case 3:
+                    createNewTask();
                     break;
                 case 4:
                     break;
                 case 5:
+                    logout();
+                    return;
+                    break;
+                default:
                     break;
             }
         } catch (const runtime_error& e) {
+            clear();
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
+}
 
+void UserInterface::createNewTask() {
+    clear();
+    cout << "---------------------" << '\n';
+    cout << "   CREATE NEW TASK   " << '\n';
+    cout << "---------------------" << '\n';
+
+
+    string newTaskName;
+    string newTaskDescription;
+    string newTaskLabel;
+    int deadlineYear;
+    unsigned deadlineMonth;
+    unsigned deadlineDay;
+    unsigned newTaskRating;
+    cin.ignore();
+    cout << "Enter Task Name: ";
+    getline(cin, newTaskName);
+    cout << "Enter Task Description: ";
+    getline(cin, newTaskDescription);
+    cout << "Enter Task Label: ";
+    getline(cin, newTaskLabel);
+    cout << "Enter Deadline Year (yyyy): ";
+    //cin.ignore();
+    cin >> deadlineYear;
+    cout << "Enter Deadline Month (1-12): ";
+    cin >> deadlineMonth;
+    cout << "Enter Deadline Day (1-31): ";
+    cin >> deadlineDay;
+    cout << "Enter the importance rating (1-10): ";
+    cin >> newTaskRating;
+
+    year_month_day taskDeadline = year(deadlineYear)/month(deadlineMonth)/day(deadlineDay);
+    if (!taskDeadline.ok()) {
+        throw runtime_error("Date is invalid!");
+    } else if (getDaysApart(taskDeadline, year_month_day{floor<days>(chrono::system_clock::now())}) < 0) {
+        throw runtime_error("Deadline cannot be in the past!");
+    } else if (newTaskRating < 1 || newTaskRating > 10) {
+        throw runtime_error("Importance Rating must be between 1 and 10");
+    }
+    char userConfirm;
+    while (true) {
+        cout << "Are you sure you want to make this task? (Y/N): ";
+        cin >> userConfirm;
+        switch(userConfirm) {
+            case 'y': case 'Y': {
+                clear();
+                cout << "Creating Task...\n";
+                Task newTask(newTaskName, newTaskDescription, newTaskLabel, taskDeadline, newTaskRating);
+                cout << "Adding Task...\n";
+                loggedInUser.addTask(newTask);
+                cout << "SUCCESS!\n";
+                return;
+            }   break;
+            case 'n': case 'N':
+                cout << "CANCELLING NEW TASK...\n";
+                return;
+                break;
+            default:
+                break;
         }
     }
 }
@@ -102,6 +175,11 @@ void UserInterface::displayListView() {
         taskList.at(i).printTask();
         cout << '\n';
     }
+
+    cout << "Press ENTER to return to dashboard...\n";
+    string input;
+    cin.ignore();
+    getline(cin, input);
 }
 
 void UserInterface::displayCalendarView() {
@@ -131,17 +209,22 @@ void UserInterface::displayCalendarView() {
         }
         cout << '\n';
     }
+
+    cout << "Press ENTER to return to dashboard...\n";
+    string input;
+    cin.ignore();
+    getline(cin, input);
 }
 
 void UserInterface::startupMenu() {
-    clear();
-    int choice;
-    cout << "-------------------------" << '\n';
-    cout << " WELCOME TO TASK MANAGER " << '\n';
-    cout << "-------------------------" << '\n';
-    cout << "\n\n";
 
+    clear();
     while(true) {
+        int choice;
+        cout << "-------------------------" << '\n';
+        cout << " WELCOME TO TASK MANAGER " << '\n';
+        cout << "-------------------------" << '\n';
+        cout << "\n\n";
         
         cout << "OPTIONS:" << '\n';
         cout << "1. Login" << '\n';
@@ -158,7 +241,7 @@ void UserInterface::startupMenu() {
                     displayDashboard();
                     break;
                 case 2:
-                    cout << "SIGNING UP..." << endl;
+                    signUp();
                     break;
                 case 3:
                     cout << "EXITING..." << endl;
@@ -194,7 +277,13 @@ void UserInterface::login() {
     loggedInUser = databaseManager.getPerson(userName);
 }
 
-bool UserInterface::signUp() {
+void UserInterface::logout() {
+    clear();
+    cout << "LOGGING OUT...\n";
+    databaseManager.storePerson(loggedInUser, "personData.json", "taskData.json");
+}
+
+void UserInterface::signUp() {
     string userName;
     string email;
     string password;
@@ -215,14 +304,13 @@ bool UserInterface::signUp() {
         if(!databaseManager.doesExist(userName, email)) {
             if(checkNameRequirements(userName) && checkEmailRequirements(email) && checkPasswordRequirements(password)) {
                 Person newPerson(userName, email, password);
-                databaseManager.storePerson(newPerson, "personData.json", "taskData.json");
-
-                return true;
+                databaseManager.storeNewPerson(newPerson, "personData.json", "taskData.json");
+                clear();
+                cout << "Successfully signed up!\nYou can now log in\n";
+                return;
             }
         }
-        cout << "Sign-Up Failed." << '\n';
-        cout << "Returning to Start Up." << '\n';
-        return false;
+        throw runtime_error("Sign up Failed!\nUser with that name or email already exists.");
     }
 }
 

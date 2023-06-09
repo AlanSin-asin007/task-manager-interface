@@ -26,10 +26,12 @@ class UserInterface {
         ~UserInterface();
         void startupMenu();
         void login();
-        bool signUp();
-        void displayDashboard() const;
+        void signUp();
+        void displayDashboard();
         void displayListView();
         void displayCalendarView();
+        void createNewTask();
+        void logout();
 };
 
 #endif

@@ -49,8 +49,7 @@ class Person {
         // void setTaskPtrList(const vector<Task*> &taskPtrList);
         //should push this string back onto friendsList
         void addFriend(string &userName);
-        //setTasks: addTasks might need to rename
-        void setTasks(Task& newTask);
+        void addTask(Task& newTask);
         // void addTaskPtr(Task *newTask);
         void setFriendsList(const vector<string>& friendsList);
         void setMessages(const vector<string>& m);
