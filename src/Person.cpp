@@ -52,6 +52,7 @@ string Person::getPassword() const {
 //         cout<<"Friend to add does not Exist, try another friend";
 //     }
 // }
+
 vector<Task> Person::getTaskList() const {
     return this->taskList;
 }
@@ -74,21 +75,18 @@ vector<string> Person::getMessages() const {
 }
 
 void Person::setName(const string& newName) {
-    if(checkNameRequirements(newName)) {
+    if(checkNameRequirements(newName))
         this->name = newName;
-    }
 }
 
 void Person::setEmail(const string& newEmail) {
-    if(checkEmailRequirements(newEmail)) {
+    if(checkEmailRequirements(newEmail))
         this->email = newEmail;
-    }
 }
 
 void Person::setPassword(const string& newPassword) {
-    if(checkPasswordRequirements(newPassword)) {
+    if(checkPasswordRequirements(newPassword))
         this->password = newPassword;
-    }
 }
 
 void Person::setTaskList(const vector<Task>& taskList) {
@@ -126,21 +124,21 @@ void Person::sendMessage(const string &userName, const string &message)
     messages.push_back(m);
 }
 
-void Person::signUp(const string& newName, const string& newEmail, const string& newPassword) {
-    //check database if name/email is currently in use
-    DBManager signUpDBManager;
+// void Person::signUp(const string& newName, const string& newEmail, const string& newPassword) {
+//     //check database if name/email is currently in use
+//     DBManager signUpDBManager;
 
-    signUpDBManager.loadData("personData.json", "taskData.json");
+//     signUpDBManager.loadData("personData.json", "taskData.json");
 
-    if(signUpDBManager.doesExist(newName, newEmail)) {
-        throw runtime_error("Error: Name and/or Email already exists.");
-    }
-    else if(checkNameRequirements(newName) && checkEmailRequirements(newEmail) && checkPasswordRequirements(newPassword)) {
-        this->name = newName;
-        this->email = newEmail;
-        this->password = newPassword;
-    }
-}
+//     if(signUpDBManager.doesExist(newName, newEmail)) {
+//         throw runtime_error("Error: Name and/or Email already exists.");
+//     }
+//     else if(checkNameRequirements(newName) && checkEmailRequirements(newEmail) && checkPasswordRequirements(newPassword)) {
+//         this->name = newName;
+//         this->email = newEmail;
+//         this->password = newPassword;
+//     }
+// }
 
 //2-65 char limit
 //only alphabetical
@@ -254,7 +252,7 @@ string Person::generateRandPassword() {
 
 void Person::changePassword(const string& originalPassword, const string& newPassword, const string& confirmNewPassword) {
     if(this->password == originalPassword) {
-        if(newPassword == confirmNewPassword && checkPasswordRequirements(newPassword)) {
+        if(newPassword == confirmNewPassword /*&& checkPasswordRequirements(newPassword)*/) {
             this->password = newPassword;
         }
         else {
@@ -266,13 +264,13 @@ void Person::changePassword(const string& originalPassword, const string& newPas
     }
 }
 
-bool Person::logIn(const string& newEmail, const string& newPassword) const {
-    //check database for same email and correct corresponding password
+// bool Person::logIn(const string& newEmail, const string& newPassword) const {
+//     //check database for same email and correct corresponding password
 
-    //check if email is found in database
-    //then check if email's corresponding password is the same as newPassword
-    //return true if both are true
-    //return false otherwise
+//     //check if email is found in database
+//     //then check if email's corresponding password is the same as newPassword
+//     //return true if both are true
+//     //return false otherwise
 
-    return false;
-}
+//     return false;
+// }

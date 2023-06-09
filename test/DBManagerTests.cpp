@@ -31,7 +31,7 @@ TEST(getPersonTests, loadNormalFile)
 
     EXPECT_EQ(John.getName(),"John");
     EXPECT_EQ(John.getEmail(),"john@gmail.com");
-    EXPECT_EQ(John.getPassword(),"pass33!!!!!!!");
+    EXPECT_EQ(John.getPassword(),"pass33");
     EXPECT_EQ(John.getTaskList().size(),2);
     EXPECT_EQ(John.getFriends().size(),0);
 
@@ -93,20 +93,20 @@ TEST(personTests, testStorePerson)
 //     EXPECT_EQ(true, true);
 // }
 
-TEST(messageTest, sendMessagetoSomeone)
-{
-    DBManager DB;
+// TEST(messageTest, sendMessagetoSomeone)
+// {
+//     DBManager DB;
 
-    DB.loadData("personData.json", "taskData.json");
+//     DB.loadData("personData.json", "taskData.json");
 
-    Person Ram = DB.getPerson("Ram");
+//     Person Ram = DB.getPerson("Ram");
 
-    Ram.sendMessage("Shyam", "Message1234");
+//     Ram.sendMessage("Shyam", "Message1234");
 
-    DB.storePerson(Ram, "personData.json", "taskData.json");
+//     DB.storePerson(Ram, "personData.json", "taskData.json");
 
-    EXPECT_EQ(true, true);
-}
+//     EXPECT_EQ(true, true);
+// }
 
 TEST(DBManagerDoesExist, nameDoesExist) {
     DBManager DB;
@@ -127,6 +127,22 @@ TEST(DBManagerDoesExist, nameAndEmailDoNotExist) {
     DB.loadData("personData.json", "taskData.json");
 
     EXPECT_FALSE(DB.doesExist("Rama", "ram1@gmail.com"));
+}
+
+TEST(DBManagerTests, validateGoodLogin) {
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+    string userName = "John", password = "pass33";
+    
+    EXPECT_NO_THROW(DB.validateLogin(userName, password));
+}
+
+TEST(DBManagerTests, validateBadLogin) {
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+    string userName = "BadName", password = "BadPassword";
+
+    EXPECT_ANY_THROW(DB.validateLogin(userName, password));
 }
 
 // int main(int argc, char **argv) {

@@ -60,7 +60,7 @@ class Person {
         // //list of issues
         // void delAcc();
         //prompt user to enter new acc info
-        void signUp(const string& newName, const string& newEmail, const string& newPassword);
+    //  //void signUp(const string& newName, const string& newEmail, const string& newPassword);
         // //initially prompts for original password confirmation
         // //automatically sets new password as randomly generated password
         // //max char length
@@ -76,7 +76,7 @@ class Person {
         // void createNewAcc();
         //prompts for user login info
         //redirect to dashboard
-        bool logIn(const string& newEmail, const string& newPassword) const;
+        //bool logIn(const string& newEmail, const string& newPassword) const;
 
         // //more possible implementations(?)
         // //essentially some additional accessors and mutators
@@ -85,12 +85,11 @@ class Person {
         // void changeEmail(string newEmail);
         // void changeTasks(string newTasks);
         // void changeFriends(string newFriends);
-
-    private:
-        //helper functions
         bool checkNameRequirements(const string& newName) const;
         bool checkEmailRequirements(const string& newEmail) const;
         bool checkPasswordRequirements(const string& newPassword) const;
+    private:
+        //helper functions
 };
 
 #endif

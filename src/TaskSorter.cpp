@@ -5,6 +5,7 @@ TaskSorter::TaskSorter(Person* p) {
 }
 
 TaskSorter::~TaskSorter() {
+    person = nullptr;
     delete person;
 }
 

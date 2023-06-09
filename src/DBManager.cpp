@@ -227,7 +227,14 @@ void DBManager::storePerson(Person person, string personFileName, string taskFil
     taskJsonOutput.close();
 }
 
-
+void DBManager::validateLogin(string& userName, string& password) const {
+    for (Person person : myPersons) {
+        if (person.getName() == userName && person.getPassword() == password) {
+            return;
+        }
+    }
+    throw runtime_error("Invalid Login!\n");
+}
 
 //STEPS TO FOLLOW
 

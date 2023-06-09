@@ -20,7 +20,8 @@ private:
     
 public:
 
-    
+    void validateLogin(string& userName, string& password) const;
+
     Person getPerson(string userName);
 
     vector<Person> getMyPersons() const {
@@ -46,15 +47,6 @@ public:
     //void to_json(nlohmann::json &j, const Task &t);
 
     void loadTasks(string fileName);
-
-    
-
-
-
-
-
-
-
 
 };
 
