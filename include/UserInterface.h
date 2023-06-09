@@ -27,7 +27,7 @@ class UserInterface {
         void startupMenu();
         void login();
         void signUp();
-        void displayDashboard() const;
+        void displayDashboard();
         void displayListView();
         void displayCalendarView();
 };

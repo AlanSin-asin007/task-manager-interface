@@ -41,7 +41,7 @@ void UserInterface::printNotifications(const vector<Task>& notificationList) con
     }
 }
 
-void UserInterface::displayDashboard() const {
+void UserInterface::displayDashboard() {
     int choice;
 
     while(true) {
@@ -58,17 +58,19 @@ void UserInterface::displayDashboard() const {
         cout << "1. View Task List" << '\n';
         cout << "2. View Calendar List" << '\n';
         cout << "3. Add Task" << '\n';
-        cout << "4. Change Tasks" << '\n';
-        cout << "5. Message Friend" << '\n';
-        cout << "6. Logout" << '\n';
+        //cout << "4. Change Tasks" << '\n';
+        cout << "4. Message Friend" << '\n';
+        cout << "5. Logout" << '\n';
         cout << "Enter Selection: ";
 
         try {
             cin >> choice;
             switch(choice) {
                 case 1:
+                    displayListView();
                     break;
                 case 2:
+                    displayCalendarView();
                     break;
                 case 3:
                     break;
@@ -102,6 +104,11 @@ void UserInterface::displayListView() {
         taskList.at(i).printTask();
         cout << '\n';
     }
+
+    cout << "Press any key and ENTER to return to dashboard...\n";
+    string input;
+    cin >> input;
+
 }
 
 void UserInterface::displayCalendarView() {
@@ -131,6 +138,10 @@ void UserInterface::displayCalendarView() {
         }
         cout << '\n';
     }
+
+    cout << "Press any key and ENTER to return to dashboard...\n";
+    string input;
+    cin >> input;
 }
 
 void UserInterface::startupMenu() {
