@@ -191,3 +191,121 @@ void UserInterface::login() {
     databaseManager.validateLogin(userName, password);
     loggedInUser = databaseManager.getPerson(userName);
 }
+
+bool UserInterface::signUp() {
+    string userName;
+    string email;
+    string password;
+    while (true) {
+        clear();
+        cout << "---------------------" << '\n';
+        cout << "       SIGN UP       " << '\n';
+        cout << "---------------------" << '\n';
+
+        cout << "\n\n";
+        cout << "Enter your Username: ";
+        cin >> userName;
+        cout << "Enter your Email: ";
+        cin >> email;
+        cout << "Enter your Password: ";
+        cin >> password;
+
+        if(!databaseManager.doesExist(userName, email)) {
+            if(checkNameRequirements(userName) && checkEmailRequirements(email) && checkPasswordRequirements(password)) {
+                Person newPerson(userName, email, password);
+                databaseManager.storePerson(newPerson, "personData.json", "taskData.json");
+
+                return true;
+            }
+        }
+        cout << "Sign-Up Failed." << '\n';
+        cout << "Returning to Start Up." << '\n';
+        return false;
+    }
+}
+
+bool UserInterface::checkNameRequirements(const string& newName) const {
+    //check char limit
+    if(newName.length() < 2 || newName.length() > 64) {
+        throw runtime_error("Invalid Name: 2-65 character limit");
+    }
+
+    //check if alphabetical
+    for(unsigned i = 0; i < newName.length(); ++i) {
+        if(newName.at(i) < 'A' || newName.at(i) > 'z' || (newName.at(i) > 'Z' && newName.at(i) < 'a')) {
+            throw runtime_error("Invalid Name: Must contain only letters");
+        }
+    }
+    return true;
+}
+
+bool UserInterface::checkEmailRequirements(const string& newEmail) const {
+    //check char limit is greater than 5 and less than 257
+    if(newEmail.length() < 6 || newEmail.length() > 256) {
+        throw runtime_error("Invalid Email: 6-257 character limit");
+    }
+
+    //check if first char is a letter
+    if(newEmail.at(0) < 'A' || newEmail.at(0) > 'z' || (newEmail.at(0) > 'Z' && newEmail.at(0) < 'a')) {
+        throw runtime_error("Invalid Email: First character must be a letter");
+    }
+
+    //check for "@" and "."
+    //check if char is alphabetical
+    int atCounter = 0;
+    int atIndex = -1;
+    int dotCounter = 0;
+    int dotIndex = -1;
+    for(unsigned i = 0; i < newEmail.length(); ++i) {
+        if(newEmail.at(i) == '@') {
+            atCounter++;
+            atIndex = i;
+        }
+        else if(newEmail.at(i) == '.') {
+            dotCounter++;
+            dotIndex = i;
+        }
+        else if(newEmail.at(i) < '0' || newEmail.at(i) > 'z' || (newEmail.at(i) > '9' && newEmail.at(i) < 'A') || (newEmail.at(i) > 'Z' && newEmail.at(i) < 'a')) {
+            throw runtime_error("Invalid Email: Must contain only letters");
+        }
+        // else if(newEmail.at(i) < 'A' || newEmail.at(i) > 'z' || (newEmail.at(i) > 'Z' && newEmail.at(i) < 'a')) {
+        //     throw runtime_error("Invalid Email: Must contain only letters");
+        // }
+    }
+    //check if there is only one "@" and is before "."
+    if(atCounter != 1 || atIndex >= dotIndex - 1) {
+        throw runtime_error("Invalid Email: Must contain only one '@' and is before '.'");
+    }
+    //check if there is only one "." and is not the last char
+    else if(dotCounter != 1 || dotIndex == newEmail.length() - 1) {
+        throw runtime_error("Invalid Email: Must contain only one '.' and is not the last character");
+    }
+    return true;
+}
+
+bool UserInterface::checkPasswordRequirements(const string& newPassword) const {
+    //check char limit is greater than 11 and less than 21
+    if(newPassword.length() < 12 || newPassword.length() > 20) {
+        throw runtime_error("Invalid Password: 12-20 character limit");
+    }
+
+    //check if there is at least one letter, special char, and one number
+    int letterCounter = 0;
+    int specialCharCounter = 0;
+    int numCounter = 0;
+    for(unsigned i = 0; i < newPassword.length(); ++i) {
+        if((newPassword.at(i) >= 'A' && newPassword.at(i) <= 'Z') || (newPassword.at(i) >= 'a' && newPassword.at(i) <= 'z')) {
+            letterCounter++;
+        }
+        else if((newPassword.at(i) >= '!' && newPassword.at(i) <= '/') || (newPassword.at(i) >= ':' && newPassword.at(i) <= '@') || (newPassword.at(i) >= '[' && newPassword.at(i) <= '`') || (newPassword.at(i) >= '{' && newPassword.at(i) <= '~')) {
+            specialCharCounter++;
+        }
+        else if(newPassword.at(i) >= '0' && newPassword.at(i) <= '9') {
+            numCounter++;
+        }
+    }
+    if(letterCounter == 0 || specialCharCounter == 0 || numCounter == 0) {
+        throw runtime_error("Invalid Password: Must contain at least one letter, number, and special character");
+    }
+    return true;
+}
