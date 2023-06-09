@@ -383,7 +383,7 @@ TEST(personSetters, setEmail) {
 TEST(personSetters, invalidEmailForSetter) {
     Person* personSetEmail = new Person();
 
-    EXPECT_ANY_THROW(personSetEmail->setEmail("testEmail1@gmail.com"));
+    EXPECT_ANY_THROW(personSetEmail->setEmail("testEmail!@gmail.com"));
 }
 
 TEST(personSetters, setPassword) {

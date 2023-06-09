@@ -14,7 +14,6 @@ UserInterface::UserInterface() {}
 UserInterface::~UserInterface() {}
 
 void UserInterface::clear() const {
-    //
     cout << u8"\033[2J\033[1;1H";
 }
 
@@ -122,7 +121,8 @@ void UserInterface::startupMenu() {
             databaseManager.loadData("personData.json", "taskData.json");
             switch(choice) {
                 case 1:
-                    cout << "LOGGING IN..." << endl;
+                    login();
+                    displayDashboard();
                     break;
                 case 2:
                     cout << "SIGNING UP..." << endl;
@@ -145,27 +145,18 @@ void UserInterface::startupMenu() {
     }
 }
 
-bool UserInterface::login() {
-    string userName;
-    string password;
-    while (true) {
-        clear();
-        cout << "---------------------" << '\n';
-        cout << "        LOGIN        " << '\n';
-        cout << "---------------------" << '\n';
+void UserInterface::login() {
+    clear();
+    cout << "---------------------" << '\n';
+    cout << "        LOGIN        " << '\n';
+    cout << "---------------------" << '\n';
+    cout << "\n\n";
 
-        cout << "\n\n";
-        cout << "Enter your Username: ";
-        cin >> userName;
-        cout << "Enter your Password: ";
-        cin >> password;
-
-        //databaseManager.loadData();
-        loggedInUser = databaseManager.getPerson(userName);
-
-        if (loggedInUser.getName() == "") {
-            return false;
-        }
-        return true;
-    }
+    string userName, password;
+    cout << "Enter your Username: ";
+    cin >> userName;
+    cout << "Enter your Password: ";
+    cin >> password;
+    databaseManager.validateLogin(userName, password);
+    loggedInUser = databaseManager.getPerson(userName);
 }

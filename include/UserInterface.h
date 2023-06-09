@@ -22,7 +22,7 @@ class UserInterface {
         UserInterface(Person& person) : loggedInUser(person) {};
         ~UserInterface();
         void startupMenu();
-        bool login();
+        void login();
         void displayDashboard() const;
         void displayListView();
         void displayCalendarView();
