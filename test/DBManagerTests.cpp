@@ -50,6 +50,15 @@ TEST(getTasksTest, findTasksofFriendandFriends)
     EXPECT_EQ(Ram.getFriends(), DB.getMyPersons().at(0).getFriends());
 }
 
+TEST(getTasksTest, nonexistentpersontasks)
+{
+    DBManager DB;
+
+    DB.loadData("personData.json", "taskData.json");
+
+    EXPECT_ANY_THROW(DB.getPerson("PowPow"));
+}
+
 TEST(coutWorks, loadDataCall)
 {
     DBManager DB;
