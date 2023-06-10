@@ -99,14 +99,14 @@ void DBManager::loadData(string personJSON, string taskJSON)
 
 }
 
-inline void to_json(nlohmann::json &j, const Person &s)
-{
-    j["email"] = s.getEmail();
-    j["name"] = s.getName();
-    j["person"] = s.getFriends();
-    //j["task"] = s.getTaskList();
-    j["password"] = s.getPassword();
-}
+// inline void to_json(nlohmann::json &j, const Person &s)
+// {
+//     j["email"] = s.getEmail();
+//     j["name"] = s.getName();
+//     j["person"] = s.getFriends();
+//     //j["task"] = s.getTaskList();
+//     j["password"] = s.getPassword();
+// }
 
 bool DBManager::doesExist(const string& newName, const string& newEmail) const
 {

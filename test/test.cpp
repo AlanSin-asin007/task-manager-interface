@@ -654,6 +654,15 @@ TEST(personChangePassword, newPasswordViolatesConditions) {
     EXPECT_ANY_THROW(personChangePassword->changePassword("originalPassword1!", "newPassword", "newPassword1"));
 }
 
+TEST(PersonTests, getTaskNames) {
+    Task task("Name", "Description", "Label", date::year{2023}/date::January/1, 5);
+    Person* p = new Person();
+    p->addTask(task);
+    vector<string> vec = {"Name"};
+
+    EXPECT_EQ(vec, p->getTaskNames());
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

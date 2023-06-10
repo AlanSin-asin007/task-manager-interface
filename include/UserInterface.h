@@ -31,6 +31,7 @@ class UserInterface {
         void displayListView();
         void displayCalendarView();
         void createNewTask();
+        void sendMessage();
         void logout();
 };
 

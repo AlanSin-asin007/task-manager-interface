@@ -44,14 +44,11 @@ public:
 
     void storeNewPerson(Person &p, string personFileName, string taskFileName);
 
-    //
     //void from_json(const nlohmann::json &j, Person &s);
-    void to_json(nlohmann::json &j, const Person &s);
-
+    //void to_json(nlohmann::json &j, const Person &s);
     //void from_json(const nlohmann::json &j, Task &t);
     //void to_json(nlohmann::json &j, const Task &t);
-
-    void loadTasks(string fileName);
+    //void loadTasks(string fileName);
 
 };
 
