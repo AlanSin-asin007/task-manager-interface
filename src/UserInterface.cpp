@@ -82,6 +82,7 @@ void UserInterface::displayDashboard() {
                     createNewTask();
                     break;
                 case 4:
+                    sendMessage();
                     break;
                 case 5:
                     logout();
@@ -160,6 +161,10 @@ void UserInterface::createNewTask() {
                 break;
         }
     }
+}
+
+void UserInterface::sendMessage() {
+
 }
 
 void UserInterface::displayListView() {
