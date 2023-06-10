@@ -54,4 +54,15 @@ add_executable(test
     src/Task.cpp
 )
 
+add_executable(taskManager
+    src/main.cpp
+    src/DBManager.cpp
+    src/UserInterface.cpp
+    src/ImportanceSorter.cpp
+    src/DateSorter.cpp
+    src/TaskSorter.cpp
+    src/Person.cpp
+    src/Task.cpp
+)
+
 target_link_libraries(test gtest gtest_main)
