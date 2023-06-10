@@ -102,7 +102,7 @@ In the UML diagram depicted, there are 8 classes. Within the Person, Task, Label
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
- https://media.discordapp.net/attachments/1099824266117136395/1116897891538182195/Screen_Shot_2023-06-09_at_6.07.03_PM.png?width=956&height=568![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/aedaff49-1a52-45df-b2f7-5f6a16d08e0e)
+[[ https://media.discordapp.net/attachments/1099824266117136395/1116897891538182195/Screen_Shot_2023-06-09_at_6.07.03_PM.png?width=956&height=568![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/aedaff49-1a52-45df-b2f7-5f6a16d08e0e)]]
 
 https://media.discordapp.net/attachments/1099824266117136395/1116897891781460040/Screen_Shot_2023-06-09_at_6.07.22_PM.png?width=764&height=780![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/fdd59a6a-e9d6-4c90-8b02-87013775f2b1)
 
