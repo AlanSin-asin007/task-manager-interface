@@ -102,27 +102,29 @@ In the UML diagram depicted, there are 8 classes. Within the Person, Task, Label
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
-[[![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/aedaff49-1a52-45df-b2f7-5f6a16d08e0e)]]
+ ![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/130192487/e1f61768-9bd7-49f4-84db-1e517e32a513)
+ 
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/aedaff49-1a52-45df-b2f7-5f6a16d08e0e)
 
-[[![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/fdd59a6a-e9d6-4c90-8b02-87013775f2b1)]]
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/fdd59a6a-e9d6-4c90-8b02-87013775f2b1)
 
-https://media.discordapp.net/attachments/1099824266117136395/1116897892037316618/Screen_Shot_2023-06-09_at_6.10.10_PM.png?width=1264&height=1044![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/612caf70-bdd2-46e6-a49b-7073c80c83db)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/612caf70-bdd2-46e6-a49b-7073c80c83db)
 
-https://media.discordapp.net/attachments/1099824266117136395/1116897892347682946/Screen_Shot_2023-06-09_at_6.09.58_PM.png?width=1428&height=692![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/f627b40e-a9a9-4fd7-8b57-9062f35476fc)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/f627b40e-a9a9-4fd7-8b57-9062f35476fc)
 
-https://media.discordapp.net/attachments/1099824266117136395/1116897892620320788/Screen_Shot_2023-06-09_at_6.10.20_PM.png?width=810&height=1092![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/b288c398-c2d8-4573-b731-79dcff77e177)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/b288c398-c2d8-4573-b731-79dcff77e177)
 
-https://media.discordapp.net/attachments/1099824266117136395/1116897892855205979/Screen_Shot_2023-06-09_at_6.11.21_PM.png?width=1460&height=748![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/8cbe2b7e-6d72-4ab6-9aba-658e0cb3f4d8)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/8cbe2b7e-6d72-4ab6-9aba-658e0cb3f4d8)
 
-https://media.discordapp.net/attachments/1099824266117136395/1116897892620320788/Screen_Shot_2023-06-09_at_6.10.20_PM.png?width=810&height=1092![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/41d83501-021d-4486-9edd-968e81296084)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/41d83501-021d-4486-9edd-968e81296084)
 
-https://media.discordapp.net/attachments/1099824266117136395/1116897893119434813/Screen_Shot_2023-06-09_at_6.11.30_PM.png?width=1288&height=1080![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/4494c84d-6414-4053-9591-1f50a13b112c)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/4494c84d-6414-4053-9591-1f50a13b112c)
 
-https://media.discordapp.net/attachments/1099824266117136395/1116897893320769566/Screen_Shot_2023-06-09_at_6.09.46_PM.png?width=1180&height=656![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/d6303e18-79f8-412e-a86b-fca5ddae8533)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/d6303e18-79f8-412e-a86b-fca5ddae8533)
 
-https://media.discordapp.net/attachments/1099824266117136395/1116897893559849033/Screen_Shot_2023-06-09_at_6.08.53_PM.png?width=1256&height=780![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/2660d19d-f5d4-47c3-9634-10c99272605a)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/2660d19d-f5d4-47c3-9634-10c99272605a)
 
-https://media.discordapp.net/attachments/1099824266117136395/1116897893828272218/Screen_Shot_2023-06-09_at_6.10.34_PM.png?width=500&height=1092![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/dbce7803-747e-44ce-8e71-84d99d4b916f)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/dbce7803-747e-44ce-8e71-84d99d4b916f)
 
 
 
