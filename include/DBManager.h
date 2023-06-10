@@ -12,7 +12,7 @@ class DBManager
 private:
 
     vector<Person> myPersons;
-    vector<Task> tasks;
+    vector<Task> myTasks;
     // vector<Task*> taskPtrs;
 
     json personData;
@@ -27,6 +27,10 @@ public:
 
     vector<Person> getMyPersons() const {
         return this->myPersons;
+    }
+
+    vector<Task> getMyTasks() const {
+        return this->myTasks;
     }
 
     //Load the Person database from json file

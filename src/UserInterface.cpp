@@ -54,6 +54,12 @@ void UserInterface::displayDashboard() {
         printNotifications(fetchNotifications());
         cout << '\n';
 
+        cout << "Total tasks: " << databaseManager.getMyTasks().size() << endl;
+        cout << "Tasks in loggedInUser's taskList: \n";
+        for (string s : loggedInUser.getTaskNames()) {
+            cout << s << endl;
+        }
+
         cout << "OPTIONS:" << '\n';
         cout << "1. View Task List" << '\n';
         cout << "2. View Calendar List" << '\n';
@@ -180,6 +186,7 @@ void UserInterface::displayListView() {
     string input;
     cin.ignore();
     getline(cin, input);
+    clear();
 }
 
 void UserInterface::displayCalendarView() {
@@ -214,6 +221,7 @@ void UserInterface::displayCalendarView() {
     string input;
     cin.ignore();
     getline(cin, input);
+    clear();
 }
 
 void UserInterface::startupMenu() {
