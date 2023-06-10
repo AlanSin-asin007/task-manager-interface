@@ -6,5 +6,5 @@
 
 int main() {
     UserInterface UI;
-    UI.starupMenu();
+    UI.startupMenu();
 }
