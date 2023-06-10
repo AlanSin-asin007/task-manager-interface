@@ -31,7 +31,7 @@ void DBManager::loadData(string personJSON, string taskJSON)
     std::ifstream taskJSONfilestream(taskJSON);
     personData = json::parse(personJSONfilestream);
     taskData = json::parse(taskJSONfilestream);
-    // std::vector<Task> tasks;
+    std::vector<Task> tasks;
 
 // //IMPORTANT NOTE ANY LINE OF CODE BEYOND THIS IS NOT NEEDED FOR NOW
     // cout << data["Person"][0]["name"]<<endl;
@@ -50,7 +50,7 @@ void DBManager::loadData(string personJSON, string taskJSON)
         year_month_day deadline = year(deadlineYear)/month(deadlineMonth)/day(deadlineDay);
         int rating = taskData.at("Tasks")[m]["rating"];
         
-        myTasks.push_back(Task(name, description, label, deadline, rating));
+        tasks.push_back(Task(name, description, label, deadline, rating));
         // taskPtrs.push_back(&Task(name, description, label, deadline, rating));
 
     }
@@ -65,7 +65,7 @@ void DBManager::loadData(string personJSON, string taskJSON)
 
         //AI
         for (string taskName : taskNames) {
-            for (Task task : myTasks) {
+            for (Task task : tasks) {
                 if (taskName == task.getTaskName()) {
                     individualTasks.push_back(task);
                     //individualTaskPtrs.push_back(&task);
@@ -89,6 +89,7 @@ void DBManager::loadData(string personJSON, string taskJSON)
         p.setMessages(messages);
 
         myPersons.push_back(p);
+        myTasks = tasks;
         //close the json files
 
         personJSONfilestream.close();
@@ -213,7 +214,7 @@ void DBManager::storePerson(Person& person, string personFileName, string taskFi
 
             for (string nameToAdd : newTaskNames) {
                 for (Task taskObj : person.getTaskList()) {
-                    if (t.getTaskName() == nameToAdd) {
+                    if (taskObj.getTaskName() == nameToAdd) {
                         json newTask;
 
                         newTask["id"] = taskObj.getTaskName();
@@ -261,8 +262,7 @@ void DBManager::storePerson(Person& person, string personFileName, string taskFi
             //             }
             //         }
             //     }
-
-            }
+            // }
 
             personData["Person"][i]["tasks"] = taskNames;
 

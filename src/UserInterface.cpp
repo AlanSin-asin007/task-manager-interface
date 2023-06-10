@@ -55,6 +55,10 @@ void UserInterface::displayDashboard() {
         cout << '\n';
 
         cout << "Total tasks: " << databaseManager.getMyTasks().size() << endl;
+        cout << "Tasks in loggedInUser's taskList: \n";
+        for (string s : loggedInUser.getTaskNames()) {
+            cout << s << endl;
+        }
 
         cout << "OPTIONS:" << '\n';
         cout << "1. View Task List" << '\n';
