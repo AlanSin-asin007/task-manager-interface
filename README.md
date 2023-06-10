@@ -105,6 +105,7 @@ In the UML diagram depicted, there are 8 classes. Within the Person, Task, Label
  > Screenshots of the input/output after running your application
  ## Installation/Usage
  > Instructions on installing and running your application
+ > * Clone the repo run cmake . then make and then after that, run the executable, taskManager
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  
