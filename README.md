@@ -47,18 +47,37 @@ Description: The diagram represents each of the individual screens of the task p
 > Draw a diagram illustrating how the user can navigate from one screen to another. Here is an [example](https://creately.com/diagram/example/ikfqudv82/user-navigation-diagram-classic?r=v). It can be useful to label each symbol that represents a screen so that you can reference the screens in the next section or the rest of the document if necessary. Give a brief description of what the diagram represents.
 
 ### Screen Layouts
-![image](https://user-images.githubusercontent.com/117235128/236956488-59bffb89-aac4-4b39-8a9b-b33a8fd29083.png)
+ ![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/130192487/e1f61768-9bd7-49f4-84db-1e517e32a513)
+ 
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/aedaff49-1a52-45df-b2f7-5f6a16d08e0e)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/fdd59a6a-e9d6-4c90-8b02-87013775f2b1)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/612caf70-bdd2-46e6-a49b-7073c80c83db)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/f627b40e-a9a9-4fd7-8b57-9062f35476fc)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/b288c398-c2d8-4573-b731-79dcff77e177)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/8cbe2b7e-6d72-4ab6-9aba-658e0cb3f4d8)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/41d83501-021d-4486-9edd-968e81296084)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/4494c84d-6414-4053-9591-1f50a13b112c)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/d6303e18-79f8-412e-a86b-fca5ddae8533)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/2660d19d-f5d4-47c3-9634-10c99272605a)
+
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/dbce7803-747e-44ce-8e71-84d99d4b916f)
 
 Description: The user will be prompted with 2 options: logging in or signing up. 
 - Login: The user will be asked to input their username and password. Once a valid username and password is given, the user will be sent to the dashboard screen.
 - Sign Up: In the case that the user does not have an already existing account, the user can choose the "Sign Up" option, where they will be asked for their display name, username, and password to create a new account.
 - Dashboard: After logging in, the user will be presented with their schedule, listing all of their tasks for the current week. In this current screen, the user has the option of changing their view to a calendar view, deleting an existing task, selecting and viewing a particular task, adding a new task, configuring their settings, viewing their friends page, and logging out.
 - Settings: This is the settings page where the user will be given the options to change their display name, username, and password.
-- Friends: This screen will list all of the user's current friends. This screen will give the user the option to either delete a current friend from their friends list, add a new friend, or select a particular friend to message them.
-- Chats: The user can enter text that will be sent to a friend of their choosing.
-- Enter New Friend: This will be a screen where the user will be prompted to enter the user's friend's identification in order to send a friend request to the other user's account.
 - New Task: After choosing the option of adding a task from the Dashboard, or choosing the option of editing a task after viewing it in the "View Task" screen, the user will be sent to a screen where they can add/change details onto a new (or already existing) task.
-- View Task: After choosing the option to select and view a particular task in their schedule, they will be sent to a screen showcasing all the details of the task in question. These details will include the name of the task, a description, label, and deadline. The user will have the option of either deleting the task in question (which will send the user back to the dashboard interface), or editing the task in question (which will change their screen to the "New Task" screen).
+- View Task: After choosing the option to select and view a particular task in their schedule, they will be sent to a screen showcasing all the details of the task in question. These details will include the name of the task, a description, label, and deadline. The user will also have the option of deleting the task in question (which will send the user back to the dashboard interface).
 
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
 
@@ -102,31 +121,8 @@ In the UML diagram depicted, there are 8 classes. Within the Person, Task, Label
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
- ![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/130192487/e1f61768-9bd7-49f4-84db-1e517e32a513)
- 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/aedaff49-1a52-45df-b2f7-5f6a16d08e0e)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/fdd59a6a-e9d6-4c90-8b02-87013775f2b1)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/612caf70-bdd2-46e6-a49b-7073c80c83db)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/f627b40e-a9a9-4fd7-8b57-9062f35476fc)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/b288c398-c2d8-4573-b731-79dcff77e177)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/8cbe2b7e-6d72-4ab6-9aba-658e0cb3f4d8)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/41d83501-021d-4486-9edd-968e81296084)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/4494c84d-6414-4053-9591-1f50a13b112c)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/d6303e18-79f8-412e-a86b-fca5ddae8533)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/2660d19d-f5d4-47c3-9634-10c99272605a)
-
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/dbce7803-747e-44ce-8e71-84d99d4b916f)
-
-
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/130192487/80d980d7-362a-42bd-b769-5182b4239e0b)
+This is a screenshot of our tests passing. All other screenshots of the program have been displayed in the Screen Layouts portion of this README.
 
 
  ## Installation/Usage
@@ -134,5 +130,4 @@ In the UML diagram depicted, there are 8 classes. Within the Person, Task, Label
  > * Clone the repo run cmake . then make and then after that, run the executable, taskManager
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
- > We used unit testing for all our functions with google tests which all pass.
- 
+ > We used unit testing for all our functions with google tests which all pass. We didn't test the user interface class because of the cin/cout statements. 
