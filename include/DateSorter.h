@@ -5,7 +5,7 @@
 
 class DateSorter : public TaskSorter {
     public:
-        DateSorter(Person* );
+        DateSorter(Person& );
         void sort(std::vector<Task>& );
 };
 

@@ -14,7 +14,7 @@
                 "Shyam: Message1234"
             ],
             "name": "Ram",
-            "password": "newPass",
+            "password": "abcd23",
             "tasks": [
                 "t1",
                 "t2",
@@ -62,30 +62,6 @@
             ],
             "name": "Bob",
             "password": "pore41",
-            "tasks": []
-        },
-        {
-            "email": "larry@gmail.com",
-            "friends": [],
-            "messages": [],
-            "name": "Larry",
-            "password": "LarryPass12#3",
-            "tasks": []
-        },
-        {
-            "email": "larry@gmail.com",
-            "friends": [],
-            "messages": [],
-            "name": "Larry",
-            "password": "LarryPass12#3",
-            "tasks": []
-        },
-        {
-            "email": "larry@gmail.com",
-            "friends": [],
-            "messages": [],
-            "name": "Larry",
-            "password": "LarryPass12#3",
             "tasks": []
         }
     ]

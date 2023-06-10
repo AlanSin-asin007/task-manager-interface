@@ -1,27 +1,25 @@
 #include "../include/TaskSorter.h"
 
-TaskSorter::TaskSorter(Person* p) {
-    this->person = p;
+TaskSorter::TaskSorter(Person& person) {
+    this->person = person;
 }
 
-TaskSorter::~TaskSorter() {
-    delete person;
-}
+TaskSorter::~TaskSorter() {}
 
-Person* TaskSorter::getPerson() const {
+Person TaskSorter::getPerson() const {
     return person;
 }
 
-void TaskSorter::setPerson(Person* p) {
-    this->person = p;
+void TaskSorter::setPerson(Person& person) {
+    this->person = person;
 }
 
 std::vector<Task> TaskSorter::getTaskList() {
-    return person->getTaskList();
+    return person.getTaskList();
 }
 
 void TaskSorter::updateTaskList(std::vector<Task>& v) {
-    person->setTaskList(v);
+    person.setTaskList(v);
 }
 
 void TaskSorter::performSort() {

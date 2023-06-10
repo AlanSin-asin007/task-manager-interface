@@ -12,7 +12,7 @@ using namespace std;
 
 class Person {
     private:
-        //5-15 char limit
+        //2-65 char limit
         //only alphabetical
         string name;
         //1-60 char limit before "@"
@@ -49,8 +49,7 @@ class Person {
         // void setTaskPtrList(const vector<Task*> &taskPtrList);
         //should push this string back onto friendsList
         void addFriend(string &userName);
-        //setTasks: addTasks might need to rename
-        void setTasks(Task& newTask);
+        void addTask(Task& newTask);
         // void addTaskPtr(Task *newTask);
         void setFriendsList(const vector<string>& friendsList);
         void setMessages(const vector<string>& m);
@@ -60,7 +59,7 @@ class Person {
         // //list of issues
         // void delAcc();
         //prompt user to enter new acc info
-        void signUp(const string& newName, const string& newEmail, const string& newPassword);
+    //  //void signUp(const string& newName, const string& newEmail, const string& newPassword);
         // //initially prompts for original password confirmation
         // //automatically sets new password as randomly generated password
         // //max char length
@@ -74,9 +73,9 @@ class Person {
         // //similar to signUp()
         // //unnecessary?
         // void createNewAcc();
-        // //prompts for user login info
-        // //redirect to dashboard
-        // void logIn();
+        //prompts for user login info
+        //redirect to dashboard
+        //bool logIn(const string& newEmail, const string& newPassword) const;
 
         // //more possible implementations(?)
         // //essentially some additional accessors and mutators
@@ -85,12 +84,12 @@ class Person {
         // void changeEmail(string newEmail);
         // void changeTasks(string newTasks);
         // void changeFriends(string newFriends);
-
-    private:
-        //helper functions
         bool checkNameRequirements(const string& newName) const;
         bool checkEmailRequirements(const string& newEmail) const;
         bool checkPasswordRequirements(const string& newPassword) const;
+        bool operator==(const Person& rhs) const;
+    private:
+        //helper functions
 };
 
 #endif

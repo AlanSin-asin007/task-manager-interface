@@ -12,7 +12,7 @@ class DBManager
 private:
 
     vector<Person> myPersons;
-    vector<Task> tasks;
+    vector<Task> myTasks;
     // vector<Task*> taskPtrs;
 
     json personData;
@@ -20,21 +20,27 @@ private:
     
 public:
 
-    
+    void validateLogin(string& userName, string& password) const;
+    bool taskAlreadyExists(string& taskName) const;
+
     Person getPerson(string userName);
 
     vector<Person> getMyPersons() const {
         return this->myPersons;
     }
 
+    vector<Task> getMyTasks() const {
+        return this->myTasks;
+    }
+
     //Load the Person database from json file
     void loadData(string personJSON, string taskJSON);
 
     //Add person into database
-    void storePerson(Person person, string personFileName, string taskFileName);
+    void storePerson(Person& person, string personFileName, string taskFileName);
 
 
-    bool doesExist(Person& person);
+    bool doesExist(const string& newName, const string& newEmail) const;
 
     void storeNewPerson(Person &p, string personFileName, string taskFileName);
 
@@ -46,15 +52,6 @@ public:
     //void to_json(nlohmann::json &j, const Task &t);
 
     void loadTasks(string fileName);
-
-    
-
-
-
-
-
-
-
 
 };
 

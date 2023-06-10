@@ -89,18 +89,13 @@ void DBManager::loadData(string personJSON, string taskJSON)
         p.setMessages(messages);
 
         myPersons.push_back(p);
+        myTasks = tasks;
         //close the json files
 
         personJSONfilestream.close();
         taskJSONfilestream.close();
 
     }
-
-//1) Look through taskData, find names that match
-//2) Build Task objects from taskData
-//3) Load the Task object into tasks vector using push_back()
-//4) Create Person object using tasks vector
-//5) push_back onto myPersons
 
 }
 
@@ -113,8 +108,16 @@ inline void to_json(nlohmann::json &j, const Person &s)
     j["password"] = s.getPassword();
 }
 
-bool DBManager::doesExist(Person& person)
+bool DBManager::doesExist(const string& newName, const string& newEmail) const
 {
+    for(int i=0; i<myPersons.size(); ++i)
+    {
+     
+        if(newName==myPersons.at(i).getName() || newEmail==myPersons.at(i).getEmail())
+        {
+            return true;
+        }
+    }
     return false;
 }
 
@@ -165,7 +168,7 @@ void DBManager::storeNewPerson(Person &p, string personFileName, string taskFile
 }
 
 //storePerson: modifies the existing person an task json objects and saves them in json file
-void DBManager::storePerson(Person person, string personFileName, string taskFileName)
+void DBManager::storePerson(Person& person, string personFileName, string taskFileName)
 {
     //Iterates through personData json object, finds matching peron and only changes the matching person json
     for(int i = 0; i<personData.at("Person").size(); ++i)
@@ -181,9 +184,15 @@ void DBManager::storePerson(Person person, string personFileName, string taskFil
             personData["Person"][i]["messages"] = person.getMessages();
             
             vector<string> taskNames;
+            vector<string> newTaskNames;
+
+            for (Task eachTask : person.getTaskList()) {
+                taskNames.push_back(eachTask.getTaskName());
+                newTaskNames.push_back(eachTask.getTaskName());
+            }
+
             for(Task task : person.getTaskList())
             {
-                taskNames.push_back(task.getTaskName());
                 //Loop through the taskData and find the matching tasks to replace
                 for(int m=0; m<taskData.at("Tasks").size(); ++m)
                 {
@@ -196,10 +205,67 @@ void DBManager::storePerson(Person person, string personFileName, string taskFil
                         taskData.at("Tasks")[m]["deadline"]["yy"] = static_cast<int>(task.getDeadline().year());
                         taskData.at("Tasks")[m]["deadline"]["mm"] = static_cast<unsigned>(task.getDeadline().month());
                         taskData.at("Tasks")[m]["deadline"]["dd"] = static_cast<unsigned>(task.getDeadline().day());
+
+                        auto it = find(newTaskNames.begin(), newTaskNames.end(), task.getTaskName());
+                        newTaskNames.erase(it);
                     }
                 }
             }
+
+            for (string nameToAdd : newTaskNames) {
+                for (Task taskObj : person.getTaskList()) {
+                    if (taskObj.getTaskName() == nameToAdd) {
+                        json newTask;
+
+                        newTask["id"] = taskObj.getTaskName();
+                        newTask["description"] = taskObj.getDescription();
+                        newTask["label"] = taskObj.getLabel();
+                        newTask["rating"] = taskObj.getRating();
+                        newTask["deadline"]["yy"] = static_cast<int>(taskObj.getDeadline().year());
+                        newTask["deadline"]["mm"] = static_cast<unsigned>(taskObj.getDeadline().month());
+                        newTask["deadline"]["dd"] = static_cast<unsigned>(taskObj.getDeadline().day());
+
+                        taskData["Tasks"].push_back(newTask);
+                    }
+                }
+            }
+
+            // //if this is true there are new tasks that were added
+            // if (person.getTaskList().size() > personData["Person"][i]["tasks"].size()) {
+            //     vector<string> newTaskNames = taskNames;
+            //     vector<string> existingTaskNames;
+            //     for (Task task : myTasks) {
+            //         existingTaskNames.push_back(task.getTaskName());
+            //     }
+
+            //     for (string existingName : existingTaskNames) {
+            //         const auto it = find(newTaskNames.begin(), newTaskNames.end(), existingName);
+            //         if (it != newTaskNames.end()) {
+            //             newTaskNames.erase(it);
+            //         }
+            //     }
+
+            //     for (Task taskObj : person.getTaskList()) {
+            //         for (string newTaskName : newTaskNames) {
+            //             if (taskObj.getTaskName() == newTaskName) {
+            //                 json newTask;
+
+            //                 newTask["id"] = taskObj.getTaskName();
+            //                 newTask["description"] = taskObj.getDescription();
+            //                 newTask["label"] = taskObj.getLabel();
+            //                 newTask["rating"] = taskObj.getRating();
+            //                 newTask["deadline"]["yy"] = static_cast<int>(taskObj.getDeadline().year());
+            //                 newTask["deadline"]["mm"] = static_cast<unsigned>(taskObj.getDeadline().month());
+            //                 newTask["deadline"]["dd"] = static_cast<unsigned>(taskObj.getDeadline().day());
+
+            //                 taskData["Tasks"].push_back(newTask);
+            //             }
+            //         }
+            //     }
+            // }
+
             personData["Person"][i]["tasks"] = taskNames;
+
             // obj2.emplace("name", person.getName());
             // obj2.emplace("email", person.getEmail());
             // obj2.emplace("password", person.getPassword());
@@ -219,7 +285,23 @@ void DBManager::storePerson(Person person, string personFileName, string taskFil
     taskJsonOutput.close();
 }
 
+void DBManager::validateLogin(string& userName, string& password) const {
+    for (Person person : myPersons) {
+        if (person.getName() == userName && person.getPassword() == password) {
+            return;
+        }
+    }
+    throw runtime_error("Invalid Login!\n");
+}
 
+bool DBManager::taskAlreadyExists(string& taskName) const {
+    for (Task task : myTasks) {
+        if (task.getTaskName() == taskName) {
+            return true;
+        }
+    }
+    return false;
+}
 
 //STEPS TO FOLLOW
 

@@ -26,18 +26,21 @@ TEST(PersonTests, testSetTaskList) {
 }
 
 TEST(DateSorterTests, testDateGetPerson) {
-    Person* p = new Person();
+    Person p;
     TaskSorter* sorter = new DateSorter(p);
 
     EXPECT_EQ(p, sorter->getPerson());
+    delete sorter;
 }
 
 TEST(DateSorterTests, testDateSetPerson) {
-    TaskSorter* sorter = new DateSorter(new Person());
-    Person* p2 = new Person();
+    Person p1;
+    TaskSorter* sorter = new DateSorter(p1);
+    Person p2;
     sorter->setPerson(p2);
 
     EXPECT_EQ(p2, sorter->getPerson());
+    delete sorter;
 }
 
 TEST(DateSorterTests, testDateSortIncreasing) {
@@ -45,15 +48,15 @@ TEST(DateSorterTests, testDateSortIncreasing) {
     for (int i = 1; i < 6; ++i) {
         list.push_back(Task(5, date::year{2023}/date::January/i));
     }
-
-    TaskSorter* sorter = new DateSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new DateSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
     }
-
+    delete sorter;
 }
 
 TEST(DateSorterTests, testDateSortSame) {
@@ -61,15 +64,15 @@ TEST(DateSorterTests, testDateSortSame) {
     for (int i = 1; i < 21; ++i) {
         list.push_back(Task(5, date::year{2023}/date::January/1));
     }
-
-    TaskSorter* sorter = new DateSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new DateSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
     }
-
+    delete sorter;
 }
 
 TEST(DateSorterTests, testDateSortDecreasing) {
@@ -77,29 +80,33 @@ TEST(DateSorterTests, testDateSortDecreasing) {
     for (int i = 20; i > 0 ; --i) {
         list.push_back(Task(5, date::year{2023}/date::January/i));
     }
-
-    TaskSorter* sorter = new DateSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new DateSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_LE(list.at(i).getDeadline(), list.at(i+1).getDeadline());
     }
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceGetPerson) {
-    Person* p = new Person();
+    Person p;
     TaskSorter* sorter = new ImportanceSorter(p);
 
     EXPECT_EQ(p, sorter->getPerson());
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceSetPerson) {
-    TaskSorter* sorter = new ImportanceSorter(new Person());
-    Person* p2 = new Person();
+    Person p1;
+    TaskSorter* sorter = new ImportanceSorter(p1);
+    Person p2;
     sorter->setPerson(p2);
 
     EXPECT_EQ(p2, sorter->getPerson());
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceSortIncreasing) {
@@ -108,15 +115,15 @@ TEST(ImportanceSorterTests, testImportanceSortIncreasing) {
     for (int i = 1; i < 6; ++i) {
         list.push_back(Task(i, d));
     }
-
-    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new ImportanceSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
     }
-
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceSortSame) {
@@ -124,15 +131,15 @@ TEST(ImportanceSorterTests, testImportanceSortSame) {
     for (int i = 1; i < 21; ++i) {
         list.push_back(Task(5, date::year{2023}/date::January/1));
     }
-
-    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new ImportanceSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
     }
-
+    delete sorter;
 }
 
 TEST(ImportanceSorterTests, testImportanceSortDecreasing) {
@@ -141,156 +148,180 @@ TEST(ImportanceSorterTests, testImportanceSortDecreasing) {
     for (int i = 20; i > 0 ; --i) {
         list.push_back(Task(i, d));
     }
-
-    TaskSorter* sorter = new ImportanceSorter(new Person(list));
+    Person p(list);
+    TaskSorter* sorter = new ImportanceSorter(p);
     sorter->performSort();
-    list = sorter->getPerson()->getTaskList();
+    list = sorter->getPerson().getTaskList();
 
     for (int i = 0; i+1 < list.size(); ++i) {
         EXPECT_GE(list.at(i).getRating(), list.at(i+1).getRating());
     }
+    delete sorter;
 }
 
-TEST(personSignUpName, validName) {
+TEST(personValidation, validName) {
     Person* personValidName = new Person();
-    personValidName->signUp("testName", "testEmail@gmail.com", "testPassword1!");
+    //personValidName->signUp("testName", "testEmail@gmail.com", "testPassword1!");
 
-    EXPECT_EQ("testName", personValidName->getName());
+    EXPECT_NO_THROW(personValidName->checkNameRequirements("testName"));
+    EXPECT_TRUE(personValidName->checkNameRequirements("testName"));
 }
 
-TEST(personSignUpName, invalidNameNonalphabetical) {
+TEST(personValidation, invalidNameNonalphabetical) {
     Person* personInvalidNameNonalphabetical = new Person();
     
-    EXPECT_ANY_THROW(personInvalidNameNonalphabetical->signUp("testName1", "testEmail@gmail.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidNameNonalphabetical->checkNameRequirements("testName1"));
 }
 
-TEST(personSignUpName, invalidNameTooShort) {
+TEST(personValidation, invalidNameTooShort) {
     Person* personInvalidNameTooShort = new Person();
     
-    EXPECT_ANY_THROW(personInvalidNameTooShort->signUp("a", "testEmail@gmail.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidNameTooShort->checkNameRequirements("a"));
 }
 
-TEST(personSignUpName, invalidNameTooLong) {
+TEST(personValidation, invalidNameTooLong) {
     Person* personInvalidNameTooLong = new Person();
     
-    EXPECT_ANY_THROW(personInvalidNameTooLong->signUp("testNameThatIsTooLong", "testEmail@gmail.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidNameTooLong->checkNameRequirements("testNameThatIsTooLongtestNameThatIsTooLongtestNameThatIsTooLongtestNameThatIsTooLong"));
 }
 
-TEST(personSignUpEmail, validEmail) {
+TEST(personValidation, validEmail) {
     Person* personValidEmail = new Person();
-    personValidEmail->signUp("testName", "testEmail@gmail.com", "testPassword1!");
+    
+    EXPECT_NO_THROW(personValidEmail->checkEmailRequirements("testEmail@gmail.com"));
 
-    EXPECT_EQ("testEmail@gmail.com", personValidEmail->getEmail());
 }
 
-TEST(personSignUpEmail, invalidEmailTooShort) {
+TEST(personValidation, invalidEmailTooShort) {
     Person* personInvalidEmailTooShort = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailTooShort->signUp("testName", "a@a.a", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailTooShort->checkEmailRequirements("a@a.a"));
 }
 
-TEST(personSignUpEmail, invalidEmailTooLong) {
+TEST(personValidation, invalidEmailTooLong) {
     Person* personInvalidEmailTooLong = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailTooLong->signUp("testName", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailTooLong->checkEmailRequirements("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"));
 }
 
-TEST(personSignUpEmail, invalidEmailUsername) {
+TEST(personValidation, invalidEmailUsername) {
     Person* personInvalidEmailUsername = new Person();
     
-    EXPECT_ANY_THROW(personInvalidEmailUsername->signUp("testName", "testEmail1@gmail.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailUsername->checkEmailRequirements("testEmail!@gmail.com"));
 }
 
-TEST(personSignUpEmail, invalidEmailDomainname) {
+TEST(personValidation, invalidEmailDomainname) {
     Person* personInvalidEmailDomainname = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailDomainname->signUp("testName", "testEmail@gmail1.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailDomainname->checkEmailRequirements("testEmail@gmail!.com"));
 }
 
-TEST(personSignUpEmail, invalidEmailExtension) {
+TEST(personValidation, invalidEmailExtension) {
     Person* personInvalidEmailExtension = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailExtension->signUp("testName", "testEmail@gmail.com1", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailExtension->checkEmailRequirements("testEmail@gmail.com!"));
 }
 
-TEST(personSignUpEmail, invalidEmailFirstAt) {
+TEST(personValidation, invalidEmailFirstAt) {
     Person* personInvalidEmailFirstAt = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailFirstAt->signUp("testName", "@gmail.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailFirstAt->checkEmailRequirements("@gmail.com"));
 }
 
-TEST(personSignUpEmail, invalidEmailDomainnameEmpty) {
+TEST(personValidation, invalidEmailDomainnameEmpty) {
     Person* personInvalidEmailDomainnameEmpty = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailDomainnameEmpty->signUp("testName", "testEmail@.com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailDomainnameEmpty->checkEmailRequirements("testEmail@.com"));
 }
 
-TEST(personSignUpEmail, invalidEmailLastDot) {
+TEST(personValidation, invalidEmailLastDot) {
     Person* personInvalidEmailLastDot = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailLastDot->signUp("testName", "testEmail@gmail.", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailLastDot->checkEmailRequirements("testEmail@gmail."));
 }
 
-TEST(personSignUpEmail, invalidEmailAtDotOrder) {
+TEST(personValidation, invalidEmailAtDotOrder) {
     Person* personInvalidEmailAtDotOrder = new Person();
 
-    EXPECT_ANY_THROW(personInvalidEmailAtDotOrder->signUp("testName", "testEmail.gmail@com", "testPassword1!"));
+    EXPECT_ANY_THROW(personInvalidEmailAtDotOrder->checkEmailRequirements("testEmail.gmail@com"));
 }
 
-TEST(personSignUpPassword, validPassword) {
+TEST(personValidation, validPassword) {
     Person* personValidPassword = new Person();
-    personValidPassword->signUp("testName", "testEmail@gmail.com", "testPassword1!");
-
-    EXPECT_EQ("testPassword1!", personValidPassword->getPassword());
+    
+    EXPECT_NO_THROW(personValidPassword->checkPasswordRequirements("testPassword1!"));
+    EXPECT_TRUE(personValidPassword->checkPasswordRequirements("testPassword1!"));
 }
 
-TEST(personSignUpPassword, invalidPasswordTooShort) {
+TEST(personValidation, invalidPasswordTooShort) {
     Person* personInvalidPasswordTooShort = new Person();
 
-    EXPECT_ANY_THROW(personInvalidPasswordTooShort->signUp("testName", "testEmail@gmail.com", "a"));
+    EXPECT_ANY_THROW(personInvalidPasswordTooShort->checkPasswordRequirements("a"));
 }
 
-TEST(personSignUpPassword, invalidPasswordTooLong) {
+TEST(personValidation, invalidPasswordTooLong) {
     Person* personInvalidPasswordTooLong = new Person();
 
-    EXPECT_ANY_THROW(personInvalidPasswordTooLong->signUp("testName", "testEmail@gmail.com", "abcdefghijklmnopqrstuvwxyz"));
+    EXPECT_ANY_THROW(personInvalidPasswordTooLong->checkPasswordRequirements("abcdefghijklmnopqrstuvwxyz"));
 }
 
-TEST(personSignUpPassword, invalidPasswordOnlyLetter) {
+TEST(personValidation, invalidPasswordOnlyLetter) {
     Person* personInvalidPasswordOnlyLetter = new Person();
 
-    EXPECT_ANY_THROW(personInvalidPasswordOnlyLetter->signUp("testName", "testEmail@gmail.com", "testPassword"));
+    EXPECT_ANY_THROW(personInvalidPasswordOnlyLetter->checkPasswordRequirements("testPassword"));
 }
 
-TEST(personSignUpPassword, invalidPasswordOnlyNum) {
+TEST(personValidation, invalidPasswordOnlyNum) {
     Person* personInvalidPasswordOnlyNum = new Person();
 
-    EXPECT_ANY_THROW(personInvalidPasswordOnlyNum->signUp("testName", "testEmail@gmail.com", "120491845091"));
+    EXPECT_ANY_THROW(personInvalidPasswordOnlyNum->checkPasswordRequirements("120491845091"));
 }
 
-TEST(personSignUpPassword, invalidPasswordOnlySpecialChar) {
+TEST(personValidation, invalidPasswordOnlySpecialChar) {
     Person* personInvalidPasswordOnlySpecialChar = new Person();
 
-    EXPECT_ANY_THROW(personInvalidPasswordOnlySpecialChar->signUp("testName", "testEmail@gmail.com", "!)@(#*$&%^$&#)"));
+    EXPECT_ANY_THROW(personInvalidPasswordOnlySpecialChar->checkPasswordRequirements("!)@(#*$&%^$&#)"));
 }
 
-TEST(personSignUpPassword, invalidPasswordNoLetter) {
+TEST(personValidation, invalidPasswordNoLetter) {
     Person* personInvalidPasswordNoLetter = new Person();
 
-    EXPECT_ANY_THROW(personInvalidPasswordNoLetter->signUp("testName", "testEmail@gmail.com", "192304@!()&$!"));
+    EXPECT_ANY_THROW(personInvalidPasswordNoLetter->checkPasswordRequirements("192304@!()&$!"));
 }
 
-TEST(personSignUpPassword, invalidPasswordNoNum) {
+TEST(personValidation, invalidPasswordNoNum) {
     Person* personInvalidPasswordNoNum = new Person();
 
-    EXPECT_ANY_THROW(personInvalidPasswordNoNum->signUp("testName", "testEmail@gmail.com", "testPassword!"));
+    EXPECT_ANY_THROW(personInvalidPasswordNoNum->checkPasswordRequirements("testPassword!"));
 }
 
-TEST(personSignUpPassword, invalidPasswordNoSpecialChar) {
+TEST(personValidation, invalidPasswordNoSpecialChar) {
     Person* personInvalidPasswordNoSpecialChar = new Person();
 
-    EXPECT_ANY_THROW(personInvalidPasswordNoSpecialChar->signUp("testName", "testEmail@gmail.com", "testPassword1"));
+    EXPECT_ANY_THROW(personInvalidPasswordNoSpecialChar->checkPasswordRequirements("testPassword1"));
 }
+
+/*
+TEST(personSignUpDatabase, nameAlreadyExists)
+{
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+
+    Person* personNameAlreadyExists = new Person();
+
+    EXPECT_ANY_THROW(personNameAlreadyExists->signUp("Ram", "ram1@gmail.com", "newPass1!!!!!"));
+}
+
+TEST(personSignUpDatabase, emailAlreadyExists)
+{
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+
+    Person* personNameAlreadyExists = new Person();
+
+    EXPECT_ANY_THROW(personNameAlreadyExists->signUp("Rama", "ram@gmail.com", "newPass1!!!!!"));
+}
+*/
 
 TEST(personDefaultConstructor, defaultName) {
     Person* personDefaultName = new Person();
@@ -347,11 +378,23 @@ TEST(personSetters, setName) {
     EXPECT_EQ("testName", personSetName->getName());
 }
 
+TEST(personSetters, invalidNameForSetter) {
+    Person* personSetName = new Person();
+
+    EXPECT_ANY_THROW(personSetName->setName("testName1"));
+}
+
 TEST(personSetters, setEmail) {
     Person* personSetEmail = new Person();
     personSetEmail->setEmail("testEmail@gmail.com");
 
     EXPECT_EQ("testEmail@gmail.com", personSetEmail->getEmail());
+}
+
+TEST(personSetters, invalidEmailForSetter) {
+    Person* personSetEmail = new Person();
+
+    EXPECT_ANY_THROW(personSetEmail->setEmail("testEmail!@gmail.com"));
 }
 
 TEST(personSetters, setPassword) {
@@ -361,10 +404,16 @@ TEST(personSetters, setPassword) {
     EXPECT_EQ("testPassword1!", personSetPassword->getPassword());
 }
 
+TEST(personSetters, invalidPasswordForSetter) {
+    Person* personSetPassword = new Person();
+
+    EXPECT_ANY_THROW(personSetPassword->setPassword("testPassword1"));
+}
+
 TEST(personSetters, setTasks) {
     Person* personSetTasks = new Person();
     Task tasksSetTasks(5, date::year{2023}/date::January/1);
-    personSetTasks->setTasks(tasksSetTasks);
+    personSetTasks->addTask(tasksSetTasks);
 
     EXPECT_FALSE(personSetTasks->getTaskList().empty());
 }

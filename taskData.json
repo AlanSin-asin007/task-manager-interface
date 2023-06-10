@@ -43,6 +43,17 @@
             "id": "t4",
             "label": "qw3erty",
             "rating": 4
+        },
+        {
+            "deadline": {
+                "dd": 10,
+                "mm": 6,
+                "yy": 2023
+            },
+            "description": "TestDescription",
+            "id": "TestTask",
+            "label": "TestLabel",
+            "rating": 8
         }
     ]
 }

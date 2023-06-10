@@ -76,7 +76,7 @@ TEST(personTests, testStorePerson)
 
     Person Ram = DB.getPerson("Ram");
 
-    Ram.setPassword("newPass");
+    Ram.setPassword("newPass1!!!!!");
 
     DB.storePerson(Ram, "personData.json", "taskData.json");
 
@@ -84,37 +84,75 @@ TEST(personTests, testStorePerson)
 
 }
 
-TEST(personTests, addPerson)
-{
-    DBManager DB;
+//cannot repeatedly test this function
+//in order to repeatedly test, must be able to delete data from database
+// TEST(personTests, addPerson)
+// {
+//     DBManager DB;
 
+//     DB.loadData("personData.json", "taskData.json");
+
+//     Person Larry;
+
+//     Larry.signUp("Larry", "larry@gmail.com", "LarryPass12#3");
+
+
+//     DB.storeNewPerson(Larry, "personData.json", "taskData.json");
+
+//     EXPECT_EQ(true, true);
+// }
+
+// TEST(messageTest, sendMessagetoSomeone)
+// {
+//     DBManager DB;
+
+//     DB.loadData("personData.json", "taskData.json");
+
+//     Person Ram = DB.getPerson("Ram");
+
+//     Ram.sendMessage("Shyam", "Message1234");
+
+//     DB.storePerson(Ram, "personData.json", "taskData.json");
+
+//     EXPECT_EQ(true, true);
+// }
+
+TEST(DBManagerDoesExist, nameDoesExist) {
+    DBManager DB;
     DB.loadData("personData.json", "taskData.json");
 
-    Person Larry;
-
-    Larry.signUp("Larry", "larry@gmail.com", "LarryPass12#3");
-
-
-    DB.storeNewPerson(Larry, "personData.json", "taskData.json");
-
-    EXPECT_EQ(true, true);
+    EXPECT_TRUE(DB.doesExist("Ram", "ram1@gmail.com"));
 }
 
-TEST(messageTest, sendMessagetoSomeone)
-{
+TEST(DBManagerDoesExist, emailDoesExist) {
     DBManager DB;
-
     DB.loadData("personData.json", "taskData.json");
 
-    Person Ram = DB.getPerson("Ram");
-
-    Ram.sendMessage("Shyam", "Message1234");
-
-    DB.storePerson(Ram, "personData.json", "taskData.json");
-
-    EXPECT_EQ(true, true);
+    EXPECT_TRUE(DB.doesExist("Rama", "ram@gmail.com"));
 }
 
+TEST(DBManagerDoesExist, nameAndEmailDoNotExist) {
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+
+    EXPECT_FALSE(DB.doesExist("Rama", "ram1@gmail.com"));
+}
+
+TEST(DBManagerTests, validateGoodLogin) {
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+    string userName = "John", password = "pass33";
+    
+    EXPECT_NO_THROW(DB.validateLogin(userName, password));
+}
+
+TEST(DBManagerTests, validateBadLogin) {
+    DBManager DB;
+    DB.loadData("personData.json", "taskData.json");
+    string userName = "BadName", password = "BadPassword";
+
+    EXPECT_ANY_THROW(DB.validateLogin(userName, password));
+}
 
 // int main(int argc, char **argv) {
 //     ::testing::InitGoogleTest(&argc, argv);

@@ -21,7 +21,7 @@
  > * Why is it important or interesting to you? This is important to us because it is vital to have a good user friendly interface where individuals can create certain assignments for themselves to keep themselves up to date with the tasks they have. As students, it comes in handy to organize tasks that we need to do, so students can remain productive and prepare themselves for a world outside of college. 
  > * What languages/tools/technologies do you plan to use? C++ is the main backend language that will be used for development of this project. We will use Github for version control. Kanban will be used for assigning tasks and workload amongst the peers for this project. 
  > * What will be the input/output of your project? Input will be general user information such as passowrds and username/email. The output will be access to a unique developement environment. 
- > * What are the features that the project provides? The option for an individual password or a random password generator to create a password for the user. A forgot password and or user information feature. A user friendly pre made calendar to help the user organize future tasks. The ability for the user to implement tasks for him or herself. Planning on including a GUI, however it is not set in stone yet. 
+ > * What are the features that the project provides? The option for an individual password or a random password generator to create a password for the user. A forgot password and or user information feature. A user friendly pre made calendar to help the user organize future tasks. The ability for the user to implement tasks for him or herself. As for the UI of the program, we are using a text-based interface that the user is able to input information to. When navigating the various menus, the user will also be able to indicate what part of the menu they want to interact with as well.
  > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
  > 
  > You also need to set up an empty project board using GitHub projects (board view). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added.
@@ -63,7 +63,7 @@ Description: The user will be prompted with 2 options: logging in or signing up.
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs, expected output, and buttons (if applicable). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
 
 ## Class Diagram
-![Task Manager UML Diagram drawio (1)](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/129815281/135d04cd-8283-4333-b6f0-84c339f3be1b)
+![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/130192487/37c122ea-d0b2-489b-bc8f-7f3aea9d8ea9)
 
 ## Description of class diagram
 

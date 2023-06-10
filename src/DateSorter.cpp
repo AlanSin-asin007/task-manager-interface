@@ -1,6 +1,6 @@
 #include "../include/DateSorter.h"
 
-DateSorter::DateSorter(Person* p) : TaskSorter(p) {}
+DateSorter::DateSorter(Person& person) : TaskSorter(person) {}
 
 void DateSorter::sort(std::vector<Task>& taskList) {
     for (int i = 0; i < taskList.size(); ++i) {
