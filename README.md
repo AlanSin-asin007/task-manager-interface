@@ -6,29 +6,29 @@
 Description: The diagram represents each of the individual screens of the task planner and how the user will be able to navigate between each of the screens. At first, the user will be given the option to either log in, sign up, or quit. After logging in, the user will be sent to the Dashboard, where they will be shown their schedule and given the options of viewing a particular task, adding a new task, viewing their messages, switching over to a calendar view, or back to list view, which each option giving the user additional information and options. 
 
 ### Screen Layouts
- ![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/130192487/e1f61768-9bd7-49f4-84db-1e517e32a513)
- 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/aedaff49-1a52-45df-b2f7-5f6a16d08e0e)
+![alt text](./images/screenLayout1.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/fdd59a6a-e9d6-4c90-8b02-87013775f2b1)
+![alt text](./images/screenLayout2.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/612caf70-bdd2-46e6-a49b-7073c80c83db)
+![alt text](./images/screenLayout3.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/f627b40e-a9a9-4fd7-8b57-9062f35476fc)
+![alt text](./images/screenLayout4.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/b288c398-c2d8-4573-b731-79dcff77e177)
+![alt text](./images/screenLayout5.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/8cbe2b7e-6d72-4ab6-9aba-658e0cb3f4d8)
+![alt text](./images/screenLayout6.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/41d83501-021d-4486-9edd-968e81296084)
+![alt text](./images/screenLayout7.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/4494c84d-6414-4053-9591-1f50a13b112c)
+![alt text](./images/screenLayout8.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/d6303e18-79f8-412e-a86b-fca5ddae8533)
+![alt text](./images/screenLayout9.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/2660d19d-f5d4-47c3-9634-10c99272605a)
+![alt text](./images/screenLayout10.png)
 
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/68790299/dbce7803-747e-44ce-8e71-84d99d4b916f)
+![alt text](./images/screenLayout11.png)
+
+![alt text](./images/screenLayout12.png)
 
 Description: The user will be prompted with 2 options: logging in or signing up. 
 - Login: The user will be asked to input their username and password. Once a valid username and password is given, the user will be sent to the dashboard screen.
@@ -39,7 +39,7 @@ Description: The user will be prompted with 2 options: logging in or signing up.
 - View Task: After choosing the option to select and view a particular task in their schedule, they will be sent to a screen showcasing all the details of the task in question. These details will include the name of the task, a description, label, and deadline. The user will also have the option of deleting the task in question (which will send the user back to the dashboard interface).
 
 ## Class Diagram
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/130192487/37c122ea-d0b2-489b-bc8f-7f3aea9d8ea9)
+![alt text](./images/classDiagram.png)
 
 ## Description of class diagram
 
@@ -48,5 +48,5 @@ In the UML diagram depicted, there are 8 classes. Within the Person, Task, Label
 - Inferface Segregation Principle (ISP): This SOLID principle is fulfilled by the ImportanceSorter and DateSorter classes, which inherit from the TaskSorter interface. While, the TaskSorter class could have had different functions to sort Tasks based on different criteria, seperating them into different classes allows for easy readability and further expansion in the future.
  
  ## Screenshots
-![image](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/130192487/80d980d7-362a-42bd-b769-5182b4239e0b)
+![alt text](./images/screenshot.png)
 This is a screenshot of our tests passing. All other screenshots of the program have been displayed in the Screen Layouts portion of this README.
