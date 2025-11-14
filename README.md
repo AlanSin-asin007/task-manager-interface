@@ -1,7 +1,7 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10962089&assignment_repo_type=AssignmentRepo)
  
 ### Navigation Diagram
-![Screenshot (11)](https://github.com/cs100/final-project-asin007-rcruz053-aiyer026-aswam005/assets/129815281/b21071c5-9da3-46f4-bc9e-aa01e40a5d40)
+![alt text](./images/navigationDiagram.png)
 
 Description: The diagram represents each of the individual screens of the task planner and how the user will be able to navigate between each of the screens. At first, the user will be given the option to either log in, sign up, or quit. After logging in, the user will be sent to the Dashboard, where they will be shown their schedule and given the options of viewing a particular task, adding a new task, viewing their messages, switching over to a calendar view, or back to list view, which each option giving the user additional information and options. 
 
